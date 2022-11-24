@@ -1,11 +1,10 @@
-import Head from 'next/head'
-import { useEffect, useState } from 'react'
-import { useMutation, useQuery } from '../convex/_generated/react';
-import styles from '../styles/Home.module.css'
-import {useAuth0} from '@auth0/auth0-react';
+import Head from "next/head";
+import { useEffect, useState } from "react";
+import { useMutation, useQuery } from "../convex/_generated/react";
+import styles from "../styles/Home.module.css";
+import { useAuth0 } from "@auth0/auth0-react";
 
 export default function Home() {
-
   const count = useQuery("getCounter");
   const incrementCounter = useMutation("incrementCounter");
   const { logout, user } = useAuth0();
@@ -19,13 +18,24 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-        <button onClick={()=>{logout()}}>logout</button>
+        <button
+          onClick={() => {
+            logout();
+          }}
+        >
+          logout
+        </button>
         {user?.email}
-        <div>
-          {count && count.clicks}
-        </div>
-        <button onClick={() => incrementCounter({ ...count, clicks: count.clicks + 1 })}> +</button>
+        <div>{count && count.clicks}</div>
+        <button
+          onClick={() =>
+            incrementCounter({ ...count, clicks: count.clicks + 1 })
+          }
+        >
+          {" "}
+          +
+        </button>
       </main>
     </div>
-  )
+  );
 }

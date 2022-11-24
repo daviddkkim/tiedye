@@ -4,7 +4,6 @@ import clientConfig from "../../convex/_generated/clientConfig";
 
 const convex = new ConvexHttpClient(clientConfig);
 
-
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<any>

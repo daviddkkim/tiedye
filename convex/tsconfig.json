@@ -20,5 +20,5 @@
     /* Prevents node_modules from adding additional global types e.g. node types */
     "types": []
   },
-  "include": ["./**/*"],
+  "include": ["./**/*"]
 }
