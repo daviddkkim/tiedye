@@ -2,12 +2,14 @@ import Head from 'next/head'
 import { useEffect, useState } from 'react'
 import { useMutation, useQuery } from '../convex/_generated/react';
 import styles from '../styles/Home.module.css'
+import {useAuth0} from '@auth0/auth0-react';
 
 export default function Home() {
 
   const count = useQuery("getCounter");
   const incrementCounter = useMutation("incrementCounter");
-  console.log(count)
+  const { logout, user } = useAuth0();
+
   return (
     <div className={styles.container}>
       <Head>
@@ -17,6 +19,8 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
+        <button onClick={()=>{logout()}}>logout</button>
+        {user?.email}
         <div>
           {count && count.clicks}
         </div>

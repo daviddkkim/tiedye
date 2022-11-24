@@ -3,5 +3,10 @@
   "team": "daviddkkim",
   "prodUrl": "https://ideal-starling-800.convex.cloud",
   "functions": "convex/",
-  "authInfo": []
+  "authInfo": [
+    {
+      "domain": "https://dev-apjmfpvg.us.auth0.com/",
+      "applicationID": "ARnHXLp5PMQcQ7DJK2BdofpohxsZrkAx"
+    }
+  ]
 }
