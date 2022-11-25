@@ -33,7 +33,14 @@ const SideNav = () => {
     const router = useRouter();
 
     const pathname = router.pathname;
-    console.log(pathname)
+
+    const handleActiveLink = (link: string) => {
+        if (pathname.includes(link)) return true;
+
+        if (pathname.length < 2 && link === 'rooms') return true;
+
+        return false;
+    }
 
     return (
         <NavContainer>
@@ -53,10 +60,9 @@ const SideNav = () => {
                     gap: '$1',
                     flexDirection: 'column'
                 }}>
-                    <Link variant={'tertiary'} href={'/rooms'} active={pathname.includes('rooms')}> <StackIcon /> Rooms </Link>
-                    <Link variant={'tertiary'} href={'/settings'} active={pathname.includes('settings')}> <GearIcon /> Settings </Link>
-                    <Link variant={'tertiary'} href={'/members'} active={pathname.includes('members')} > <PersonIcon /> Members </Link>
-
+                    <Link variant={'tertiary'} href={'/rooms'} active={handleActiveLink('rooms')}> <StackIcon /> Rooms </Link>
+                    <Link variant={'tertiary'} href={'/settings'} active={handleActiveLink('settings')}> <GearIcon /> Settings </Link>
+                    <Link variant={'tertiary'} href={'/members'} active={handleActiveLink('members')} > <PersonIcon /> Members </Link>
                 </Box>
             </Box>
             <Box css={{
