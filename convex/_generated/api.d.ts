@@ -12,6 +12,7 @@
 import type { ApiFromModules } from "convex/api";
 import type * as getCounter from "../getCounter";
 import type * as incrementCounter from "../incrementCounter";
+import type * as storeUser from "../storeUser";
 
 /**
  * A type describing your app's public Convex API.
@@ -25,4 +26,5 @@ import type * as incrementCounter from "../incrementCounter";
 export type API = ApiFromModules<{
   getCounter: typeof getCounter;
   incrementCounter: typeof incrementCounter;
+  storeUser: typeof storeUser;
 }>;

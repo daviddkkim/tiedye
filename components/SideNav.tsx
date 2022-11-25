@@ -4,6 +4,7 @@ import { Button } from "./Button";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Link } from "./Link";
 import { PersonIcon, StackIcon, GearIcon, ChatBubbleIcon, PaperPlaneIcon, Pencil2Icon } from '@radix-ui/react-icons'
+import { useRouter } from "next/router";
 
 const NavContainer = styled('div', {
     display: 'flex',
@@ -29,6 +30,10 @@ const Box = styled('div', {
 })
 const SideNav = () => {
     const { logout, user } = useAuth0();
+    const router = useRouter();
+
+    const pathname = router.pathname;
+    console.log(pathname)
 
     return (
         <NavContainer>
@@ -41,16 +46,16 @@ const SideNav = () => {
                     width: '100%',
                     justifyContent: 'space-between',
                 }}>
-                    <NavTitle>{'Tie-dye'}</NavTitle>
+                    <NavTitle>{'-'}</NavTitle>
                 </Box>
                 <Button> <Pencil2Icon /> Create Room </Button>
                 <Box css={{
                     gap: '$1',
                     flexDirection: 'column'
                 }}>
-                    <Link variant={'tertiary'} href={'/rooms'} active> <StackIcon /> Rooms </Link>
-                    <Link variant={'tertiary'} href={'/settings'} > <GearIcon /> Settings </Link>
-                    <Link variant={'tertiary'} href={'/members'} > <PersonIcon /> Members </Link>
+                    <Link variant={'tertiary'} href={'/rooms'} active={pathname.includes('rooms')}> <StackIcon /> Rooms </Link>
+                    <Link variant={'tertiary'} href={'/settings'} active={pathname.includes('settings')}> <GearIcon /> Settings </Link>
+                    <Link variant={'tertiary'} href={'/members'} active={pathname.includes('members')} > <PersonIcon /> Members </Link>
 
                 </Box>
             </Box>

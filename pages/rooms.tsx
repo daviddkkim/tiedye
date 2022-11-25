@@ -9,14 +9,13 @@ const Page: NextPageWithLayout = () => {
   const count = useQuery("getCounter");
   const incrementCounter = useMutation("incrementCounter");
   const { logout, user } = useAuth0();
-
   return (
     <div >
         {user?.name}
         <div>{count && count.clicks}</div>
         <Button
           onClick={() =>
-            incrementCounter({ ...count, clicks: count.clicks + 1 })
+            incrementCounter({ ...count, clicks: count && count.clicks + 1 })
           }
         >
           {" "}

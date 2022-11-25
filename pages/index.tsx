@@ -23,7 +23,7 @@ const Page: NextPageWithLayout = () => {
         <div>{count && count.clicks}</div>
         <Button
           onClick={() =>
-            incrementCounter({ ...count, clicks: count.clicks + 1 })
+            incrementCounter({ ...count, clicks: count && count.clicks + 1 })
           }
         >
           {" "}
