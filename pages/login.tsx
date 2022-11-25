@@ -1,17 +1,17 @@
 import React from "react";
 import { useAuth0 } from "@auth0/auth0-react";
-
+import { Button } from "../components";
 export default function Login() {
   const { isLoading, loginWithRedirect } = useAuth0();
   if (isLoading) {
-    return <button className="btn btn-primary">Loading...</button>;
+    return <button>Loading...</button>;
   }
   return (
     <main>
       <span>
-        <button className="btn btn-primary" onClick={loginWithRedirect}>
+        <Button  onClick={loginWithRedirect}>
           Log in
-        </button>
+        </Button>
       </span>
     </main>
   );
