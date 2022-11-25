@@ -9,6 +9,8 @@ import type { AppProps } from "next/app";
 import Login from "./login";
 import { ReactElement, ReactNode, useEffect, useState } from "react";
 import { NextPage } from "next";
+import { useMutation } from "../convex/_generated/react";
+import { Id } from "../convex/_generated/dataModel";
 
 
 const globalStyles = globalCss({
@@ -64,7 +66,6 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
 
   globalStyles();
   const [mounted, setMounted] = useState(false);
-
   useEffect(() => {
     setMounted(true);
   }, []);
