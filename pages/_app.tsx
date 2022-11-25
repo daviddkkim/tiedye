@@ -7,7 +7,8 @@ import { darkTheme, globalCss } from "../stitches.config";
 import convexConfig from "../convex.json";
 import type { AppProps } from "next/app";
 import Login from "./login";
-import { useEffect, useState } from "react";
+import { ReactElement, ReactNode, useEffect, useState } from "react";
+import { NextPage } from "next";
 
 
 const globalStyles = globalCss({
@@ -51,7 +52,15 @@ const convex = new ConvexReactClient(clientConfig);
 const authInfo = convexConfig.authInfo[0];
 
 
-export default function App({ Component, pageProps }: AppProps) {
+export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
+  getLayout?: (page: ReactElement) => ReactNode
+}
+
+type AppPropsWithLayout = AppProps & {
+  Component: NextPageWithLayout
+}
+
+export default function App({ Component, pageProps }: AppPropsWithLayout) {
 
   globalStyles();
   const [mounted, setMounted] = useState(false);
@@ -59,6 +68,9 @@ export default function App({ Component, pageProps }: AppProps) {
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  const getLayout = Component.getLayout ?? ((page) => page)
+
   return (
 
     <ThemeProvider
@@ -72,7 +84,7 @@ export default function App({ Component, pageProps }: AppProps) {
         authInfo={authInfo}
         loggedOut={<Login />}
       >
-        {mounted ? <Component {...pageProps} /> :
+        {mounted ? getLayout(<Component {...pageProps} />) :
           <div style={{ visibility: "hidden" }}>
             <Component {...pageProps} />
           </div>
