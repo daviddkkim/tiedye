@@ -36,9 +36,6 @@ const SideNav = () => {
 
     const handleActiveLink = (link: string) => {
         if (pathname.includes(link)) return true;
-
-        if (pathname.length < 2 && link === 'rooms') return true;
-
         return false;
     }
 
