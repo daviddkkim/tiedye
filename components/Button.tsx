@@ -3,6 +3,7 @@ import { styled } from "../stitches.config";
 export const Button = styled('button', {
     unset: 'all',
     fontSize: '$3',
+    lineHeight: '$3',
     gap: '$2',
     height: '$6',
     transition: 'all 200ms ease-out',

@@ -6,21 +6,24 @@ import type { NextPageWithLayout } from './_app'
 import Layout from "../components/layouts/layout";
 
 const Page: NextPageWithLayout = () => {
-  const count = useQuery("getCounter");
-  const incrementCounter = useMutation("incrementCounter");
+  const rooms = useQuery("getRooms");
+  const createRoom = useMutation("createRoom");
+  console.log('',rooms)
   const { logout, user } = useAuth0();
   return (
     <div >
         {user?.name}
-        <div>{count && count.clicks}</div>
-        <Button
-          onClick={() =>
-            incrementCounter({ ...count, clicks: count && count.clicks + 1 })
-          }
-        >
-          {" "}
-          +
-        </Button>
+        <Button onClick={()=>{createRoom()}}>Create Room</Button>
+        <div>
+            {rooms && rooms.map((room)=> {
+                return (
+                    <div>
+                      <span>{room.name}</span>  
+                      <span>{room.owner.id}</span>  
+                    </div>
+                )
+            })}
+        </div>
     </div>
   );
 }

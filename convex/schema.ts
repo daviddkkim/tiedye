@@ -8,4 +8,9 @@ export default defineSchema({
     name: s.string(),
     tokenIdentifier: s.string(),
   }).index("by_token", ["tokenIdentifier"]),
+  rooms: defineTable({
+    name: s.string(),
+    owner: s.id("users"),
+    objects: s.string(),
+    }).index("by_owner", ["owner"]),
 });
