@@ -1,6 +1,7 @@
 import { styled } from "../stitches.config";
+import Link from "next/link";
 
-export const Button = styled('button', {
+const StyledLink = styled(Link, {
     unset: 'all',
     fontSize: '$3',
     gap: '$2',
@@ -47,10 +48,22 @@ export const Button = styled('button', {
             false: {
                 width: 'fit-content',
             }
+        },
+        active: {
+            true: {
+                backgroundColor: '$fgActive',
+                borderColor: 'transparent'
+            },
+            false: {
+
+            }
         }
     },
     defaultVariants: {
         variant: 'secondary',
-        stretch: 'false'
+        stretch: 'false',
+        active: 'false'
     }
 })
+
+export {StyledLink as Link};
