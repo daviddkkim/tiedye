@@ -1,4 +1,4 @@
-import { GenericId } from "convex/dist/types/values/values";
+import { Id } from "./_generated/dataModel";
 import { query } from "./_generated/server";
 
 export default query(async ({ db, auth }, roomId) => {
@@ -9,7 +9,9 @@ export default query(async ({ db, auth }, roomId) => {
 
   console.log(roomId)
 
-  const room =  await db.get(roomId as GenericId<"rooms">)
+  const id = new Id<"rooms">("rooms",roomId);
+
+  const room =  await db.get(id);
 
 
   if(!room) return null;

@@ -18,7 +18,6 @@ const Box = styled("div", {
 
 const Page: NextPageWithLayout = () => {
     const rooms = useQuery("getRooms");
-    console.log("", rooms);
     return (
         <Box css={{
             gap: '$4',
@@ -46,7 +45,7 @@ const Page: NextPageWithLayout = () => {
                     {rooms &&
                         rooms.map((room) => {
                             return (
-                                <TRlink href={'/rooms/'+room._id} style={{width: '100%', display:'table-row'}} key={room._id.toString()}>
+                                <TRlink href={'/rooms/'+room._id.toString()} style={{width: '100%', display:'table-row'}} key={room._id.toString()}>
                                         <TD>{room.name}</TD>
                                         <TD>{room.description}</TD>
                                         <TD>{room.creator}</TD>
