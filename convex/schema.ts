@@ -12,5 +12,5 @@ export default defineSchema({
     name: s.string(),
     owner: s.id("users"),
     objects: s.string(),
-    }).index("by_owner", ["owner"]),
+  }).index("by_owner", ["owner"]),
 });

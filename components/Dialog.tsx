@@ -1,6 +1,6 @@
 import { keyframes, styled } from "../stitches.config";
 import * as DialogPrimitive from "@radix-ui/react-dialog";
-import {Cross2Icon } from '@radix-ui/react-icons';
+import { Cross2Icon } from "@radix-ui/react-icons";
 import { Button } from "./Button";
 
 const overlayShow = keyframes({
@@ -18,68 +18,70 @@ const StyledOverlay = styled(DialogPrimitive.Overlay, {
   },
 });
 
-
 const StyledContent = styled(DialogPrimitive.Content, {
   background: "$bgPrimary",
   borderRadius: 6,
   border: "1px solid $mauve4",
   boxShadow: "rgb(0 0 0 / 20%) 0px 4px 6px",
-  padding: '$3',
-  display:'flex',
-  flexDirection: 'column',
-  gap: '$4',
+  padding: "$3",
+  display: "flex",
+  flexDirection: "column",
+  gap: "$4",
   position: "fixed",
   top: "15%",
   left: "50%",
   maxWidth: "650px",
-  width: '100%',
+  width: "100%",
   transform: "translateX(-50%)",
   "&:focus": { outline: "none" },
 });
-const Box = styled('div', {
-    display: 'flex',
-})
+const Box = styled("div", {
+  display: "flex",
+});
 
 interface DialogProps {
-    //open?: boolean;
-    children: React.ReactNode;
-    trigger: React.ReactNode;
-    title: React.ReactNode;
-    closeOnClickOutside?: boolean;
+  //open?: boolean;
+  children: React.ReactNode;
+  trigger: React.ReactNode;
+  title: React.ReactNode;
+  closeOnClickOutside?: boolean;
 }
 
 //why is the open commented out? it's just being used uncontrolled for now;
 
 const Dialog: React.FC<DialogProps> = ({
-    //open = false,   
-    children,
-    trigger,
-    title,
-    closeOnClickOutside = true,
+  //open = false,
+  children,
+  trigger,
+  title,
+  closeOnClickOutside = true,
 }) => {
-    
-/*     const handleOutsideClick = (event: PointerDownOutsideEvent | FocusOutsideEvent) => {
+  /*     const handleOutsideClick = (event: PointerDownOutsideEvent | FocusOutsideEvent) => {
         if(!closeOnClickOutside) event.preventDefault();
     } */
 
   return (
     <DialogPrimitive.Root>
-      <DialogPrimitive.Trigger asChild>
-        {trigger}
-      </DialogPrimitive.Trigger>
+      <DialogPrimitive.Trigger asChild>{trigger}</DialogPrimitive.Trigger>
       <DialogPrimitive.Portal>
         <StyledOverlay />
-        <StyledContent onInteractOutside={(event) => { closeOnClickOutside? null : event.preventDefault()}}>
-            <Box css={{
-                alignItems: 'center',
-                justifyContent: 'space-between'
-            }}>
-                {title}
-                <Button variant='tertiary'>
-                    <Cross2Icon />
-                </Button>
-            </Box>
-            {children}
+        <StyledContent
+          onInteractOutside={(event) => {
+            closeOnClickOutside ? null : event.preventDefault();
+          }}
+        >
+          <Box
+            css={{
+              alignItems: "center",
+              justifyContent: "space-between",
+            }}
+          >
+            {title}
+            <Button variant="tertiary">
+              <Cross2Icon />
+            </Button>
+          </Box>
+          {children}
         </StyledContent>
       </DialogPrimitive.Portal>
     </DialogPrimitive.Root>

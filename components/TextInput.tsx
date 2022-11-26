@@ -12,6 +12,6 @@ export const TextInput = styled("input", {
   width: "100%",
   transition: "all 150ms ease",
   "&:hover": {
-    borderColor: '$fgBorderHover'
+    borderColor: "$fgBorderHover",
   },
 });

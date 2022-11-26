@@ -10,7 +10,6 @@ import Login from "./login";
 import { ReactElement, ReactNode, useEffect, useState } from "react";
 import { NextPage } from "next";
 
-
 const globalStyles = globalCss({
   html: {
     overflowX: "hidden",
@@ -19,7 +18,7 @@ const globalStyles = globalCss({
   body: {
     margin: 0,
     backgroundColor: "$mauve1",
-    color: '$mauve12'
+    color: "$mauve12",
   },
 
   "body, button": {
@@ -32,46 +31,42 @@ const globalStyles = globalCss({
 
   "::selection": {
     backgroundColor: "$mint11",
-    color: '$sage1'
+    color: "$sage1",
   },
-  '*': {
-    boxSizing: 'border-box'
+  "*": {
+    boxSizing: "border-box",
   },
-  'h1': {
-    fontSize: '$6',
-    fontWeight: 500
+  h1: {
+    fontSize: "$6",
+    fontWeight: 500,
   },
-  'h2, h3': {
-    fontSize: '$5',
-    fontWeight: 500
-
-  }
+  "h2, h3": {
+    fontSize: "$5",
+    fontWeight: 500,
+  },
 });
 
 const convex = new ConvexReactClient(clientConfig);
 const authInfo = convexConfig.authInfo[0];
 
-
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
-  getLayout?: (page: ReactElement) => ReactNode
-}
+  getLayout?: (page: ReactElement) => ReactNode;
+};
 
 type AppPropsWithLayout = AppProps & {
-  Component: NextPageWithLayout
-}
+  Component: NextPageWithLayout;
+};
 
 export default function App({ Component, pageProps }: AppPropsWithLayout) {
-
   globalStyles();
   const [mounted, setMounted] = useState(false);
   useEffect(() => {
     setMounted(true);
   }, []);
 
-  const getLayout = Component.getLayout ?? ((page) => page)
+  const getLayout = Component.getLayout ?? ((page) => page);
 
   return (
-
     <ThemeProvider
       disableTransitionOnChange
       attribute="class"
@@ -83,12 +78,14 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
         authInfo={authInfo}
         loggedOut={<Login />}
       >
-        {mounted ? getLayout(<Component {...pageProps} />) :
+        {mounted ? (
+          getLayout(<Component {...pageProps} />)
+        ) : (
           <div style={{ visibility: "hidden" }}>
             <Component {...pageProps} />
           </div>
-        }
+        )}
       </ConvexProviderWithAuth0>
-    </ThemeProvider >
+    </ThemeProvider>
   );
 }

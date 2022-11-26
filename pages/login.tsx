@@ -9,9 +9,7 @@ export default function Login() {
   return (
     <main>
       <span>
-        <Button  onClick={loginWithRedirect}>
-          Log in
-        </Button>
+        <Button onClick={loginWithRedirect}>Log in</Button>
       </span>
     </main>
   );

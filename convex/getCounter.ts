@@ -5,7 +5,7 @@ export default query(async ({ db, auth }) => {
   if (!identity) {
     throw new Error("Called storeUser without authentication present");
   }
-  console.log(identity)
-  console.log(identity.tokenIdentifier)
+  console.log(identity);
+  console.log(identity.tokenIdentifier);
   return await db.query("clicks").first();
 });
