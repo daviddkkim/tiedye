@@ -47,7 +47,7 @@ const Page: NextPageWithLayout = () => {
                     {rooms &&
                         rooms.map((room) => {
                             return (
-                                <TRlink href={'/rooms/'+room._id} style={{width: '100%', display:'table-row'}}>
+                                <TRlink href={'/rooms/'+room._id} style={{width: '100%', display:'table-row'}} key={room._id.toString()}>
                                         <TD>{room.name}</TD>
                                         <TD>{room.description}</TD>
                                         <TD>{room.creator}</TD>
