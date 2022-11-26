@@ -16,6 +16,6 @@ export default mutation(async ({ db, auth }, room) => {
     ...room,
     owner: user._id,
   };
-  console.log(newRoom)
+  console.log(newRoom);
   return await db.insert("rooms", newRoom);
 });

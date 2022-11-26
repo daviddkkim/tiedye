@@ -12,10 +12,10 @@ const StyledLink = styled(Link, {
   padding: "$2",
   display: "flex",
   alignItems: "center",
-  outline: 'none',
+  outline: "none",
   "&:focus-visible": {
-    borderColor: '$focusBorder',
-    boxShadow: '0px 0px 0px 2px $colors$focusShadow'
+    borderColor: "$focusBorder",
+    boxShadow: "0px 0px 0px 2px $colors$focusShadow",
   },
   variants: {
     variant: {

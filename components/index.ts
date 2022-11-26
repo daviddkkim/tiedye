@@ -5,4 +5,13 @@ import { Dialog, DialogCloseButton } from "./Dialog";
 import { TextInput } from "./TextInput";
 import { Label } from "./Label";
 
-export { Button, SideNav, Link, TextInput, Dialog, Label, RoomDialog, DialogCloseButton };
+export {
+  Button,
+  SideNav,
+  Link,
+  TextInput,
+  Dialog,
+  Label,
+  RoomDialog,
+  DialogCloseButton,
+};
