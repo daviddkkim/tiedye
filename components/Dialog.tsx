@@ -41,23 +41,27 @@ const Box = styled('div', {
 })
 
 interface DialogProps {
-    open?: boolean;
+    //open?: boolean;
     children: React.ReactNode;
     trigger: React.ReactNode;
     title: React.ReactNode;
     closeOnClickOutside?: boolean;
 }
 
+//why is the open commented out? it's just being used uncontrolled for now;
+
 const Dialog: React.FC<DialogProps> = ({
-    open = false,   
+    //open = false,   
     children,
     trigger,
     title,
-    closeOnClickOutside = false,
+    closeOnClickOutside = true,
 }) => {
     
-  //just being used uncontrolled for now;
-  
+/*     const handleOutsideClick = (event: PointerDownOutsideEvent | FocusOutsideEvent) => {
+        if(!closeOnClickOutside) event.preventDefault();
+    } */
+
   return (
     <DialogPrimitive.Root>
       <DialogPrimitive.Trigger asChild>
@@ -65,7 +69,7 @@ const Dialog: React.FC<DialogProps> = ({
       </DialogPrimitive.Trigger>
       <DialogPrimitive.Portal>
         <StyledOverlay />
-        <StyledContent>
+        <StyledContent onInteractOutside={(event) => { closeOnClickOutside? null : event.preventDefault()}}>
             <Box css={{
                 alignItems: 'center',
                 justifyContent: 'space-between'
@@ -81,4 +85,4 @@ const Dialog: React.FC<DialogProps> = ({
     </DialogPrimitive.Root>
   );
 };
-export default Dialog;
+export { Dialog };

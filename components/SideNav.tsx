@@ -1,11 +1,9 @@
 import React from "react";
 import { styled } from "../stitches.config";
-import { Button } from "./Button";
+import { Button, Link , Dialog, TextInput } from "./";
 import { useAuth0 } from "@auth0/auth0-react";
-import { Link } from "./Link";
 import { PersonIcon, StackIcon, GearIcon, ChatBubbleIcon, PaperPlaneIcon, Pencil2Icon } from '@radix-ui/react-icons'
 import { useRouter } from "next/router";
-import Dialog from "./Dialog";
 
 const NavContainer = styled('div', {
     display: 'flex',
@@ -59,7 +57,17 @@ const SideNav = () => {
                         <Button>
                             <Pencil2Icon /> Create Room
                         </Button>}
-                >hello</Dialog>
+                >
+                    <TextInput placeholder="David & Emily Todo"></TextInput>
+                    <TextInput placeholder="Something Something"></TextInput>
+                    <Box css={{
+                        justifyContent: 'flex-end',
+                        gap:'$2'
+                    }}>
+                        <Button variant={'tertiary'}>Cancel</Button>
+                        <Button>Save</Button>
+                    </Box>
+                </Dialog>
                 <Box css={{
                     gap: '$1',
                     flexDirection: 'column'
