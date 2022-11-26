@@ -57,17 +57,17 @@ const SideNav = () => {
                     gap: '$1',
                     flexDirection: 'column'
                 }}>
-                    <Link variant={'tertiary'} href={'/rooms'} active={handleActiveLink('rooms')}> <StackIcon /> Rooms </Link>
-                    <Link variant={'tertiary'} href={'/settings'} active={handleActiveLink('settings')}> <GearIcon /> Settings </Link>
-                    <Link variant={'tertiary'} href={'/members'} active={handleActiveLink('members')} > <PersonIcon /> Members </Link>
+                    <Link variant={'tertiary'} href={'/rooms'} active={handleActiveLink('rooms')} stretch> <StackIcon /> Rooms </Link>
+                    <Link variant={'tertiary'} href={'/settings'} active={handleActiveLink('settings')} stretch> <GearIcon /> Settings </Link>
+                    <Link variant={'tertiary'} href={'/members'} active={handleActiveLink('members')} stretch> <PersonIcon /> Members </Link>
                 </Box>
             </Box>
             <Box css={{
                 gap: '$1',
                 flexDirection: 'column'
             }}>
-                <Button variant={'tertiary'}> <PaperPlaneIcon /> Feedback </Button>
-                <Button variant={'tertiary'}> <ChatBubbleIcon /> Help </Button>
+                <Button variant={'tertiary'} stretch> <PaperPlaneIcon /> Feedback </Button>
+                <Button variant={'tertiary'} stretch> <ChatBubbleIcon /> Help </Button>
             </Box>
             <Button onClick={() => { logout() }} > Log out </Button>
 

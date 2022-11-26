@@ -11,7 +11,6 @@ export const Button = styled('button', {
     borderRadius: '$1',
     padding: '$2',
     display: 'flex',
-    justifyContent: 'center',
     alignItems: 'center',
     variants: {
         variant: {
