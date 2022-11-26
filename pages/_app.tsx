@@ -77,6 +77,7 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
         client={convex}
         authInfo={authInfo}
         loggedOut={<Login />}
+        loading={<div>loading...</div>}
       >
         {mounted ? (
           getLayout(<Component {...pageProps} />)
