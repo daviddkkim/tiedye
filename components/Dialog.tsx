@@ -24,6 +24,10 @@ const StyledContent = styled(DialogPrimitive.Content, {
   borderRadius: 6,
   border: "1px solid $mauve4",
   boxShadow: "rgb(0 0 0 / 20%) 0px 4px 6px",
+  padding: '$3',
+  display:'flex',
+  flexDirection: 'column',
+  gap: '$3',
   position: "fixed",
   top: "15%",
   left: "50%",
@@ -32,17 +36,22 @@ const StyledContent = styled(DialogPrimitive.Content, {
   transform: "translateX(-50%)",
   "&:focus": { outline: "none" },
 });
+const Box = styled('div', {
+    display: 'flex',
+})
 
 interface DialogProps {
     open: boolean;
     children: React.ReactNode;
     trigger: React.ReactNode;
+    title: React.ReactNode;
 }
 
 const Dialog: React.FC<DialogProps> = ({
     open = false,   
     children,
-    trigger
+    trigger,
+    title
 }) => {
     
   if(!open) return null; 
@@ -55,11 +64,15 @@ const Dialog: React.FC<DialogProps> = ({
       <DialogPrimitive.Portal>
         <StyledOverlay />
         <StyledContent>
-        <Button variant='tertiary' css={{
-
-        }}>
-          <Cross2Icon />
-        </Button>
+            <Box css={{
+                alignItems: 'center',
+                justifyContent: 'space-between'
+            }}>
+                {title}
+                <Button variant='tertiary'>
+                    <Cross2Icon />
+                </Button>
+            </Box>
             {children}
         </StyledContent>
       </DialogPrimitive.Portal>

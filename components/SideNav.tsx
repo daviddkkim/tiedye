@@ -22,7 +22,7 @@ const NavContainer = styled('div', {
 const NavTitle = styled('h1', {
     fontSize: '$4',
     color: '$textPrimary',
-    fontWeight: '500',
+    fontWeight: '400',
     margin: 0
 })
 
@@ -55,6 +55,7 @@ const SideNav = () => {
                 </Box>
                 <Dialog
                     open={true}
+                    title={<NavTitle>Create Room</NavTitle>}
                     trigger={
                         <Button>
                             <Pencil2Icon /> Create Room
