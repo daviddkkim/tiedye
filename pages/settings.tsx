@@ -6,8 +6,7 @@ import type { NextPageWithLayout } from "./_app";
 import Layout from "../components/layouts/layout";
 
 const Page: NextPageWithLayout = () => {
-  const count = useQuery("getCounter");
-  const incrementCounter = useMutation("incrementCounter");
+  
   const { logout, user } = useAuth0();
 
   return <div>{user?.email}</div>;

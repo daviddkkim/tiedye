@@ -5,7 +5,6 @@ import type { NextPageWithLayout } from "../_app";
 import Layout from "../../components/layouts/layout";
 import { styled } from "../../stitches.config";
 import { ArrowRightIcon } from '@radix-ui/react-icons'
-import Link from "next/link";
 
 const PageTitle = styled("h1", {
     fontSize: "$6",
