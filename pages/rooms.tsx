@@ -17,7 +17,7 @@ const Page: NextPageWithLayout = () => {
         <div>
             {rooms && rooms.map((room)=> {
                 return (
-                    <div>
+                    <div key={room._id.id}>
                       <span>{room.name}</span>  
                       <span>{room.owner.id}</span>  
                     </div>
