@@ -216,7 +216,7 @@ export const {
       transparentPanel: "hsl(0 0% 0% / 97%)",
       shadowLight: "hsl(206 22% 7% / 35%)",
       shadowDark: "hsl(206 22% 7% / 20%)",
-      overlay: 'hsla(0,0%,100%,0.8)',
+      overlay: 'hsla(0,0%,0%,0.4)',
       commandModalBackground: "hsla(0,0%,100%,1)",
     },
     fonts: {
@@ -495,7 +495,7 @@ export const darkTheme = createTheme("dark-theme", {
     transparentPanel: "hsl(0 0% 0% / 97%)",
     shadowLight: "hsl(206 22% 7% / 35%)",
     shadow: "hsl(206 22% 7% / 20%)",
-    overlay: 'hsla(0,0%,100%,0.8)',
+    overlay: 'hsla(0,0%,0%,0.4)',
     commandModalBackground: "hsla(0,0%,100%,1)",
   },
 });

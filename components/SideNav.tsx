@@ -5,6 +5,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { Link } from "./Link";
 import { PersonIcon, StackIcon, GearIcon, ChatBubbleIcon, PaperPlaneIcon, Pencil2Icon } from '@radix-ui/react-icons'
 import { useRouter } from "next/router";
+import Dialog from "./Dialog";
 
 const NavContainer = styled('div', {
     display: 'flex',
@@ -52,7 +53,13 @@ const SideNav = () => {
                 }}>
                     <NavTitle>{'-'}</NavTitle>
                 </Box>
-                <Button> <Pencil2Icon /> Create Room </Button>
+                <Dialog
+                    open={true}
+                    trigger={
+                        <Button>
+                            <Pencil2Icon /> Create Room
+                        </Button>}
+                >hello</Dialog>
                 <Box css={{
                     gap: '$1',
                     flexDirection: 'column'
@@ -70,7 +77,6 @@ const SideNav = () => {
                 <Button variant={'tertiary'} stretch> <ChatBubbleIcon /> Help </Button>
             </Box>
             <Button onClick={() => { logout() }} > Log out </Button>
-
         </NavContainer>
     )
 }
