@@ -77,9 +77,11 @@ const Dialog: React.FC<DialogProps> = ({
             }}
           >
             {title}
-            <Button variant="tertiary">
-              <Cross2Icon />
-            </Button>
+            <DialogPrimitive.Close asChild>
+                <Button variant="tertiary">
+                    <Cross2Icon />
+                </Button>
+            </DialogPrimitive.Close>
           </Box>
           {children}
         </StyledContent>

@@ -14,4 +14,8 @@ export const TextInput = styled("input", {
   "&:hover": {
     borderColor: "$fgBorderHover",
   },
+  "&:focus-visible": {
+    borderColor: '$focusBorder',
+    boxShadow: '0px 0px 0px 2px $colors$focusShadow'
+  }
 });
