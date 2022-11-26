@@ -54,7 +54,6 @@ const SideNav = () => {
                     <NavTitle>{'-'}</NavTitle>
                 </Box>
                 <Dialog
-                    open={true}
                     title={<NavTitle>Create Room</NavTitle>}
                     trigger={
                         <Button>

@@ -41,21 +41,23 @@ const Box = styled('div', {
 })
 
 interface DialogProps {
-    open: boolean;
+    open?: boolean;
     children: React.ReactNode;
     trigger: React.ReactNode;
     title: React.ReactNode;
+    closeOnClickOutside?: boolean;
 }
 
 const Dialog: React.FC<DialogProps> = ({
     open = false,   
     children,
     trigger,
-    title
+    title,
+    closeOnClickOutside = false,
 }) => {
     
-  if(!open) return null; 
-
+  //just being used uncontrolled for now;
+  
   return (
     <DialogPrimitive.Root>
       <DialogPrimitive.Trigger asChild>
