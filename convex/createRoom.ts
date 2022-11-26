@@ -1,6 +1,6 @@
 import { mutation } from "./_generated/server";
 
-export default mutation(async ({ db, auth }) => {
+export default mutation(async ({ db, auth }, room) => {
   const identity = await auth.getUserIdentity();
   if (!identity) {
     throw new Error("Unauthenticated call to sendMessage");
@@ -12,11 +12,10 @@ export default mutation(async ({ db, auth }) => {
     )
     .unique();
 
-  const room = {
-    name: "someRoom",
-    objects: "{}",
+  const newRoom = {
+    ...room,
     owner: user._id,
   };
-
-  return await db.insert("rooms", room);
+  console.log(newRoom)
+  return await db.insert("rooms", newRoom);
 });
