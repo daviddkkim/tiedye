@@ -1,7 +1,7 @@
 import { styled } from "../../stitches.config";
 import React, { ReactElement, useEffect, useState } from "react";
 import Head from "next/head";
-import { SideNav } from "../SideNav";
+import { SideNav } from "../productComponents/SideNav";
 import { Id } from "../../convex/_generated/dataModel";
 import { useMutation } from "../../convex/_generated/react";
 
@@ -29,7 +29,7 @@ export default function Layout({ children }: { children: ReactElement }) {
         createUser().catch(console.error);
         return () => setUserId(null);
     }, [storeUser]);
-    
+
     return (
         <>
             <Head>

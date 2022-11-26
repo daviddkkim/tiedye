@@ -1,6 +1,6 @@
 import React from "react";
-import { styled } from "../stitches.config";
-import { Button, Link , Dialog, TextInput } from "./";
+import { styled } from "../../stitches.config";
+import { Button, Link, Dialog, TextInput, Label, RoomDialog } from "..";
 import { useAuth0 } from "@auth0/auth0-react";
 import { PersonIcon, StackIcon, GearIcon, ChatBubbleIcon, PaperPlaneIcon, Pencil2Icon } from '@radix-ui/react-icons'
 import { useRouter } from "next/router";
@@ -51,23 +51,7 @@ const SideNav = () => {
                 }}>
                     <NavTitle>{'-'}</NavTitle>
                 </Box>
-                <Dialog
-                    title={<NavTitle>Create Room</NavTitle>}
-                    trigger={
-                        <Button>
-                            <Pencil2Icon /> Create Room
-                        </Button>}
-                >
-                    <TextInput placeholder="David & Emily Todo"></TextInput>
-                    <TextInput placeholder="Something Something"></TextInput>
-                    <Box css={{
-                        justifyContent: 'flex-end',
-                        gap:'$2'
-                    }}>
-                        <Button variant={'tertiary'}>Cancel</Button>
-                        <Button>Save</Button>
-                    </Box>
-                </Dialog>
+                <RoomDialog />
                 <Box css={{
                     gap: '$1',
                     flexDirection: 'column'

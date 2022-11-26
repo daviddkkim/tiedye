@@ -1,7 +1,8 @@
 import { Button } from "./Button";
-import { SideNav } from "./SideNav";
+import { SideNav, RoomDialog } from "./productComponents";
 import { Link } from "./Link";
 import { Dialog } from "./Dialog";
 import { TextInput } from "./TextInput";
+import { Label } from "./Label";
 
-export { Button, SideNav, Link, TextInput, Dialog };
+export { Button, SideNav, Link, TextInput, Dialog, Label, RoomDialog };

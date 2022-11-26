@@ -27,7 +27,7 @@ const StyledContent = styled(DialogPrimitive.Content, {
   padding: '$3',
   display:'flex',
   flexDirection: 'column',
-  gap: '$3',
+  gap: '$4',
   position: "fixed",
   top: "15%",
   left: "50%",
