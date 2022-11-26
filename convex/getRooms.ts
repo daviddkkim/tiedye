@@ -12,8 +12,18 @@ export default query(async ({ db, auth }) => {
     )
     .unique();
 
-  return await db
-    .query("rooms")
-    .withIndex("by_owner", (q) => q.eq("owner", user._id))
-    .collect();
+  const rooms =  await db
+  .query("rooms")
+  .withIndex("by_owner", (q) => q.eq("owner", user._id))
+  .collect();
+
+  return Promise.all(
+    rooms.map(async room => {
+      const user = await db.get(room.owner);
+      return {
+        creator: user!.name,
+        ...room,
+      };
+    })
+  ); 
 });

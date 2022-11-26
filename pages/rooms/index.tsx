@@ -40,7 +40,7 @@ const Page: NextPageWithLayout = () => {
                     <THeadRow>
                         <TH>Room name</TH>
                         <TH>Description</TH>
-                        <TH>Owner</TH>
+                        <TH>Creator</TH>
                         <TH>Created</TH>
                         <TH> </TH>
                     </THeadRow>
@@ -50,7 +50,7 @@ const Page: NextPageWithLayout = () => {
                                 <TRlink href={'/rooms/'+room._id} style={{width: '100%', display:'table-row'}}>
                                         <TD>{room.name}</TD>
                                         <TD>{room.description}</TD>
-                                        <TD>{room.owner.id}</TD>
+                                        <TD>{room.creator}</TD>
                                         <TD>{new Date(room._creationTime).toDateString()}</TD>
                                         <TD css={{
                                             width: '40px'
