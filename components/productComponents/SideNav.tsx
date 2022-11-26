@@ -1,8 +1,8 @@
 import React from "react";
 import { styled } from "../../stitches.config";
-import { Button, Link, Dialog, TextInput, Label, RoomDialog } from "..";
+import { Button, Link, RoomDialog } from "..";
 import { useAuth0 } from "@auth0/auth0-react";
-import { PersonIcon, StackIcon, GearIcon, ChatBubbleIcon, PaperPlaneIcon, Pencil2Icon } from '@radix-ui/react-icons'
+import { PersonIcon, StackIcon, GearIcon, ChatBubbleIcon, PaperPlaneIcon } from '@radix-ui/react-icons'
 import { useRouter } from "next/router";
 
 const NavContainer = styled('div', {
