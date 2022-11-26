@@ -4,7 +4,7 @@ import { Link } from "./Link";
 import { Dialog, DialogCloseButton } from "./Dialog";
 import { TextInput } from "./TextInput";
 import { Label } from "./Label";
-import { TH, TR, THead, TBody, TD, Table} from "./table";
+import { TH, TRlink, THeadRow, TBody, TD, Table} from "./Table";
 export {
   Button,
   SideNav,
@@ -15,8 +15,8 @@ export {
   RoomDialog,
   DialogCloseButton,
   TH, 
-  TR, 
-  THead, 
+  TRlink, 
+  THeadRow, 
   TBody, 
   TD,
   Table
