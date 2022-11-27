@@ -7,8 +7,6 @@ export default query(async ({ db, auth }, roomId) => {
     throw new Error("Unauthenticated call to sendMessage");
   }
 
-  console.log(roomId)
-
   const id = new Id<"rooms">("rooms",roomId);
 
   const room =  await db.get(id);

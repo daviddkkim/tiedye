@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import React, { ReactElement } from "react";
 import { useQuery } from "../../convex/_generated/react";
 import { RoomDialog, TH, TRlink, THeadRow, TBody, TD, Table } from "../../components";
 import type { NextPageWithLayout } from "../_app";

@@ -5,17 +5,10 @@ export default mutation(async ({ db, auth }, room) => {
   if (!identity) {
     throw new Error("Unauthenticated call to sendMessage");
   }
-  const user = await db
-    .query("users")
-    .withIndex("by_token", (q) =>
-      q.eq("tokenIdentifier", identity.tokenIdentifier)
-    )
-    .unique();
   const time = Date.now();
   const newRoom = {
     ...room,
-    owner: user._id,
     lastUpdatedAt: time,
   };
-  return await db.insert("rooms", newRoom);
+  return await db.patch(room._id, newRoom);
 });

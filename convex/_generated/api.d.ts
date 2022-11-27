@@ -14,6 +14,7 @@ import type * as createRoom from "../createRoom";
 import type * as getOneRoom from "../getOneRoom";
 import type * as getRooms from "../getRooms";
 import type * as storeUser from "../storeUser";
+import type * as updateRoom from "../updateRoom";
 
 /**
  * A type describing your app's public Convex API.
@@ -29,4 +30,5 @@ export type API = ApiFromModules<{
   getOneRoom: typeof getOneRoom;
   getRooms: typeof getRooms;
   storeUser: typeof storeUser;
+  updateRoom: typeof updateRoom;
 }>;
