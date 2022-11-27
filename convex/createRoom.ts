@@ -34,6 +34,23 @@ export default mutation(async ({ db, auth }, room) => {
               completed: true
             },
           ]
+        },
+        {
+          id: "2",
+          type: "todo",
+          title: 'For Christmas',
+          body: [
+            {
+              id: "1235",
+              content: "To do 1",
+              completed: false
+            },
+            {
+              id: "12346",
+              content: "To do 2",
+              completed: true
+            },
+          ]
         }
       ]
     }

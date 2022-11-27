@@ -6,6 +6,7 @@ import Layout from "../../components/layouts/layout";
 import { useMutation, useQuery } from "../../convex/_generated/react";
 import { styled } from "../../stitches.config";
 import type { NextPageWithLayout } from "../_app";
+import { Cross2Icon } from '@radix-ui/react-icons'
 //import { nanoid } from 'nanoid'
 
 export interface Objects {
@@ -14,14 +15,14 @@ export interface Objects {
 
 export interface Widget {
   id: string;
-  type:  string;
+  type: string;
   title: string;
-  body:  Body[];
+  body: Body[];
 }
 
 export interface Body {
-  id:       string;
-  content:   string;
+  id: string;
+  content: string;
   completed: boolean;
 }
 
@@ -106,14 +107,14 @@ const Page: NextPageWithLayout = () => {
     const newBody = widget.body.map((item) => {
       if (item.id !== id) return item;
 
-      return {...item, completed: !item.completed}
+      return { ...item, completed: !item.completed }
     })
     const newWidget = {
       ...widget,
-      body: newBody 
+      body: newBody
     };
 
-    const newWidgets = roomDetails.object.widgets.map((mappedWidget)=> {
+    const newWidgets = roomDetails.object.widgets.map((mappedWidget) => {
       if (mappedWidget.id !== widget.id) return mappedWidget;
 
       return newWidget;
@@ -125,11 +126,24 @@ const Page: NextPageWithLayout = () => {
         widgets: newWidgets
       }
     }
-    console.log(newRoom)
     updateRoom(
       newRoom
     )
-    
+  }
+
+  const handleDeleteWidget = (widget: Widget) => {
+    const newWidgets = roomDetails.object.widgets.filter((mappedWidget) => {
+      return mappedWidget.id !== widget.id
+    })
+    const newRoom = {
+      ...roomDetails,
+      object: {
+        widgets: newWidgets
+      }
+    }
+    updateRoom(
+      newRoom
+    )
   }
 
   return (
@@ -167,10 +181,22 @@ const Page: NextPageWithLayout = () => {
             flexDirection: 'column',
             gap: '$3',
             border: '1px solid $separator',
-            padding: '$4',
+            padding: '$2 $4 $4 $4',
             borderRadius: '$1'
           }}>
-            <Text>{widget.title}</Text>
+            <Box css={{
+              alignItems: 'center',
+              justifyContent: 'space-between'
+            }}>
+              <Text>{widget.title}</Text>
+              <Button
+                variant={'tertiary'}
+                css={{ color: '$textSecondary' }}
+                onClick={() => { handleDeleteWidget(widget) }}
+              >
+                <Cross2Icon />
+              </Button>
+            </Box>
             <Box css={{
               flexDirection: 'column',
               gap: '$1',
@@ -180,7 +206,7 @@ const Page: NextPageWithLayout = () => {
                   <Label css={{ gap: '$2', flexDirection: 'row' }} key={item.id}>
                     <input type={'checkbox'}
                       checked={item.completed}
-                      onChange={() => handleTodoToggle(item.id,widget)}
+                      onChange={() => handleTodoToggle(item.id, widget)}
                     />
                     {item.content}
                   </Label>)
