@@ -78,11 +78,13 @@ const Dialog: React.FC<DialogProps> = ({
             }}
           >
             {title}
-            {showClose && <DialogPrimitive.Close asChild>
-              <Button variant="tertiary">
-                <Cross2Icon />
-              </Button>
-            </DialogPrimitive.Close>}
+            {showClose && (
+              <DialogPrimitive.Close asChild>
+                <Button variant="tertiary">
+                  <Cross2Icon />
+                </Button>
+              </DialogPrimitive.Close>
+            )}
           </Box>
           {children}
         </StyledContent>

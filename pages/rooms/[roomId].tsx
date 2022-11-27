@@ -190,7 +190,7 @@ const Page: NextPageWithLayout = () => {
           id: nanoid(),
           content: content,
           completed: false,
-        }
+        },
       ],
     };
     const newRoom = {
@@ -200,7 +200,7 @@ const Page: NextPageWithLayout = () => {
       },
     };
     updateRoom(newRoom);
-  }
+  };
 
   const handleAddTodoWidget = () => {
     const newWidget = {
@@ -252,30 +252,32 @@ const Page: NextPageWithLayout = () => {
         <Text>{roomDetails && roomDetails.description}</Text>
       </Box>
       <Box>
-        <WidgetDialog onTodoWidgetAdd={handleAddTodoWidget} onPostWidgetAdd={handleAddPostWidget} />
+        <WidgetDialog
+          onTodoWidgetAdd={handleAddTodoWidget}
+          onPostWidgetAdd={handleAddPostWidget}
+        />
       </Box>
 
       {roomDetails &&
         roomDetails.object.widgets.map((widget) => {
-
-          if (widget.type === 'post') {
+          if (widget.type === "post") {
             return (
               <Box
-              css={{
-                flexDirection: "column",
-                gap: "$3",
-                backgroundColor: "$bgSecondary",
-                padding: "$2 $4 $4 $4",
-                borderRadius: "$1",
-                boxShadow: "0px 1px 2px 4px $colors$shadow",
-              }}
-              key={widget.id}
-            >
-              {widget.body[0].content}
+                css={{
+                  flexDirection: "column",
+                  gap: "$3",
+                  backgroundColor: "$bgSecondary",
+                  padding: "$2 $4 $4 $4",
+                  borderRadius: "$1",
+                  boxShadow: "0px 1px 2px 4px $colors$shadow",
+                }}
+                key={widget.id}
+              >
+                {widget.body[0].content}
               </Box>
-            )
+            );
           }
-          if (widget.type === 'todo') {
+          if (widget.type === "todo") {
             return (
               <Box
                 css={{
