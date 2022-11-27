@@ -59,6 +59,8 @@ const DropdownMenu = React.forwardRef<HTMLDivElement, DropdownMenuProps>((
     </DropdownMenuPrimitives.Root>)
 })
 
+DropdownMenu.displayName = 'DropdownMenu';
+
 const Item = DropdownMenuItem;
 const Group = DropdownMenuGroup;
 const Label = DropdownMenuLabel;
