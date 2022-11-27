@@ -7,12 +7,13 @@ import { Label } from "./Label";
 import { TH, TRlink, THeadRow, TBody, TD, Table } from "./Table";
 import * as DropdownMenu from "./DropdownMenu";
 import { WidgetDialog } from "./productComponents";
-
+import { TextArea } from "./Textarea";
 export {
   Button,
   SideNav,
   Link,
   TextInput,
+  TextArea,
   Dialog,
   Label,
   RoomDialog,

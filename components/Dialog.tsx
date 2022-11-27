@@ -46,6 +46,7 @@ interface DialogProps {
   trigger: React.ReactNode;
   title: React.ReactNode;
   closeOnClickOutside?: boolean;
+  showClose?: boolean;
   onOpenChange?: (open: boolean) => void;
 }
 
@@ -57,6 +58,7 @@ const Dialog: React.FC<DialogProps> = ({
   trigger,
   title,
   closeOnClickOutside = true,
+  showClose = true,
   onOpenChange,
 }) => {
   return (
@@ -76,11 +78,11 @@ const Dialog: React.FC<DialogProps> = ({
             }}
           >
             {title}
-            <DialogPrimitive.Close asChild>
+            {showClose && <DialogPrimitive.Close asChild>
               <Button variant="tertiary">
                 <Cross2Icon />
               </Button>
-            </DialogPrimitive.Close>
+            </DialogPrimitive.Close>}
           </Box>
           {children}
         </StyledContent>

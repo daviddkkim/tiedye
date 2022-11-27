@@ -230,7 +230,7 @@ const Page: NextPageWithLayout = () => {
         <Text>{roomDetails && roomDetails.description}</Text>
       </Box>
       <Box>
-        <DropdownMenu.Root
+        {/* <DropdownMenu.Root
           trigger={
             <Button>
               <LightningBoltIcon /> Add widget{" "}
@@ -250,8 +250,8 @@ const Page: NextPageWithLayout = () => {
           <DropdownMenu.Item disabled muted>
             <ChatBubbleIcon /> {"Chat"}
           </DropdownMenu.Item>
-        </DropdownMenu.Root>
-        <WidgetDialog />
+        </DropdownMenu.Root> */}
+        <WidgetDialog onTodoWidgetAdd={handleAddTodoWidget} />
       </Box>
 
       {roomDetails &&
