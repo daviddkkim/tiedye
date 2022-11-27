@@ -10,6 +10,7 @@ import {
   Cross2Icon,
   ListBulletIcon,
   ChatBubbleIcon,
+  TextIcon
 } from "@radix-ui/react-icons";
 import { nanoid } from "nanoid";
 
@@ -171,6 +172,26 @@ const Page: NextPageWithLayout = () => {
     updateRoom(newRoom);
   };
 
+  const handleAddTodoWidget = () => {
+
+    const newWidget = {
+      id: nanoid(),
+      type:'todo',
+      title: 'New Todo',
+      body: []
+    }
+    const newRoom = {
+      ...roomDetails,
+      object: {
+        widgets : [
+          newWidget,
+          ...roomDetails.object.widgets,
+        ]
+      }
+    }
+    updateRoom(newRoom)
+  }
+
   return (
     <Box
       css={{
@@ -206,9 +227,13 @@ const Page: NextPageWithLayout = () => {
       </Box>
       <Box>
         <DropdownMenu.Root trigger={<Button> Add widget </Button>}>
-          <DropdownMenu.Item>
+          <DropdownMenu.Item onClick={()=>{handleAddTodoWidget()}}>
             {" "}
             <ListBulletIcon /> {"To-do list"}
+          </DropdownMenu.Item>
+          <DropdownMenu.Item disabled muted>
+            {" "}
+            <TextIcon /> {"Text Block"}
           </DropdownMenu.Item>
           <DropdownMenu.Item disabled muted>
             {" "}
@@ -225,9 +250,9 @@ const Page: NextPageWithLayout = () => {
                 flexDirection: "column",
                 gap: "$3",
                 backgroundColor: "$bgSecondary",
-                border: "1px solid $separator",
                 padding: "$2 $4 $4 $4",
                 borderRadius: "$1",
+                boxShadow: '0px 1px 2px 4px $colors$shadow',
               }}
               key={widget.id}
             >
@@ -235,7 +260,7 @@ const Page: NextPageWithLayout = () => {
                 css={{
                   alignItems: "center",
                   justifyContent: "space-between",
-                }}
+                }}  
               >
                 <Text>{widget.title}</Text>
                 <Button
