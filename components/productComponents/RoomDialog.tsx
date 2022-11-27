@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { styled } from "../../stitches.config";
 import { Button, Dialog, Label, TextInput, DialogCloseButton } from "..";
-import { Pencil2Icon } from "@radix-ui/react-icons";
+import { BoxIcon } from "@radix-ui/react-icons";
 import { useMutation } from "../../convex/_generated/react";
 
 const Title = styled("h1", {
@@ -27,7 +27,9 @@ const RoomDialog: React.FC = () => {
     const room = {
       name: roomName,
       description: description,
-      object: "{}",
+      object: {
+        widgets:[]
+      },
     };
     createRoom(room);
     setRoomName("");
@@ -38,7 +40,7 @@ const RoomDialog: React.FC = () => {
       title={<Title>Create Room</Title>}
       trigger={
         <Button>
-          <Pencil2Icon /> Create Room
+          <BoxIcon /> Create Room
         </Button>
       }
     >

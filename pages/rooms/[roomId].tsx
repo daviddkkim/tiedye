@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import React, { ReactElement } from "react";
-import { Button, DropdownMenu, Label, TextInput } from "../../components";
+import { Button, DropdownMenu, TextInput } from "../../components";
 import { DotsHorizontalIcon } from "@radix-ui/react-icons";
 import Layout from "../../components/layouts/layout";
 import { useMutation, useQuery } from "../../convex/_generated/react";
@@ -10,7 +10,7 @@ import {
   Cross2Icon,
   ListBulletIcon,
   ChatBubbleIcon,
-  TextIcon
+  Pencil2Icon,
 } from "@radix-ui/react-icons";
 import { nanoid } from "nanoid";
 
@@ -233,7 +233,7 @@ const Page: NextPageWithLayout = () => {
           </DropdownMenu.Item>
           <DropdownMenu.Item disabled muted>
             {" "}
-            <TextIcon /> {"Text Block"}
+            <Pencil2Icon /> {"Post"}
           </DropdownMenu.Item>
           <DropdownMenu.Item disabled muted>
             {" "}
