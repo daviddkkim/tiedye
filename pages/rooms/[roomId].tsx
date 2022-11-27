@@ -1,6 +1,13 @@
 import { useRouter } from "next/router";
 import React, { ReactElement, useState } from "react";
-import { Button, Dialog, DropdownMenu, Label, TextInput, WidgetDialog } from "../../components";
+import {
+  Button,
+  Dialog,
+  DropdownMenu,
+  Label,
+  TextInput,
+  WidgetDialog,
+} from "../../components";
 import { DotsHorizontalIcon } from "@radix-ui/react-icons";
 import Layout from "../../components/layouts/layout";
 import { useMutation, useQuery } from "../../convex/_generated/react";
@@ -53,7 +60,6 @@ const Box = styled("div", {
 });
 
 const Page: NextPageWithLayout = () => {
-
   const { query, isReady } = useRouter();
 
   const { roomId } = query;

@@ -57,9 +57,8 @@ const Dialog: React.FC<DialogProps> = ({
   trigger,
   title,
   closeOnClickOutside = true,
-  onOpenChange
+  onOpenChange,
 }) => {
-
   return (
     <DialogPrimitive.Root onOpenChange={onOpenChange}>
       <DialogPrimitive.Trigger asChild>{trigger}</DialogPrimitive.Trigger>

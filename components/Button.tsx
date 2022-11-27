@@ -56,10 +56,9 @@ export const Button = styled("button", {
     muted: {
       true: {
         color: "$textMuted",
-        pointerEvents: 'none'
+        pointerEvents: "none",
       },
-      false: {
-      },
+      false: {},
     },
   },
   defaultVariants: {

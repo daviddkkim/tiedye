@@ -5,7 +5,7 @@ import { Dialog, DialogCloseButton } from "./Dialog";
 import { TextInput } from "./TextInput";
 import { Label } from "./Label";
 import { TH, TRlink, THeadRow, TBody, TD, Table } from "./Table";
-import * as DropdownMenu from './DropdownMenu';
+import * as DropdownMenu from "./DropdownMenu";
 import { WidgetDialog } from "./productComponents";
 
 export {
@@ -24,5 +24,5 @@ export {
   TD,
   Table,
   DropdownMenu,
-  WidgetDialog
+  WidgetDialog,
 };
