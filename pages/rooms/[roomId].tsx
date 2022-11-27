@@ -11,6 +11,7 @@ import {
   ListBulletIcon,
   ChatBubbleIcon,
   Pencil2Icon,
+  LightningBoltIcon,
 } from "@radix-ui/react-icons";
 import { nanoid } from "nanoid";
 
@@ -226,7 +227,7 @@ const Page: NextPageWithLayout = () => {
         <Text>{roomDetails && roomDetails.description}</Text>
       </Box>
       <Box>
-        <DropdownMenu.Root trigger={<Button> Add widget </Button>}>
+        <DropdownMenu.Root trigger={<Button> <LightningBoltIcon/> Add widget </Button>}>
           <DropdownMenu.Item onClick={()=>{handleAddTodoWidget()}}>
             {" "}
             <ListBulletIcon /> {"To-do list"}
