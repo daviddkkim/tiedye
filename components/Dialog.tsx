@@ -1,3 +1,4 @@
+import React from "react";
 import { keyframes, styled } from "../stitches.config";
 import * as DialogPrimitive from "@radix-ui/react-dialog";
 import { Cross2Icon } from "@radix-ui/react-icons";
@@ -45,6 +46,7 @@ interface DialogProps {
   trigger: React.ReactNode;
   title: React.ReactNode;
   closeOnClickOutside?: boolean;
+  onOpenChange?: (open: boolean) => void;
 }
 
 //why is the open commented out? it's just being used uncontrolled for now;
@@ -55,13 +57,11 @@ const Dialog: React.FC<DialogProps> = ({
   trigger,
   title,
   closeOnClickOutside = true,
+  onOpenChange
 }) => {
-  /*     const handleOutsideClick = (event: PointerDownOutsideEvent | FocusOutsideEvent) => {
-          if(!closeOnClickOutside) event.preventDefault();
-      } */
 
   return (
-    <DialogPrimitive.Root>
+    <DialogPrimitive.Root onOpenChange={onOpenChange}>
       <DialogPrimitive.Trigger asChild>{trigger}</DialogPrimitive.Trigger>
       <DialogPrimitive.Portal>
         <StyledOverlay />

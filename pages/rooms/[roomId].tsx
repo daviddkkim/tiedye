@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import React, { ReactElement } from "react";
-import { Button, DropdownMenu, TextInput } from "../../components";
+import { Button, Dialog, DropdownMenu, Label, TextInput } from "../../components";
 import { DotsHorizontalIcon } from "@radix-ui/react-icons";
 import Layout from "../../components/layouts/layout";
 import { useMutation, useQuery } from "../../convex/_generated/react";
@@ -226,7 +226,6 @@ const Page: NextPageWithLayout = () => {
         <DropdownMenu.Root
           trigger={
             <Button>
-              {" "}
               <LightningBoltIcon /> Add widget{" "}
             </Button>
           }
@@ -236,15 +235,18 @@ const Page: NextPageWithLayout = () => {
               handleAddTodoWidget();
             }}
           >
-            {" "}
             <ListBulletIcon /> {"To-do list"}
           </DropdownMenu.Item>
+          <Dialog
+          title={'hello'}
+            trigger={
+              <DropdownMenu.Item disabled>
+                <Pencil2Icon /> {"Post"}
+              </DropdownMenu.Item>
+            }>
+              hello
+          </Dialog>
           <DropdownMenu.Item disabled muted>
-            {" "}
-            <Pencil2Icon /> {"Post"}
-          </DropdownMenu.Item>
-          <DropdownMenu.Item disabled muted>
-            {" "}
             <ChatBubbleIcon /> {"Chat"}
           </DropdownMenu.Item>
         </DropdownMenu.Root>
