@@ -28,7 +28,7 @@ const RoomDialog: React.FC = () => {
       name: roomName,
       description: description,
       object: {
-        widgets:[]
+        widgets: [],
       },
     };
     createRoom(room);

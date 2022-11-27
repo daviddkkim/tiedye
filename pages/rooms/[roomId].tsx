@@ -174,24 +174,20 @@ const Page: NextPageWithLayout = () => {
   };
 
   const handleAddTodoWidget = () => {
-
     const newWidget = {
       id: nanoid(),
-      type:'todo',
-      title: 'New Todo',
-      body: []
-    }
+      type: "todo",
+      title: "New Todo",
+      body: [],
+    };
     const newRoom = {
       ...roomDetails,
       object: {
-        widgets : [
-          newWidget,
-          ...roomDetails.object.widgets,
-        ]
-      }
-    }
-    updateRoom(newRoom)
-  }
+        widgets: [newWidget, ...roomDetails.object.widgets],
+      },
+    };
+    updateRoom(newRoom);
+  };
 
   return (
     <Box
@@ -227,8 +223,19 @@ const Page: NextPageWithLayout = () => {
         <Text>{roomDetails && roomDetails.description}</Text>
       </Box>
       <Box>
-        <DropdownMenu.Root trigger={<Button> <LightningBoltIcon/> Add widget </Button>}>
-          <DropdownMenu.Item onClick={()=>{handleAddTodoWidget()}}>
+        <DropdownMenu.Root
+          trigger={
+            <Button>
+              {" "}
+              <LightningBoltIcon /> Add widget{" "}
+            </Button>
+          }
+        >
+          <DropdownMenu.Item
+            onClick={() => {
+              handleAddTodoWidget();
+            }}
+          >
             {" "}
             <ListBulletIcon /> {"To-do list"}
           </DropdownMenu.Item>
@@ -253,7 +260,7 @@ const Page: NextPageWithLayout = () => {
                 backgroundColor: "$bgSecondary",
                 padding: "$2 $4 $4 $4",
                 borderRadius: "$1",
-                boxShadow: '0px 1px 2px 4px $colors$shadow',
+                boxShadow: "0px 1px 2px 4px $colors$shadow",
               }}
               key={widget.id}
             >
@@ -261,7 +268,7 @@ const Page: NextPageWithLayout = () => {
                 css={{
                   alignItems: "center",
                   justifyContent: "space-between",
-                }}  
+                }}
               >
                 <Text>{widget.title}</Text>
                 <Button
