@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import React, { ReactElement } from "react";
-import { Button, Label } from "../../components";
+import { Button, Label, TextInput } from "../../components";
 import { DotsHorizontalIcon } from '@radix-ui/react-icons'
 import Layout from "../../components/layouts/layout";
 import { useMutation, useQuery } from "../../convex/_generated/react";
@@ -197,19 +197,24 @@ const Page: NextPageWithLayout = () => {
                 <Cross2Icon />
               </Button>
             </Box>
+            <TextInput placeholder="Type to create a to-do list" onKeyDown={(e)=>{
+              if(e.key === 'enter') {}
+            }}/>
             <Box css={{
               flexDirection: 'column',
               gap: '$1',
             }}>
               {widget.body.map((item) => {
                 return (
-                  <Label css={{ gap: '$2', flexDirection: 'row' }} key={item.id}>
+                  <Box css={{ gap: '$2', flexDirection: 'row' }} key={item.id} >
                     <input type={'checkbox'}
                       checked={item.completed}
                       onChange={() => handleTodoToggle(item.id, widget)}
                     />
+                    <span contentEditable>
                     {item.content}
-                  </Label>)
+                    </span>
+                  </Box>)
               })}
             </Box>
           </Box>
