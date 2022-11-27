@@ -53,6 +53,14 @@ export const Button = styled("button", {
         width: "fit-content",
       },
     },
+    muted: {
+      true: {
+        color: "$textMuted",
+        pointerEvents: 'none'
+      },
+      false: {
+      },
+    },
   },
   defaultVariants: {
     variant: "secondary",

@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
-import React, { ReactElement } from "react";
-import { Button, Dialog, DropdownMenu, Label, TextInput } from "../../components";
+import React, { ReactElement, useState } from "react";
+import { Button, Dialog, DropdownMenu, Label, TextInput, WidgetDialog } from "../../components";
 import { DotsHorizontalIcon } from "@radix-ui/react-icons";
 import Layout from "../../components/layouts/layout";
 import { useMutation, useQuery } from "../../convex/_generated/react";
@@ -53,6 +53,7 @@ const Box = styled("div", {
 });
 
 const Page: NextPageWithLayout = () => {
+
   const { query, isReady } = useRouter();
 
   const { roomId } = query;
@@ -237,19 +238,14 @@ const Page: NextPageWithLayout = () => {
           >
             <ListBulletIcon /> {"To-do list"}
           </DropdownMenu.Item>
-          <Dialog
-          title={'hello'}
-            trigger={
-              <DropdownMenu.Item disabled>
-                <Pencil2Icon /> {"Post"}
-              </DropdownMenu.Item>
-            }>
-              hello
-          </Dialog>
+          <DropdownMenu.Item>
+            <Pencil2Icon /> {"Post"}
+          </DropdownMenu.Item>
           <DropdownMenu.Item disabled muted>
             <ChatBubbleIcon /> {"Chat"}
           </DropdownMenu.Item>
         </DropdownMenu.Root>
+        <WidgetDialog />
       </Box>
 
       {roomDetails &&

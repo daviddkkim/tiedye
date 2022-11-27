@@ -59,11 +59,10 @@ interface DropdownMenuProps {
   children: React.ReactNode;
   trigger: React.ReactNode;
   sideOffset?: number;
-  hidden?: boolean;
 }
 
 const DropdownMenu = React.forwardRef<HTMLDivElement, DropdownMenuProps>(
-  ({ children, trigger, sideOffset = 4, hidden }, ref) => {
+  ({ children, trigger, sideOffset = 4 }, ref) => {
     return (
       <DropdownMenuPrimitives.Root>
         <DropdownMenuPrimitives.Trigger asChild>
@@ -74,7 +73,6 @@ const DropdownMenu = React.forwardRef<HTMLDivElement, DropdownMenuProps>(
             ref={ref}
             sideOffset={sideOffset}
             align={"start"}
-            hidden={hidden}
           >
             {children}
           </StyledDropdownMenuContent>
