@@ -183,7 +183,8 @@ const Page: NextPageWithLayout = () => {
             border: '1px solid $separator',
             padding: '$2 $4 $4 $4',
             borderRadius: '$1'
-          }}>
+          }}
+          key={widget.id}>
             <Box css={{
               alignItems: 'center',
               justifyContent: 'space-between'
