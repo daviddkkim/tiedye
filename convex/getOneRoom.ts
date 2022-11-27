@@ -9,17 +9,16 @@ export default query(async ({ db, auth }, roomId) => {
 
   if (!roomId) return null;
 
-  const id = new Id<"rooms">("rooms",roomId);
+  const id = new Id<"rooms">("rooms", roomId);
 
-  const room =  await db.get(id);
+  const room = await db.get(id);
 
+  if (!room) return null;
 
-  if(!room) return null;
-  
   const user = await db.get(room.owner);
 
   return {
     creator: user?.name,
-    ...room
-  }
+    ...room,
+  };
 });

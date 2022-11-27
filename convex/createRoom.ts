@@ -21,39 +21,39 @@ export default mutation(async ({ db, auth }, room) => {
         {
           id: "1",
           type: "todo",
-          title: 'For Christmas',
+          title: "For Christmas",
           body: [
             {
               id: "123",
               content: "To do 1",
-              completed: false
+              completed: false,
             },
             {
               id: "1234",
               content: "To do 2",
-              completed: true
+              completed: true,
             },
-          ]
+          ],
         },
         {
           id: "2",
           type: "todo",
-          title: 'For Christmas',
+          title: "For Christmas",
           body: [
             {
               id: "1235",
               content: "To do 1",
-              completed: false
+              completed: false,
             },
             {
               id: "12346",
               content: "To do 2",
-              completed: true
+              completed: true,
             },
-          ]
-        }
-      ]
-    }
+          ],
+        },
+      ],
+    },
   };
 
   return await db.insert("rooms", newRoom);

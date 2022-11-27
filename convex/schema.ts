@@ -12,18 +12,20 @@ export default defineSchema({
     name: s.string(),
     owner: s.id("users"),
     object: s.object({
-      widgets: s.array(s.object({
-        id: s.string(),
-        type: s.string(),
-        title: s.string(),
-        body: s.array(
-          s.object({
-            id: s.string(),
-            content: s.string(),
-            completed: s.boolean()
-          })
-        )
-      }))
+      widgets: s.array(
+        s.object({
+          id: s.string(),
+          type: s.string(),
+          title: s.string(),
+          body: s.array(
+            s.object({
+              id: s.string(),
+              content: s.string(),
+              completed: s.boolean(),
+            })
+          ),
+        })
+      ),
     }),
     description: s.string(),
     lastUpdatedAt: s.number(),
