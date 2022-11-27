@@ -7,7 +7,7 @@ import { useMutation, useQuery } from "../../convex/_generated/react";
 import { styled } from "../../stitches.config";
 import type { NextPageWithLayout } from "../_app";
 import { Cross2Icon } from "@radix-ui/react-icons";
-//import { nanoid } from 'nanoid'
+import { nanoid } from 'nanoid'
 
 export interface Objects {
   widgets: Widget[];
@@ -139,6 +139,38 @@ const Page: NextPageWithLayout = () => {
     updateRoom(newRoom);
   };
 
+  const handleAddTodoItem = (content: string ,widget: Widget) => {
+
+    const newItem = {
+      id: nanoid(),
+      content: content,
+      completed: false,
+    }
+    const newWidget = {
+      ...widget,
+      body: [
+        newItem,
+        ...widget.body
+      ]
+    }
+
+    const newWidgets = roomDetails.object.widgets.map((mappedWidget) => {
+      if(mappedWidget.id === newWidget.id) {
+        return newWidget
+      }
+      return mappedWidget;
+    });
+
+    const newRoom = {
+      ...roomDetails,
+      object: {
+        widgets: newWidgets,
+      },
+    };
+    
+    updateRoom(newRoom)
+  }
+
   return (
     <Box
       css={{
@@ -207,9 +239,13 @@ const Page: NextPageWithLayout = () => {
                 </Button>
               </Box>
               <TextInput
-                placeholder="Type to create a to-do list"
+                placeholder="Type to create a to-do item"
                 onKeyDown={(e) => {
-                  if (e.key === "enter") {
+                  if (e.key === "Enter") {
+                    if (e.currentTarget.value.length > 0) {
+                      handleAddTodoItem(e.currentTarget.value, widget)
+                      e.currentTarget.value = ''
+                    }
                   }
                 }}
               />
@@ -230,7 +266,7 @@ const Page: NextPageWithLayout = () => {
                         checked={item.completed}
                         onChange={() => handleTodoToggle(item.id, widget)}
                       />
-                      <span contentEditable>{item.content}</span>
+                      <span>{item.content}</span>
                     </Box>
                   );
                 })}
