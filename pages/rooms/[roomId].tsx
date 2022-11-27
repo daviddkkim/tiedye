@@ -180,6 +180,28 @@ const Page: NextPageWithLayout = () => {
     updateRoom(newRoom);
   };
 
+  const handleAddPostWidget = (content: string) => {
+    const newWidget = {
+      id: nanoid(),
+      type: "post",
+      title: "",
+      body: [
+        {
+          id: nanoid(),
+          content: content,
+          completed: false,
+        }
+      ],
+    };
+    const newRoom = {
+      ...roomDetails,
+      object: {
+        widgets: [newWidget, ...roomDetails.object.widgets],
+      },
+    };
+    updateRoom(newRoom);
+  }
+
   const handleAddTodoWidget = () => {
     const newWidget = {
       id: nanoid(),
@@ -230,34 +252,15 @@ const Page: NextPageWithLayout = () => {
         <Text>{roomDetails && roomDetails.description}</Text>
       </Box>
       <Box>
-        {/* <DropdownMenu.Root
-          trigger={
-            <Button>
-              <LightningBoltIcon /> Add widget{" "}
-            </Button>
-          }
-        >
-          <DropdownMenu.Item
-            onClick={() => {
-              handleAddTodoWidget();
-            }}
-          >
-            <ListBulletIcon /> {"To-do list"}
-          </DropdownMenu.Item>
-          <DropdownMenu.Item>
-            <Pencil2Icon /> {"Post"}
-          </DropdownMenu.Item>
-          <DropdownMenu.Item disabled muted>
-            <ChatBubbleIcon /> {"Chat"}
-          </DropdownMenu.Item>
-        </DropdownMenu.Root> */}
-        <WidgetDialog onTodoWidgetAdd={handleAddTodoWidget} />
+        <WidgetDialog onTodoWidgetAdd={handleAddTodoWidget} onPostWidgetAdd={handleAddPostWidget} />
       </Box>
 
       {roomDetails &&
         roomDetails.object.widgets.map((widget) => {
-          return (
-            <Box
+
+          if (widget.type === 'post') {
+            return (
+              <Box
               css={{
                 flexDirection: "column",
                 gap: "$3",
@@ -268,58 +271,76 @@ const Page: NextPageWithLayout = () => {
               }}
               key={widget.id}
             >
-              <Box
-                css={{
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                }}
-              >
-                <Text>{widget.title}</Text>
-                <Button
-                  variant={"tertiary"}
-                  css={{ color: "$textSecondary" }}
-                  onClick={() => {
-                    handleDeleteWidget(widget);
-                  }}
-                >
-                  <Cross2Icon />
-                </Button>
+              {widget.body[0].content}
               </Box>
-              <TextInput
-                placeholder="Type to create a to-do item"
-                onKeyDown={(e) => {
-                  if (e.key === "Enter") {
-                    if (e.currentTarget.value.length > 0) {
-                      handleAddTodoItem(e.currentTarget.value, widget);
-                      e.currentTarget.value = "";
-                    }
-                  }
-                }}
-              />
+            )
+          }
+          if (widget.type === 'todo') {
+            return (
               <Box
                 css={{
                   flexDirection: "column",
-                  gap: "$1",
+                  gap: "$3",
+                  backgroundColor: "$bgSecondary",
+                  padding: "$2 $4 $4 $4",
+                  borderRadius: "$1",
+                  boxShadow: "0px 1px 2px 4px $colors$shadow",
                 }}
+                key={widget.id}
               >
-                {widget.body.map((item) => {
-                  return (
-                    <Box
-                      css={{ gap: "$2", flexDirection: "row" }}
-                      key={item.id}
-                    >
-                      <input
-                        type={"checkbox"}
-                        checked={item.completed}
-                        onChange={() => handleTodoToggle(item.id, widget)}
-                      />
-                      <span>{item.content}</span>
-                    </Box>
-                  );
-                })}
+                <Box
+                  css={{
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <Text>{widget.title}</Text>
+                  <Button
+                    variant={"tertiary"}
+                    css={{ color: "$textSecondary" }}
+                    onClick={() => {
+                      handleDeleteWidget(widget);
+                    }}
+                  >
+                    <Cross2Icon />
+                  </Button>
+                </Box>
+                <TextInput
+                  placeholder="Type to create a to-do item"
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter") {
+                      if (e.currentTarget.value.length > 0) {
+                        handleAddTodoItem(e.currentTarget.value, widget);
+                        e.currentTarget.value = "";
+                      }
+                    }
+                  }}
+                />
+                <Box
+                  css={{
+                    flexDirection: "column",
+                    gap: "$1",
+                  }}
+                >
+                  {widget.body.map((item) => {
+                    return (
+                      <Box
+                        css={{ gap: "$2", flexDirection: "row" }}
+                        key={item.id}
+                      >
+                        <input
+                          type={"checkbox"}
+                          checked={item.completed}
+                          onChange={() => handleTodoToggle(item.id, widget)}
+                        />
+                        <span>{item.content}</span>
+                      </Box>
+                    );
+                  })}
+                </Box>
               </Box>
-            </Box>
-          );
+            );
+          }
         })}
     </Box>
   );

@@ -21,7 +21,7 @@ const Box = styled("div", {
 
 interface WidgetDialogProps {
     onTodoWidgetAdd: () => void;
-    onPostWidgetAdd?: () => void;
+    onPostWidgetAdd: (content: string) => void;
 }
 
 const WidgetDialog: React.FC<WidgetDialogProps> = ({
@@ -169,7 +169,7 @@ const WidgetDialog: React.FC<WidgetDialogProps> = ({
                             <Button variant={"tertiary"}>Cancel</Button>
                         </DialogCloseButton>
                         <DialogCloseButton asChild>
-                            <Button onClick={() => { }}>Post</Button>
+                            <Button onClick={() => { onPostWidgetAdd(post) }}>Post</Button>
                         </DialogCloseButton>
                     </Box>
                 </>
