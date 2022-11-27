@@ -13,6 +13,11 @@ const PageTitle = styled("h1", {
   margin: 0,
 });
 
+const SubText = styled('span', {
+  fontSize: '$2',
+  color: '$textSecondary'
+})
+
 const Box = styled("div", {
   display: "flex",
 });
@@ -21,19 +26,34 @@ const Page: NextPageWithLayout = () => {
   const { query, isReady } = useRouter();
 
   const { roomId } = query;
-  if (!roomId) {
-    return <div>
-      loading...
-    </div>
+
+  //'123' helps us by pass the issue of url query being undefined at first render.
+  const roomDetails = useQuery('getOneRoom', isReady ? roomId : '123');
+
+  const getUpdatedTime = (lastUpdatedAt: number) => {
+
+    const now = Date.now();
+    const delta = Math.floor(now / 1000) - Math.floor(lastUpdatedAt / 1000);
+    // more that two days
+    if (delta > 2 * 24 * 3600) {
+      return "a few days ago";
+    }
+    // a day
+    if (delta > 24 * 3600) {
+      return "yesterday";
+    }
+
+    if (delta > 3600) {
+      return "a few hours ago";
+    }
+    if (delta > 1800) {
+      return "Half an hour ago";
+    }
+    if (delta > 60) {
+      return Math.floor(delta / 60) + " minutes ago";
+    }
   }
 
-  if (!isReady) {
-    return <div>
-      loading...
-    </div>
-  }
-  const roomDetails = useQuery('getOneRoom', roomId);
-  console.log(roomDetails)
   return (
     <div>
       <Box
@@ -43,9 +63,9 @@ const Page: NextPageWithLayout = () => {
           alignItems: "center",
         }}
       >
-        <PageTitle> Rooms</PageTitle>
-        <Box css={{ gap: '$2' }}>
-          <span> {roomDetails && roomDetails.latUpdatedAt} </span>
+        <PageTitle> {roomDetails && roomDetails.name}</PageTitle>
+        <Box css={{ gap: '$2', alignItems: 'center' }}>
+          <SubText> {roomDetails && getUpdatedTime(roomDetails.lastUpdatedAt)} </SubText>
           <Button><DotsHorizontalIcon /></Button>
         </Box>
       </Box>

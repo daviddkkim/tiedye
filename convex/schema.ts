@@ -13,6 +13,6 @@ export default defineSchema({
     owner: s.id("users"),
     objects: s.string(),
     description: s.string(),
-    latUpdatedAt: s.number(),
+    lastUpdatedAt: s.number(),
   }).index("by_owner", ["owner"]),
 });
