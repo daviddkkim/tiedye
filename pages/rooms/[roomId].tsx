@@ -7,7 +7,7 @@ import { useMutation, useQuery } from "../../convex/_generated/react";
 import { styled } from "../../stitches.config";
 import type { NextPageWithLayout } from "../_app";
 import { Cross2Icon } from "@radix-ui/react-icons";
-import { nanoid } from 'nanoid'
+import { nanoid } from "nanoid";
 
 export interface Objects {
   widgets: Widget[];
@@ -139,24 +139,20 @@ const Page: NextPageWithLayout = () => {
     updateRoom(newRoom);
   };
 
-  const handleAddTodoItem = (content: string ,widget: Widget) => {
-
+  const handleAddTodoItem = (content: string, widget: Widget) => {
     const newItem = {
       id: nanoid(),
       content: content,
       completed: false,
-    }
+    };
     const newWidget = {
       ...widget,
-      body: [
-        newItem,
-        ...widget.body
-      ]
-    }
+      body: [newItem, ...widget.body],
+    };
 
     const newWidgets = roomDetails.object.widgets.map((mappedWidget) => {
-      if(mappedWidget.id === newWidget.id) {
-        return newWidget
+      if (mappedWidget.id === newWidget.id) {
+        return newWidget;
       }
       return mappedWidget;
     });
@@ -167,9 +163,9 @@ const Page: NextPageWithLayout = () => {
         widgets: newWidgets,
       },
     };
-    
-    updateRoom(newRoom)
-  }
+
+    updateRoom(newRoom);
+  };
 
   return (
     <Box
@@ -243,8 +239,8 @@ const Page: NextPageWithLayout = () => {
                 onKeyDown={(e) => {
                   if (e.key === "Enter") {
                     if (e.currentTarget.value.length > 0) {
-                      handleAddTodoItem(e.currentTarget.value, widget)
-                      e.currentTarget.value = ''
+                      handleAddTodoItem(e.currentTarget.value, widget);
+                      e.currentTarget.value = "";
                     }
                   }
                 }}
