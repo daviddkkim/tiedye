@@ -19,7 +19,9 @@ export default mutation(async ({ db, auth }, room) => {
     object: {
       widgets: [
         {
+          id: "1",
           type: "todo",
+          title: 'For Christmas',
           body: [
             {
               id: "123",
@@ -36,5 +38,6 @@ export default mutation(async ({ db, auth }, room) => {
       ]
     }
   };
+
   return await db.insert("rooms", newRoom);
 });

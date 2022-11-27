@@ -13,7 +13,9 @@ export default defineSchema({
     owner: s.id("users"),
     object: s.object({
       widgets: s.array(s.object({
+        id: s.string(),
         type: s.string(),
+        title: s.string(),
         body: s.array(
           s.object({
             id: s.string(),

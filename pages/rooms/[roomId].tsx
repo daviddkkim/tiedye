@@ -3,10 +3,28 @@ import React, { ReactElement } from "react";
 import { Button, Label } from "../../components";
 import { DotsHorizontalIcon } from '@radix-ui/react-icons'
 import Layout from "../../components/layouts/layout";
-import { useQuery } from "../../convex/_generated/react";
+import { useMutation, useQuery } from "../../convex/_generated/react";
 import { styled } from "../../stitches.config";
 import type { NextPageWithLayout } from "../_app";
-import { nanoid } from 'nanoid'
+//import { nanoid } from 'nanoid'
+
+export interface Objects {
+  widgets: Widget[];
+}
+
+export interface Widget {
+  id: string;
+  type:  string;
+  title: string;
+  body:  Body[];
+}
+
+export interface Body {
+  id:       string;
+  content:   string;
+  completed: boolean;
+}
+
 
 const PageTitle = styled("h1", {
   fontSize: "$6",
@@ -35,6 +53,7 @@ const Page: NextPageWithLayout = () => {
 
   //'123' helps us by pass the issue of url query being undefined at first render.
   const roomDetails = useQuery('getOneRoom', isReady ? roomId : '123');
+  const updateRoom = useMutation('updateRoom');
 
   if (!roomDetails) return <div> loading... </div>;
 
@@ -58,6 +77,59 @@ const Page: NextPageWithLayout = () => {
     if (delta > 60) {
       return Math.floor(delta / 60) + " minutes ago";
     }
+  }
+
+  const object = {
+    widgets: [
+      {
+        id: "1",
+        type: "todo",
+        title: 'For Christmas',
+        body: [
+          {
+            id: "123",
+            content: "To do 1",
+            completed: false
+          },
+          {
+            id: "1234",
+            content: "To do 2",
+            completed: true
+          },
+        ]
+      }
+    ]
+  }
+
+  const handleTodoToggle = (id: string,
+    widget: Widget) => {
+    const newBody = widget.body.map((item) => {
+      if (item.id !== id) return item;
+
+      return {...item, completed: !item.completed}
+    })
+    const newWidget = {
+      ...widget,
+      body: newBody 
+    };
+
+    const newWidgets = roomDetails.object.widgets.map((mappedWidget)=> {
+      if (mappedWidget.id !== widget.id) return mappedWidget;
+
+      return newWidget;
+    })
+
+    const newRoom = {
+      ...roomDetails,
+      object: {
+        widgets: newWidgets
+      }
+    }
+    console.log(newRoom)
+    updateRoom(
+      newRoom
+    )
+    
   }
 
   return (
@@ -87,19 +159,36 @@ const Page: NextPageWithLayout = () => {
       <Box>
         <Button> Add widget </Button>
       </Box>
-      <Box css={{
-        flexDirection:'column',
-        gap: '$2',
-      }}>
-        {roomDetails && roomDetails.object.widgets.map((widget) => {
-          return (
-            widget.body.map((item) => {
-              return (
-                <Label css={{ gap: '$2', flexDirection:'row' }}> <input type={'checkbox'} checked={item.completed} /> {item.content} </Label>)
-            })
-          )
-        })}
-      </Box>
+
+
+      {roomDetails && roomDetails.object.widgets.map((widget) => {
+        return (
+          <Box css={{
+            flexDirection: 'column',
+            gap: '$3',
+            border: '1px solid $separator',
+            padding: '$4',
+            borderRadius: '$1'
+          }}>
+            <Text>{widget.title}</Text>
+            <Box css={{
+              flexDirection: 'column',
+              gap: '$1',
+            }}>
+              {widget.body.map((item) => {
+                return (
+                  <Label css={{ gap: '$2', flexDirection: 'row' }} key={item.id}>
+                    <input type={'checkbox'}
+                      checked={item.completed}
+                      onChange={() => handleTodoToggle(item.id,widget)}
+                    />
+                    {item.content}
+                  </Label>)
+              })}
+            </Box>
+          </Box>
+        )
+      })}
     </Box>
   );
 };
