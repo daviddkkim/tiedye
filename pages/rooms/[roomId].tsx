@@ -6,7 +6,11 @@ import Layout from "../../components/layouts/layout";
 import { useMutation, useQuery } from "../../convex/_generated/react";
 import { styled } from "../../stitches.config";
 import type { NextPageWithLayout } from "../_app";
-import { Cross2Icon, ListBulletIcon, ChatBubbleIcon } from "@radix-ui/react-icons";
+import {
+  Cross2Icon,
+  ListBulletIcon,
+  ChatBubbleIcon,
+} from "@radix-ui/react-icons";
 import { nanoid } from "nanoid";
 
 export interface Objects {
@@ -201,12 +205,15 @@ const Page: NextPageWithLayout = () => {
         <Text>{roomDetails && roomDetails.description}</Text>
       </Box>
       <Box>
-        <DropdownMenu.Root
-          trigger={
-            <Button> Add widget </Button>
-          }>
-          <DropdownMenu.Item> <ListBulletIcon /> {'To-do list'}</DropdownMenu.Item>
-          <DropdownMenu.Item disabled muted> <ChatBubbleIcon /> {'Chat'}</DropdownMenu.Item>
+        <DropdownMenu.Root trigger={<Button> Add widget </Button>}>
+          <DropdownMenu.Item>
+            {" "}
+            <ListBulletIcon /> {"To-do list"}
+          </DropdownMenu.Item>
+          <DropdownMenu.Item disabled muted>
+            {" "}
+            <ChatBubbleIcon /> {"Chat"}
+          </DropdownMenu.Item>
         </DropdownMenu.Root>
       </Box>
 
@@ -217,7 +224,7 @@ const Page: NextPageWithLayout = () => {
               css={{
                 flexDirection: "column",
                 gap: "$3",
-                backgroundColor: '$bgSecondary',
+                backgroundColor: "$bgSecondary",
                 border: "1px solid $separator",
                 padding: "$2 $4 $4 $4",
                 borderRadius: "$1",
