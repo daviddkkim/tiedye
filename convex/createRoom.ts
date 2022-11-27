@@ -16,6 +16,25 @@ export default mutation(async ({ db, auth }, room) => {
     ...room,
     owner: user._id,
     lastUpdatedAt: time,
+    object: {
+      widgets: [
+        {
+          type: "todo",
+          body: [
+            {
+              id: "123",
+              content: "To do 1",
+              completed: false
+            },
+            {
+              id: "1234",
+              content: "To do 2",
+              completed: true
+            },
+          ]
+        }
+      ]
+    }
   };
   return await db.insert("rooms", newRoom);
 });

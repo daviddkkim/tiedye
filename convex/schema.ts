@@ -11,7 +11,18 @@ export default defineSchema({
   rooms: defineTable({
     name: s.string(),
     owner: s.id("users"),
-    objects: s.string(),
+    object: s.object({
+      widgets: s.array(s.object({
+        type: s.string(),
+        body: s.array(
+          s.object({
+            id: s.string(),
+            content: s.string(),
+            completed: s.boolean()
+          })
+        )
+      }))
+    }),
     description: s.string(),
     lastUpdatedAt: s.number(),
   }).index("by_owner", ["owner"]),
