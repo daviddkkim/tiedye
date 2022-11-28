@@ -1,14 +1,24 @@
-import { ReactElement, useEffect, useState } from "react";
-import { useMutation, useQuery } from "../convex/_generated/react";
+import React, { ReactElement } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
-import { Button } from "../components";
 import type { NextPageWithLayout } from "./_app";
 import Layout from "../components/layouts/layout";
+import { styled } from "../stitches.config";
+
+const PageTitle = styled("h1", {
+  fontSize: "$6",
+  lineHeight: "$6",
+  margin: 0,
+});
+
+const Box = styled("div", {
+  display: "flex",
+});
 
 const Page: NextPageWithLayout = () => {
-  const { logout, user } = useAuth0();
 
-  return <div>{user?.email}</div>;
+  return <Box>
+    <PageTitle> Settings</PageTitle>
+  </Box>;
 };
 
 Page.getLayout = function getLayout(page: ReactElement) {
