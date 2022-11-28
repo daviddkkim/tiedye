@@ -267,7 +267,7 @@ const Page: NextPageWithLayout = () => {
                   flexDirection: "column",
                   gap: "$3",
                   backgroundColor: "$bgSecondary",
-                  padding: "$2 $4 $4 $4",
+                  padding: "$4",
                   borderRadius: "$1",
                   boxShadow: "0px 1px 2px 4px $colors$shadow",
                 }}
