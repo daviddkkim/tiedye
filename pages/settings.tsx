@@ -15,10 +15,11 @@ const Box = styled("div", {
 });
 
 const Page: NextPageWithLayout = () => {
-
-  return <Box>
-    <PageTitle> Settings</PageTitle>
-  </Box>;
+  return (
+    <Box>
+      <PageTitle> Settings</PageTitle>
+    </Box>
+  );
 };
 
 Page.getLayout = function getLayout(page: ReactElement) {
