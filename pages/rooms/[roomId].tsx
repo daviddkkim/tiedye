@@ -269,7 +269,7 @@ const Page: NextPageWithLayout = () => {
                   backgroundColor: "$bgSecondary",
                   padding: "$4",
                   borderRadius: "$1",
-                  boxShadow: "0px 1px 2px 4px $colors$shadow",
+                  boxShadow: "0px 1px 2px 2px $colors$shadow",
                 }}
                 key={widget.id}
               >
@@ -286,7 +286,7 @@ const Page: NextPageWithLayout = () => {
                   backgroundColor: "$bgSecondary",
                   padding: "$2 $4 $4 $4",
                   borderRadius: "$1",
-                  boxShadow: "0px 1px 2px 4px $colors$shadow",
+                  boxShadow: "0px 1px 2px 2px $colors$shadow",
                 }}
                 key={widget.id}
               >

@@ -8,6 +8,7 @@ import { TH, TRlink, THeadRow, TBody, TD, Table } from "./Table";
 import * as DropdownMenu from "./DropdownMenu";
 import { WidgetDialog } from "./productComponents";
 import { TextArea } from "./Textarea";
+import { Toggle } from "./ToggleButton";
 export {
   Button,
   SideNav,
@@ -26,4 +27,5 @@ export {
   Table,
   DropdownMenu,
   WidgetDialog,
+  Toggle
 };

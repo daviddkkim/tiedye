@@ -1,14 +1,16 @@
 import React from "react";
 import { styled } from "../../stitches.config";
-import { Button, Link, RoomDialog } from "..";
+import { Button, Link, RoomDialog, Toggle } from "..";
 import { useAuth0 } from "@auth0/auth0-react";
+import { useTheme } from 'next-themes';
 import {
   PersonIcon,
   BoxIcon,
   GearIcon,
   ChatBubbleIcon,
   PaperPlaneIcon,
-  LayersIcon
+  LayersIcon,
+  BlendingModeIcon
 } from "@radix-ui/react-icons";
 import { useRouter } from "next/router";
 
@@ -36,6 +38,8 @@ const Box = styled("div", {
 });
 const SideNav = () => {
   const { logout, user } = useAuth0();
+
+  const { setTheme } = useTheme();
   const router = useRouter();
 
   const pathname = router.pathname;
@@ -113,6 +117,7 @@ const SideNav = () => {
           flexDirection: "column",
         }}
       >
+
         <Button variant={"tertiary"} stretch>
           {" "}
           <PaperPlaneIcon /> Feedback{" "}
@@ -122,14 +127,23 @@ const SideNav = () => {
           <ChatBubbleIcon /> Help{" "}
         </Button>
       </Box>
-      <Button
-        onClick={() => {
-          logout();
-        }}
-      >
-        {" "}
-        Log out{" "}
-      </Button>
+      <Box css={{
+        justifyContent: 'space-between'
+      }}> 
+        <Button
+          onClick={() => {
+            logout();
+          }}
+        >
+          {" "}
+          Log out{" "}
+        </Button>
+        <Toggle onPressedChange={(pressed) => {
+          pressed ? setTheme('light') : setTheme('dark')
+        }}>
+          <BlendingModeIcon />
+        </Toggle>
+      </Box>
     </NavContainer>
   );
 };
