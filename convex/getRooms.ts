@@ -28,6 +28,7 @@ export default query(async ({ db, auth }) => {
       };
     })
   );
+  //This is to catch the exception that occurs when you log in for the first time
   } catch {
     return [];
   }
