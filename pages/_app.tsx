@@ -9,6 +9,7 @@ import type { AppProps } from "next/app";
 import Login from "./login";
 import { ReactElement, ReactNode, useEffect, useState } from "react";
 import { NextPage } from "next";
+import React from "react";
 
 const globalStyles = globalCss({
   html: {
