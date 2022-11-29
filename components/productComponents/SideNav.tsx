@@ -4,10 +4,11 @@ import { Button, Link, RoomDialog } from "..";
 import { useAuth0 } from "@auth0/auth0-react";
 import {
   PersonIcon,
-  StackIcon,
+  BoxIcon,
   GearIcon,
   ChatBubbleIcon,
   PaperPlaneIcon,
+  LayersIcon
 } from "@radix-ui/react-icons";
 import { useRouter } from "next/router";
 
@@ -70,12 +71,21 @@ const SideNav = () => {
         >
           <Link
             variant={"tertiary"}
+            href={"/feed"}
+            active={handleActiveLink("feed")}
+            stretch
+          >
+            {" "}
+            <LayersIcon /> Feed{" "}
+          </Link>
+          <Link
+            variant={"tertiary"}
             href={"/rooms"}
             active={handleActiveLink("rooms")}
             stretch
           >
             {" "}
-            <StackIcon /> Rooms{" "}
+            <BoxIcon /> Rooms{" "}
           </Link>
           <Link
             variant={"tertiary"}
