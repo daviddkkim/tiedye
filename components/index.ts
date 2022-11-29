@@ -27,5 +27,5 @@ export {
   Table,
   DropdownMenu,
   WidgetDialog,
-  Toggle
+  Toggle,
 };

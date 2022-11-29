@@ -2,7 +2,7 @@ import React from "react";
 import { styled } from "../../stitches.config";
 import { Button, Link, RoomDialog, Toggle } from "..";
 import { useAuth0 } from "@auth0/auth0-react";
-import { useTheme } from 'next-themes';
+import { useTheme } from "next-themes";
 import {
   PersonIcon,
   BoxIcon,
@@ -10,7 +10,7 @@ import {
   ChatBubbleIcon,
   PaperPlaneIcon,
   LayersIcon,
-  BlendingModeIcon
+  BlendingModeIcon,
 } from "@radix-ui/react-icons";
 import { useRouter } from "next/router";
 
@@ -117,7 +117,6 @@ const SideNav = () => {
           flexDirection: "column",
         }}
       >
-
         <Button variant={"tertiary"} stretch>
           {" "}
           <PaperPlaneIcon /> Feedback{" "}
@@ -127,9 +126,11 @@ const SideNav = () => {
           <ChatBubbleIcon /> Help{" "}
         </Button>
       </Box>
-      <Box css={{
-        justifyContent: 'space-between'
-      }}> 
+      <Box
+        css={{
+          justifyContent: "space-between",
+        }}
+      >
         <Button
           onClick={() => {
             logout();
@@ -138,9 +139,11 @@ const SideNav = () => {
           {" "}
           Log out{" "}
         </Button>
-        <Toggle onPressedChange={(pressed) => {
-          pressed ? setTheme('light') : setTheme('dark')
-        }}>
+        <Toggle
+          onPressedChange={(pressed) => {
+            pressed ? setTheme("light") : setTheme("dark");
+          }}
+        >
           <BlendingModeIcon />
         </Toggle>
       </Box>

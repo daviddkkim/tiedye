@@ -7,28 +7,28 @@ export default query(async ({ db, auth }) => {
   }
 
   try {
-  const user = await db
-    .query("users")
-    .withIndex("by_token", (q) =>
-      q.eq("tokenIdentifier", identity.tokenIdentifier)
-    )
-    .unique();
+    const user = await db
+      .query("users")
+      .withIndex("by_token", (q) =>
+        q.eq("tokenIdentifier", identity.tokenIdentifier)
+      )
+      .unique();
 
-  const rooms = await db
-    .query("rooms")
-    .withIndex("by_owner", (q) => q.eq("owner", user._id))
-    .collect();
+    const rooms = await db
+      .query("rooms")
+      .withIndex("by_owner", (q) => q.eq("owner", user._id))
+      .collect();
 
-  return Promise.all(
-    rooms.map(async (room) => {
-      const user = await db.get(room.owner);
-      return {
-        creator: user!.name,
-        ...room,
-      };
-    })
-  );
-  //This is to catch the exception that occurs when you log in for the first time
+    return Promise.all(
+      rooms.map(async (room) => {
+        const user = await db.get(room.owner);
+        return {
+          creator: user!.name,
+          ...room,
+        };
+      })
+    );
+    //This is to catch the exception that occurs when you log in for the first time
   } catch {
     return [];
   }

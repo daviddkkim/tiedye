@@ -8,28 +8,25 @@ import { styled } from "../stitches.config";
 import React from "react";
 
 const PageTitle = styled("h1", {
-    fontSize: "$6",
-    lineHeight: "$6",
-    margin: 0,
+  fontSize: "$6",
+  lineHeight: "$6",
+  margin: 0,
 });
 
 const Box = styled("div", {
-    display: "flex",
+  display: "flex",
 });
 
 const Page: NextPageWithLayout = () => {
-
-    return (
-        <Box>
-            <PageTitle>
-                Feed
-            </PageTitle>
-        </Box>
-    );
+  return (
+    <Box>
+      <PageTitle>Feed</PageTitle>
+    </Box>
+  );
 };
 
 Page.getLayout = function getLayout(page: ReactElement) {
-    return <Layout>{page}</Layout>;
+  return <Layout>{page}</Layout>;
 };
 
 export default Page;
