@@ -71,21 +71,21 @@ const SideNav = () => {
         >
           <Link
             variant={"tertiary"}
-            href={"/feed"}
-            active={handleActiveLink("feed")}
-            stretch
-          >
-            {" "}
-            <LayersIcon /> Feed{" "}
-          </Link>
-          <Link
-            variant={"tertiary"}
             href={"/rooms"}
             active={handleActiveLink("rooms")}
             stretch
           >
             {" "}
             <BoxIcon /> Rooms{" "}
+          </Link>
+          <Link
+            variant={"tertiary"}
+            href={"/feed"}
+            active={handleActiveLink("feed")}
+            stretch
+          >
+            {" "}
+            <LayersIcon /> Feed{" "}
           </Link>
           <Link
             variant={"tertiary"}

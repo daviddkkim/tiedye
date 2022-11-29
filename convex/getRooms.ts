@@ -5,6 +5,8 @@ export default query(async ({ db, auth }) => {
   if (!identity) {
     throw new Error("Unauthenticated call to sendMessage");
   }
+
+  try {
   const user = await db
     .query("users")
     .withIndex("by_token", (q) =>
@@ -26,4 +28,7 @@ export default query(async ({ db, auth }) => {
       };
     })
   );
+  } catch {
+    return [];
+  }
 });
