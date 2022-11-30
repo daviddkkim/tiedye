@@ -16,10 +16,10 @@ import { mutation } from "./_generated/server";
 // presence of which depends on the identity provider chosen. It's up to the
 // application developer to determine which ones are available and to decide
 // which of those need to be persisted.
-export default mutation(async ({ db, auth }): Promise<Id<"users">> => {
+export default mutation(async ({ db, auth }, userObject) => {
   const identity = await auth.getUserIdentity();
   if (!identity) {
-    throw new Error("Called storeUser without authentication present");
+    throw new Error("Called updateUser without authentication present");
   }
 
   // Check if we've already stored this identity before.
@@ -32,15 +32,7 @@ export default mutation(async ({ db, auth }): Promise<Id<"users">> => {
   if (user !== null) {
     // If we've seen this identity before but the name has changed, patch the value.
     if (user.name != identity.name) {
-      await db.patch(user._id, { name: identity.name! });
+      await db.patch(user._id, userObject);
     }
-    return user._id;
-  }
-  // If it's a new identity, create a new `User`.
-  return db.insert("users", {
-    name: identity.name!,
-    tokenIdentifier: identity.tokenIdentifier,
-    spaces: []
-    // The `_id` field will be assigned by the backend.
-  });
+  } 
 });
