@@ -21,9 +21,9 @@ export default function Layout({ children }: { children: ReactElement }) {
   const storeUser = useMutation("storeUser");
   const initializeSpace = useMutation("initializeSpace");
   const router = useRouter();
-  const { space } = useSpace();
+  const { spaceId } = useSpace();
 
-  if (!space) {
+  if (!spaceId) {
     router.push("/spaceSelect");
   }
 
@@ -51,7 +51,7 @@ export default function Layout({ children }: { children: ReactElement }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <StyledMain>
-        <SideNav space={space} />
+        <SideNav/>
         <PageSection>{children}</PageSection>
       </StyledMain>
     </>

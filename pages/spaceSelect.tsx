@@ -18,10 +18,10 @@ const Box = styled("div", {
 
 const Page: NextPageWithLayout = () => {
   const spaces = useQuery("getSpaces");
-  const { setSpace } = useSpace();
+  const { setSpaceId } = useSpace();
   const router = useRouter();
-  const handleClick = async (spaceId: Document<"spaces"> | null) => {
-    setSpace && (await setSpace(spaceId));
+  const handleClick = async (spaceId: string | null) => {
+    setSpaceId && (await setSpaceId(spaceId));
     router.push("/");
   };
   return (
@@ -34,7 +34,7 @@ const Page: NextPageWithLayout = () => {
           return (
             <button
               onClick={() => {
-                handleClick(space);
+                handleClick(space && space._id.toString());
               }}
               key={spaceId}
             >

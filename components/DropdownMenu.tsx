@@ -24,6 +24,36 @@ const DropdownMenuGroup = styled(DropdownMenuPrimitives.Group, {
   flexDirection: "column",
 });
 
+const DropdownMenuRadioItem = styled(DropdownMenuPrimitives.RadioItem, {
+  display: "flex",
+  gap: "$2",
+  alignItems: "center",
+  padding: "$2",
+  fontSize: "$3",
+  lineHeight: "$3",
+  borderRadius: "$1",
+  color: "$textPrimary",
+  outline: "none",
+  "&:focus-visible": {
+    borderColor: "$focusBorder",
+    boxShadow: "0px 0px 0px 2px $colors$focusShadow",
+  },
+  variants: {
+    muted: {
+      true: {
+        color: "$textMuted",
+      },
+      false: {
+        "&:hover": {
+          backgroundColor: "$fgHoverStrong",
+        },
+      },
+    },
+  },
+  defaultVariants: {
+    muted: "false",
+  },
+})
 const DropdownMenuItem = styled(DropdownMenuPrimitives.Item, {
   display: "flex",
   gap: "$2",
@@ -88,15 +118,19 @@ const Root = DropdownMenu;
 const Item = DropdownMenuItem;
 const Group = DropdownMenuGroup;
 const Label = DropdownMenuLabel;
-
+const RadioGroup = DropdownMenuPrimitives.RadioGroup;
+const RadioItem = DropdownMenuRadioItem;
 export {
   DropdownMenu,
   DropdownMenuItem,
   DropdownMenuGroup,
   DropdownMenuProps,
   DropdownMenuLabel,
+  DropdownMenuRadioItem,
   Root,
   Item,
   Group,
   Label,
+  RadioGroup,
+  RadioItem
 };

@@ -38,7 +38,7 @@ const NavTitle = styled("h1", {
 const Box = styled("div", {
   display: "flex",
 });
-const SideNav = ({ space }: { space?: Document<"spaces"> | null }) => {
+const SideNav = () => {
   const { logout, user } = useAuth0();
 
   const { setTheme } = useTheme();
