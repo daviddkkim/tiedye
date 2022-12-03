@@ -6,13 +6,7 @@ import { Document } from "../convex/_generated/dataModel";
 
 interface AppContextInterface {
     space: Document<"spaces"> | null;
-    setSpace: React.Dispatch<React.SetStateAction<{
-        _id: GenericId<"spaces">;
-        _creationTime: number;
-        name: string;
-        owner: GenericId<"users">;
-        members: GenericId<"users">[];
-    } | null>>;
+    setSpace: React.Dispatch<React.SetStateAction<Document<"spaces"> | null>>;
 }
 //Could pull this into a hook
 const SpaceContext = createContext<AppContextInterface | null>(null);
