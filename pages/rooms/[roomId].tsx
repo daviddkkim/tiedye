@@ -1,10 +1,8 @@
 import { useRouter } from "next/router";
-import React, { ReactElement, useState } from "react";
+import React, { ReactElement } from "react";
 import {
   Button,
-  Dialog,
-  DropdownMenu,
-  Label,
+
   TextInput,
   WidgetDialog,
 } from "../../components";
@@ -15,10 +13,6 @@ import { styled } from "../../stitches.config";
 import type { NextPageWithLayout } from "../_app";
 import {
   Cross2Icon,
-  ListBulletIcon,
-  ChatBubbleIcon,
-  Pencil2Icon,
-  LightningBoltIcon,
 } from "@radix-ui/react-icons";
 import { nanoid } from "nanoid";
 
