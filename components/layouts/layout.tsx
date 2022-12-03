@@ -41,7 +41,7 @@ export default function Layout({ children }: { children: ReactElement }) {
     initializeSpace().catch(console.error);
 
     return () => setUserId(null);
-  }, [storeUser]);
+  }, [storeUser, initializeSpace]);
 
   return (
     <>
