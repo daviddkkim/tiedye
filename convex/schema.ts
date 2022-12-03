@@ -16,7 +16,7 @@ export default defineSchema({
     members: s.array(
       s.id("users")
     )
-  }).index("by_members", ["members"]),
+  }),
   rooms: defineTable({
     name: s.string(),
     owner: s.id("users"),
