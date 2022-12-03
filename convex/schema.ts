@@ -20,6 +20,7 @@ export default defineSchema({
   rooms: defineTable({
     name: s.string(),
     owner: s.id("users"),
+    space: s.id("spaces"),
     object: s.object({
       widgets: s.array(
         s.object({

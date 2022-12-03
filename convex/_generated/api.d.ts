@@ -11,8 +11,10 @@
 
 import type { ApiFromModules } from "convex/api";
 import type * as createRoom from "../createRoom";
+import type * as createSpace from "../createSpace";
 import type * as getOneRoom from "../getOneRoom";
 import type * as getRooms from "../getRooms";
+import type * as initializeSpace from "../initializeSpace";
 import type * as storeUser from "../storeUser";
 import type * as updateRoom from "../updateRoom";
 import type * as updateUser from "../updateUser";
@@ -28,8 +30,10 @@ import type * as updateUser from "../updateUser";
  */
 export type API = ApiFromModules<{
   createRoom: typeof createRoom;
+  createSpace: typeof createSpace;
   getOneRoom: typeof getOneRoom;
   getRooms: typeof getRooms;
+  initializeSpace: typeof initializeSpace;
   storeUser: typeof storeUser;
   updateRoom: typeof updateRoom;
   updateUser: typeof updateUser;
