@@ -15,14 +15,14 @@ export default mutation(async ({ db, auth }, space?) => {
 
   if (user.spaces.length > 0) return;
 
-  console.log('here')
-  const newSpace = space! ? {
-    name: identity.name + "'s space",
+  const newSpace = !space ? {
+    name: "First space",
+    owner: user._id,
     members: [user._id]
   } : space;
+
   const spaceId = await db.insert("spaces", newSpace);
 
-  console.log(spaceId)
   const userObject = {
     ...user,
     spaces: [spaceId]
