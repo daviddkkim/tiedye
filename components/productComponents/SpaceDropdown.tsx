@@ -118,7 +118,6 @@ const SpaceDropdown = () => {
                 <DropdownMenu.RadioGroup>
                     {spaces &&
                         spaces.map((space) => {
-                            console.log(space)
                             if (space) {
                                 const spaceId = space._id.toString();
                                 return (

@@ -16,7 +16,6 @@ export default query(async ({ db, auth }) => {
 
     return Promise.all(
       user.spaces.map(async (space) => {
-        console.log(space)
         return await db.get(space);
       })
     );
