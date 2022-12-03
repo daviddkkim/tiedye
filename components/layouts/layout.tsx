@@ -17,6 +17,7 @@ const PageSection = styled("section", {
 export default function Layout({ children }: { children: ReactElement }) {
   const [userId, setUserId] = useState<Id<"users"> | null>(null);
   const storeUser = useMutation("storeUser");
+  const initializeSpace = useMutation("initializeSpace");
   // Call the `storeUser` mutation function to store
   // the current user in the `users` table and return the `Id` value.
   useEffect(() => {
@@ -28,6 +29,8 @@ export default function Layout({ children }: { children: ReactElement }) {
       setUserId(id);
     }
     createUser().catch(console.error);
+    initializeSpace().catch(console.error);
+
     return () => setUserId(null);
   }, [storeUser]);
 
