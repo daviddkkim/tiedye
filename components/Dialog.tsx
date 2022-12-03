@@ -94,5 +94,9 @@ const Dialog: React.FC<DialogProps> = ({
 };
 
 const DialogCloseButton = DialogPrimitive.Close;
-
-export { Dialog, DialogCloseButton };
+const DialogContent = StyledContent;
+const DialogOverlay = StyledOverlay;
+const DialogRoot = DialogPrimitive.Root;
+const DialogPortal = DialogPrimitive.Portal;
+const Trigger = DialogPrimitive.DialogTrigger;
+export { Dialog, DialogContent, DialogOverlay, DialogRoot, DialogPortal,  DialogCloseButton, Trigger };

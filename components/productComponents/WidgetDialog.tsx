@@ -4,8 +4,6 @@ import {
   Button,
   Dialog,
   Label,
-  TextInput,
-  DialogCloseButton,
   TextArea,
 } from "..";
 import {
@@ -14,7 +12,6 @@ import {
   ChatBubbleIcon,
   Pencil2Icon,
 } from "@radix-ui/react-icons";
-import { useMutation } from "../../convex/_generated/react";
 
 const Title = styled("h1", {
   fontSize: "$4",
@@ -100,7 +97,7 @@ const WidgetDialog: React.FC<WidgetDialogProps> = ({
       );
   };
   return (
-    <Dialog
+    <Dialog.Dialog
       onOpenChange={() => {
         setPhase("initial");
       }}
@@ -133,7 +130,7 @@ const WidgetDialog: React.FC<WidgetDialogProps> = ({
             <Pencil2Icon />
             Post
           </Button>
-          <DialogCloseButton asChild>
+          <Dialog.DialogCloseButton asChild>
             <Button
               css={{
                 width: "100%",
@@ -148,7 +145,7 @@ const WidgetDialog: React.FC<WidgetDialogProps> = ({
               <ListBulletIcon />
               {"To-do list"}
             </Button>
-          </DialogCloseButton>
+          </Dialog.DialogCloseButton>
           <Button
             disabled
             muted
@@ -188,10 +185,10 @@ const WidgetDialog: React.FC<WidgetDialogProps> = ({
               gap: "$2",
             }}
           >
-            <DialogCloseButton asChild>
+            <Dialog.DialogCloseButton asChild>
               <Button variant={"tertiary"}>Cancel</Button>
-            </DialogCloseButton>
-            <DialogCloseButton asChild>
+            </Dialog.DialogCloseButton>
+            <Dialog.DialogCloseButton asChild>
               <Button
                 onClick={() => {
                   onPostWidgetAdd(post);
@@ -199,11 +196,11 @@ const WidgetDialog: React.FC<WidgetDialogProps> = ({
               >
                 Post
               </Button>
-            </DialogCloseButton>
+            </Dialog.DialogCloseButton>
           </Box>
         </>
       )}
-    </Dialog>
+    </Dialog.Dialog>
   );
 };
 

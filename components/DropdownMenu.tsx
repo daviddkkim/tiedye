@@ -3,7 +3,6 @@ import * as DropdownMenuPrimitives from "@radix-ui/react-dropdown-menu";
 import { styled } from "../stitches.config";
 
 const StyledDropdownMenuContent = styled(DropdownMenuPrimitives.Content, {
-  padding: "$1",
   display: "flex",
   flexDirection: "column",
   opacity: 0.98,
@@ -23,6 +22,12 @@ const DropdownMenuGroup = styled(DropdownMenuPrimitives.Group, {
   display: "flex",
   flexDirection: "column",
 });
+
+const DropdownMenuSeparator = styled(DropdownMenuPrimitives.Separator, {
+  height: '1px',
+  width:'100%',
+  backgroundColor: '$separator'
+})
 
 const DropdownMenuRadioItem = styled(DropdownMenuPrimitives.RadioItem, {
   display: "flex",
@@ -120,6 +125,7 @@ const Group = DropdownMenuGroup;
 const Label = DropdownMenuLabel;
 const RadioGroup = DropdownMenuPrimitives.RadioGroup;
 const RadioItem = DropdownMenuRadioItem;
+const Separator = DropdownMenuSeparator;
 export {
   DropdownMenu,
   DropdownMenuItem,
@@ -127,10 +133,12 @@ export {
   DropdownMenuProps,
   DropdownMenuLabel,
   DropdownMenuRadioItem,
+  DropdownMenuSeparator,
   Root,
   Item,
   Group,
   Label,
   RadioGroup,
   RadioItem,
+  Separator
 };

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { styled } from "../../stitches.config";
-import { Button, Dialog, Label, TextInput, DialogCloseButton } from "..";
+import { Button, Dialog, Label, TextInput } from "..";
 import { BoxIcon } from "@radix-ui/react-icons";
 import { useMutation } from "../../convex/_generated/react";
 
@@ -36,7 +36,7 @@ const RoomDialog: React.FC = () => {
     setDescription("");
   };
   return (
-    <Dialog
+    <Dialog.Dialog
       title={<Title>Create Room</Title>}
       trigger={
         <Button>
@@ -79,10 +79,10 @@ const RoomDialog: React.FC = () => {
           gap: "$2",
         }}
       >
-        <DialogCloseButton asChild>
+        <Dialog.DialogCloseButton asChild>
           <Button variant={"tertiary"}>Cancel</Button>
-        </DialogCloseButton>
-        <DialogCloseButton asChild>
+        </Dialog.DialogCloseButton>
+        <Dialog.DialogCloseButton asChild>
           <Button
             onClick={() => {
               handleCreateRoom();
@@ -90,9 +90,9 @@ const RoomDialog: React.FC = () => {
           >
             Save
           </Button>
-        </DialogCloseButton>
+        </Dialog.DialogCloseButton>
       </Box>
-    </Dialog>
+    </Dialog.Dialog>
   );
 };
 
