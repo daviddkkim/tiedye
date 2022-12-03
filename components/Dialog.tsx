@@ -99,4 +99,12 @@ const DialogOverlay = StyledOverlay;
 const DialogRoot = DialogPrimitive.Root;
 const DialogPortal = DialogPrimitive.Portal;
 const Trigger = DialogPrimitive.DialogTrigger;
-export { Dialog, DialogContent, DialogOverlay, DialogRoot, DialogPortal,  DialogCloseButton, Trigger };
+export {
+  Dialog,
+  DialogContent,
+  DialogOverlay,
+  DialogRoot,
+  DialogPortal,
+  DialogCloseButton,
+  Trigger,
+};

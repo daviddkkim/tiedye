@@ -1,11 +1,6 @@
 import React, { useState } from "react";
 import { styled } from "../../stitches.config";
-import {
-  Button,
-  Dialog,
-  Label,
-  TextArea,
-} from "..";
+import { Button, Dialog, Label, TextArea } from "..";
 import {
   LightningBoltIcon,
   ListBulletIcon,

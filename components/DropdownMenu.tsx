@@ -24,10 +24,10 @@ const DropdownMenuGroup = styled(DropdownMenuPrimitives.Group, {
 });
 
 const DropdownMenuSeparator = styled(DropdownMenuPrimitives.Separator, {
-  height: '1px',
-  width:'100%',
-  backgroundColor: '$separator'
-})
+  height: "1px",
+  width: "100%",
+  backgroundColor: "$separator",
+});
 
 const DropdownMenuRadioItem = styled(DropdownMenuPrimitives.RadioItem, {
   display: "flex",
@@ -140,5 +140,5 @@ export {
   Label,
   RadioGroup,
   RadioItem,
-  Separator
+  Separator,
 };
