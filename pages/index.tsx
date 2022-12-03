@@ -4,6 +4,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { Button } from "../components";
 import type { NextPageWithLayout } from "./_app";
 import Layout from "../components/layouts/layout";
+import React from "react";
 
 const Page: NextPageWithLayout = () => {
   const { logout, user } = useAuth0();
