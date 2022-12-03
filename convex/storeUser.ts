@@ -36,6 +36,7 @@ export default mutation(async ({ db, auth }): Promise<Id<"users">> => {
     }
     return user._id;
   }
+  
   // If it's a new identity, create a new `User`.
   return db.insert("users", {
     name: identity.name!,

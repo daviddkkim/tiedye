@@ -12,5 +12,11 @@ export default mutation(async ({ db, auth }, space) => {
     )
     .unique();
 
-  return await db.insert("spaces", space);
+
+  const newSpace = space! ?{
+    name: identity.name + "'s space",
+    members: [user._id]
+  } : space;
+
+  return await db.insert("spaces", newSpace);
 });
