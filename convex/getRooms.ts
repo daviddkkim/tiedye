@@ -1,6 +1,7 @@
+import { Id } from "./_generated/dataModel";
 import { query } from "./_generated/server";
 
-export default query(async ({ db, auth }) => {
+export default query(async ({ db, auth }, spaceId) => {
   const identity = await auth.getUserIdentity();
   if (!identity) {
     throw new Error("Unauthenticated call to sendMessage");
@@ -14,9 +15,10 @@ export default query(async ({ db, auth }) => {
       )
       .unique();
 
+    const space = new Id("spaces", spaceId)
     const rooms = await db
       .query("rooms")
-      .withIndex("by_owner", (q) => q.eq("owner", user._id))
+      .withIndex("by_space", (q) => q.eq("space", space))
       .collect();
 
     return Promise.all(

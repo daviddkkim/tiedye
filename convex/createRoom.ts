@@ -1,3 +1,4 @@
+import { Id } from "./_generated/dataModel";
 import { mutation } from "./_generated/server";
 
 export default mutation(async ({ db, auth }, room) => {
@@ -12,9 +13,14 @@ export default mutation(async ({ db, auth }, room) => {
     )
     .unique();
   const time = Date.now();
+
+  const spaceId = new Id("spaces", room.space);
+
+
   const newRoom = {
     ...room,
     owner: user._id,
+    space: spaceId,
     lastUpdatedAt: time,
   };
 

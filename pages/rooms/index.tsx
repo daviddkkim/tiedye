@@ -13,6 +13,7 @@ import type { NextPageWithLayout } from "../_app";
 import Layout from "../../components/layouts/layout";
 import { styled } from "../../stitches.config";
 import { ArrowRightIcon } from "@radix-ui/react-icons";
+import { useSpace } from "../../utils/useSpace";
 
 const PageTitle = styled("h1", {
   fontSize: "$6",
@@ -25,7 +26,8 @@ const Box = styled("div", {
 });
 
 const Page: NextPageWithLayout = () => {
-  const rooms = useQuery("getRooms");
+  const { spaceId } = useSpace();
+  const rooms = useQuery("getRooms", spaceId);
   return (
     <Box
       css={{

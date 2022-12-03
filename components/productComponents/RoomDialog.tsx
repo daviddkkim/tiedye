@@ -3,6 +3,7 @@ import { styled } from "../../stitches.config";
 import { Button, Dialog, Label, TextInput } from "..";
 import { BoxIcon } from "@radix-ui/react-icons";
 import { useMutation } from "../../convex/_generated/react";
+import { useSpace } from "../../utils/useSpace";
 
 const Title = styled("h1", {
   fontSize: "$4",
@@ -18,8 +19,8 @@ const Box = styled("div", {
 const RoomDialog: React.FC = () => {
   const [roomName, setRoomName] = useState("");
   const [description, setDescription] = useState("");
-
   const createRoom = useMutation("createRoom");
+  const { spaceId } = useSpace()
 
   const handleCreateRoom = () => {
     if (!roomName) return;
@@ -27,6 +28,7 @@ const RoomDialog: React.FC = () => {
     const room = {
       name: roomName,
       description: description,
+      space: spaceId,
       object: {
         widgets: [],
       },
