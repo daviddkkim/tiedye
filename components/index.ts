@@ -1,5 +1,5 @@
 import { Button } from "./Button";
-import { SideNav, RoomDialog } from "./productComponents";
+import { SideNav, RoomDialog, SpaceDropdown } from "./productComponents";
 import { Link } from "./Link";
 import { Dialog, DialogCloseButton } from "./Dialog";
 import { TextInput } from "./TextInput";
@@ -26,6 +26,7 @@ export {
   TD,
   Table,
   DropdownMenu,
+  SpaceDropdown,
   WidgetDialog,
   Toggle,
 };
