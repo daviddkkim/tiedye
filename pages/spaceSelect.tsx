@@ -17,29 +17,32 @@ const Box = styled("div", {
 });
 
 const Page: NextPageWithLayout = () => {
-
-    const spaces = useQuery("getSpaces");
-    const {setSpace} = useSpace();    
-    const router = useRouter();
-    const handleClick = async (spaceId: Document<"spaces"> | null) => {
-        setSpace && await setSpace(spaceId);
-        router.push('/')
-    }
+  const spaces = useQuery("getSpaces");
+  const { setSpace } = useSpace();
+  const router = useRouter();
+  const handleClick = async (spaceId: Document<"spaces"> | null) => {
+    setSpace && (await setSpace(spaceId));
+    router.push("/");
+  };
   return (
     <Box>
       <PageTitle> Choose a space</PageTitle>
-      {
-        spaces && spaces.map((space)=> {
-            const spaceId = space? space._id.toString() : null; 
+      {spaces &&
+        spaces.map((space) => {
+          const spaceId = space ? space._id.toString() : null;
 
-            return (
-                <button onClick={()=> {handleClick(space)}} key ={spaceId}>
-                    {space && space.name}
-                    {space && space.members?.length}
-                </button>
-            )
-        })
-      }
+          return (
+            <button
+              onClick={() => {
+                handleClick(space);
+              }}
+              key={spaceId}
+            >
+              {space && space.name}
+              {space && space.members?.length}
+            </button>
+          );
+        })}
     </Box>
   );
 };

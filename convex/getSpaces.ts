@@ -14,14 +14,11 @@ export default query(async ({ db, auth }) => {
       )
       .unique();
 
-    
-
     return Promise.all(
       user.spaces.map(async (space) => {
         return await db.get(space);
       })
     );
     //This is to catch the exception that occurs when you log in for the first time
-  } catch {
-  }
+  } catch {}
 });

@@ -7,16 +7,12 @@ export default defineSchema({
   users: defineTable({
     name: s.string(),
     tokenIdentifier: s.string(),
-    spaces: s.array(
-      s.id("spaces")
-    )
+    spaces: s.array(s.id("spaces")),
   }).index("by_token", ["tokenIdentifier"]),
   spaces: defineTable({
     name: s.string(),
     owner: s.id("users"),
-    members: s.array(
-      s.id("users")
-    )
+    members: s.array(s.id("users")),
   }),
   rooms: defineTable({
     name: s.string(),

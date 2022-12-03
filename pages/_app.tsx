@@ -7,7 +7,13 @@ import { darkTheme, globalCss } from "../stitches.config";
 import convexConfig from "../convex.json";
 import type { AppProps } from "next/app";
 import Login from "./login";
-import { createContext, ReactElement, ReactNode, useEffect, useState } from "react";
+import {
+  createContext,
+  ReactElement,
+  ReactNode,
+  useEffect,
+  useState,
+} from "react";
 import { NextPage } from "next";
 import React from "react";
 import { SpaceContextProvider } from "../utils/useSpace";
@@ -83,15 +89,15 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
         loggedOut={<Login />}
         loading={<div>loading...</div>}
       >
-          <SpaceContextProvider>
-            {mounted ? (
-              getLayout(<Component {...pageProps} />)
-            ) : (
-              <div style={{ visibility: "hidden" }}>
-                <Component {...pageProps} />
-              </div>
-            )}
-          </SpaceContextProvider>
+        <SpaceContextProvider>
+          {mounted ? (
+            getLayout(<Component {...pageProps} />)
+          ) : (
+            <div style={{ visibility: "hidden" }}>
+              <Component {...pageProps} />
+            </div>
+          )}
+        </SpaceContextProvider>
       </ConvexProviderWithAuth0>
     </ThemeProvider>
   );

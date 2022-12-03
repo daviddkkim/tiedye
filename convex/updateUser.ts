@@ -34,5 +34,5 @@ export default mutation(async ({ db, auth }, userObject) => {
     if (user.name != identity.name) {
       await db.patch(user._id, userObject);
     }
-  } 
+  }
 });

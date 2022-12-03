@@ -37,7 +37,7 @@ const NavTitle = styled("h1", {
 const Box = styled("div", {
   display: "flex",
 });
-const SideNav = ({space}: {space?: Document<"spaces"> | null}) => {
+const SideNav = ({ space }: { space?: Document<"spaces"> | null }) => {
   const { logout, user } = useAuth0();
 
   const { setTheme } = useTheme();
@@ -66,11 +66,8 @@ const SideNav = ({space}: {space?: Document<"spaces"> | null}) => {
         >
           <NavTitle>{"-"}</NavTitle>
         </Box>
-        <Box>
-        </Box>
-        <Box>
-          {space && space.name}
-        </Box>
+        <Box></Box>
+        <Box>{space && space.name}</Box>
         <RoomDialog />
         <Box
           css={{

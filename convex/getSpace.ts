@@ -9,14 +9,11 @@ export default query(async ({ db, auth }, spaceId) => {
     throw new Error("Unauthenticated call to sendMessage");
   }
 
-
   const id = new Id<"spaces">("spaces", spaceId);
 
   const space = await db.get(id);
 
   if (!space) return null;
-
-
 
   return space;
 });

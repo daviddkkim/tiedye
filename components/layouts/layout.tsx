@@ -7,7 +7,6 @@ import { useMutation } from "../../convex/_generated/react";
 import { useRouter } from "next/router";
 import { useSpace } from "../../utils/useSpace";
 
-
 const StyledMain = styled("main", {
   display: "flex",
 });
@@ -17,18 +16,17 @@ const PageSection = styled("section", {
   width: "100%",
 });
 
-
 export default function Layout({ children }: { children: ReactElement }) {
   const [userId, setUserId] = useState<Id<"users"> | null>(null);
   const storeUser = useMutation("storeUser");
   const initializeSpace = useMutation("initializeSpace");
   const router = useRouter();
-  const {space} = useSpace();
- 
-   if(!space) {
-    router.push("/spaceSelect")
-  } 
-  
+  const { space } = useSpace();
+
+  if (!space) {
+    router.push("/spaceSelect");
+  }
+
   // Call the `storeUser` mutation function to store
   // the current user in the `users` table and return the `Id` value.
   useEffect(() => {
@@ -44,7 +42,6 @@ export default function Layout({ children }: { children: ReactElement }) {
 
     return () => setUserId(null);
   }, [storeUser]);
-
 
   return (
     <>
