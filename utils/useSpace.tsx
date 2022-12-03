@@ -1,5 +1,5 @@
 import { GenericId } from "convex/dist/types/values/values";
-import React, { createContext, ReactNode, useContext, useState } from "react";
+import React, { createContext, ReactNode, useContext, useEffect, useState } from "react";
 import { Document } from "../convex/_generated/dataModel";
 
 
@@ -12,7 +12,12 @@ interface AppContextInterface {
 const SpaceContext = createContext<AppContextInterface | null>(null);
 export const SpaceContextProvider = ({ children }: { children: ReactNode }) => {
 
-    const [space, setSpace] = useState<Document<"spaces"> | null>(null)
+    const storedSpace = localStorage.getItem("space");
+    const initialSpace = storedSpace ? JSON.parse(storedSpace) : null;
+    const [space, setSpace] = useState<Document<"spaces"> | null>(initialSpace)
+    useEffect(() => {
+        localStorage.setItem("space", JSON.stringify(space))
+    }, [space])
 
     return (
         <SpaceContext.Provider value={{ space: space, setSpace: setSpace }}>
@@ -23,8 +28,8 @@ export const SpaceContextProvider = ({ children }: { children: ReactNode }) => {
 
 export const useSpace = () => {
     const context = useContext(SpaceContext)
-    if(context) {
-    return { space: context.space, setSpace: context.setSpace };
+    if (context) {
+        return { space: context.space, setSpace: context.setSpace };
     } else {
         return { spaceId: null, setSpace: null }
     }
