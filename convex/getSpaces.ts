@@ -18,14 +18,10 @@ export default query(async ({ db, auth }) => {
 
     return Promise.all(
       user.spaces.map(async (space) => {
-        const spaceInfo = await db.get(space);
-        return {
-         ...spaceInfo
-        };
+        return await db.get(space);
       })
     );
     //This is to catch the exception that occurs when you log in for the first time
   } catch {
-    return [];
   }
 });

@@ -14,6 +14,7 @@ import type * as createRoom from "../createRoom";
 import type * as createSpace from "../createSpace";
 import type * as getOneRoom from "../getOneRoom";
 import type * as getRooms from "../getRooms";
+import type * as getSpace from "../getSpace";
 import type * as getSpaces from "../getSpaces";
 import type * as initializeSpace from "../initializeSpace";
 import type * as storeUser from "../storeUser";
@@ -34,6 +35,7 @@ export type API = ApiFromModules<{
   createSpace: typeof createSpace;
   getOneRoom: typeof getOneRoom;
   getRooms: typeof getRooms;
+  getSpace: typeof getSpace;
   getSpaces: typeof getSpaces;
   initializeSpace: typeof initializeSpace;
   storeUser: typeof storeUser;

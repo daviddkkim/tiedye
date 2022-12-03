@@ -3,6 +3,7 @@ import { styled } from "../../stitches.config";
 import { Button, Link, RoomDialog, Toggle } from "..";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useTheme } from "next-themes";
+import { Document } from "../../convex/_generated/dataModel";
 import {
   PersonIcon,
   BoxIcon,
@@ -13,6 +14,7 @@ import {
   BlendingModeIcon,
 } from "@radix-ui/react-icons";
 import { useRouter } from "next/router";
+import { useSpace } from "../../utils/useSpace";
 
 const NavContainer = styled("div", {
   display: "flex",
@@ -36,14 +38,13 @@ const NavTitle = styled("h1", {
 const Box = styled("div", {
   display: "flex",
 });
-const SideNav = () => {
+const SideNav = ({space}: {space?: Document<"spaces"> | null}) => {
   const { logout, user } = useAuth0();
 
   const { setTheme } = useTheme();
   const router = useRouter();
 
   const pathname = router.pathname;
-
   const handleActiveLink = (link: string) => {
     if (pathname.includes(link)) return true;
     return false;
@@ -65,6 +66,11 @@ const SideNav = () => {
           }}
         >
           <NavTitle>{"-"}</NavTitle>
+        </Box>
+        <Box>
+        </Box>
+        <Box>
+          {space && space.name}
         </Box>
         <RoomDialog />
         <Box

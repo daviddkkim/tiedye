@@ -1,8 +1,12 @@
-import React, { ReactElement } from "react";
+import React, { ReactElement, useContext } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
-import type { NextPageWithLayout } from "./_app";
+import { NextPageWithLayout } from "./_app";
 import Layout from "../components/layouts/layout";
 import { styled } from "../stitches.config";
+import { useQuery } from "../convex/_generated/react";
+import { useSpace } from "../utils/useSpace";
+import { useRouter } from "next/router";
+import { Document } from "../convex/_generated/dataModel";
 
 const PageTitle = styled("h1", {
   fontSize: "$6",
@@ -15,15 +19,31 @@ const Box = styled("div", {
 });
 
 const Page: NextPageWithLayout = () => {
+
+    const spaces = useQuery("getSpaces");
+    const {setSpace} = useSpace();    
+    const router = useRouter();
+    const handleClick = async (spaceId: Document<"spaces"> | null) => {
+        setSpace && await setSpace(spaceId);
+        router.push('/')
+    }
   return (
     <Box>
-      <PageTitle> Settings</PageTitle>
+      <PageTitle> Choose a space</PageTitle>
+      {
+        spaces && spaces.map((space)=> {
+            const spaceId = space? space._id.toString() : null; 
+
+            return (
+                <button onClick={()=> {handleClick(space)}} key ={spaceId}>
+                    {space && space.name}
+                    {space && space.members?.length}
+                </button>
+            )
+        })
+      }
     </Box>
   );
-};
-
-Page.getLayout = function getLayout(page: ReactElement) {
-  return <Layout>{page}</Layout>;
 };
 
 export default Page;

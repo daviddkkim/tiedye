@@ -4,7 +4,9 @@ import Head from "next/head";
 import { SideNav } from "../productComponents/SideNav";
 import { Id } from "../../convex/_generated/dataModel";
 import { useMutation } from "../../convex/_generated/react";
-import { SpaceContext } from "../../pages/_app";
+import { useRouter } from "next/router";
+import { useSpace } from "../../utils/useSpace";
+
 
 const StyledMain = styled("main", {
   display: "flex",
@@ -20,9 +22,13 @@ export default function Layout({ children }: { children: ReactElement }) {
   const [userId, setUserId] = useState<Id<"users"> | null>(null);
   const storeUser = useMutation("storeUser");
   const initializeSpace = useMutation("initializeSpace");
-
-  const spaceContext = useContext(SpaceContext);
-
+  const router = useRouter();
+  const {space} = useSpace();
+ 
+   if(!space) {
+    router.push("/spaceSelect")
+  } 
+  
   // Call the `storeUser` mutation function to store
   // the current user in the `users` table and return the `Id` value.
   useEffect(() => {
@@ -39,6 +45,7 @@ export default function Layout({ children }: { children: ReactElement }) {
     return () => setUserId(null);
   }, [storeUser]);
 
+
   return (
     <>
       <Head>
@@ -47,7 +54,7 @@ export default function Layout({ children }: { children: ReactElement }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <StyledMain>
-        <SideNav />
+        <SideNav space={space} />
         <PageSection>{children}</PageSection>
       </StyledMain>
     </>
