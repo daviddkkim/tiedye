@@ -1,9 +1,10 @@
 import { styled } from "../../stitches.config";
-import React, { ReactElement, useEffect, useState } from "react";
+import React, { ReactElement, useContext, useEffect, useState } from "react";
 import Head from "next/head";
 import { SideNav } from "../productComponents/SideNav";
 import { Id } from "../../convex/_generated/dataModel";
 import { useMutation } from "../../convex/_generated/react";
+import { SpaceContext } from "../../pages/_app";
 
 const StyledMain = styled("main", {
   display: "flex",
@@ -14,10 +15,14 @@ const PageSection = styled("section", {
   width: "100%",
 });
 
+
 export default function Layout({ children }: { children: ReactElement }) {
   const [userId, setUserId] = useState<Id<"users"> | null>(null);
   const storeUser = useMutation("storeUser");
   const initializeSpace = useMutation("initializeSpace");
+
+  const spaceContext = useContext(SpaceContext);
+
   // Call the `storeUser` mutation function to store
   // the current user in the `users` table and return the `Id` value.
   useEffect(() => {

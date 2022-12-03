@@ -7,7 +7,7 @@ import { darkTheme, globalCss } from "../stitches.config";
 import convexConfig from "../convex.json";
 import type { AppProps } from "next/app";
 import Login from "./login";
-import { ReactElement, ReactNode, useEffect, useState } from "react";
+import { createContext, ReactElement, ReactNode, useEffect, useState } from "react";
 import { NextPage } from "next";
 import React from "react";
 
@@ -48,6 +48,16 @@ const globalStyles = globalCss({
 });
 
 const convex = new ConvexReactClient(clientConfig);
+
+
+interface AppContextInterface {
+  spaceId: string | null;
+  setSpaceId: React.Dispatch<React.SetStateAction<string | null>>;
+}
+//Could pull this into a hook
+export const SpaceContext = createContext<AppContextInterface | null>(null);
+
+
 const authInfo = convexConfig.authInfo[0];
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
@@ -61,6 +71,8 @@ type AppPropsWithLayout = AppProps & {
 export default function App({ Component, pageProps }: AppPropsWithLayout) {
   globalStyles();
   const [mounted, setMounted] = useState(false);
+  const [spaceId, setSpaceId] = useState<string | null>(null)
+
   useEffect(() => {
     setMounted(true);
   }, []);
@@ -80,13 +92,15 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
         loggedOut={<Login />}
         loading={<div>loading...</div>}
       >
-        {mounted ? (
-          getLayout(<Component {...pageProps} />)
-        ) : (
-          <div style={{ visibility: "hidden" }}>
-            <Component {...pageProps} />
-          </div>
-        )}
+        <SpaceContext.Provider value={{ spaceId: spaceId, setSpaceId: setSpaceId}}>
+          {mounted ? (
+            getLayout(<Component {...pageProps} />)
+          ) : (
+            <div style={{ visibility: "hidden" }}>
+              <Component {...pageProps} />
+            </div>
+          )}
+        </SpaceContext.Provider>
       </ConvexProviderWithAuth0>
     </ThemeProvider>
   );
