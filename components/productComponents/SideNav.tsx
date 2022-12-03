@@ -14,7 +14,6 @@ import {
   BlendingModeIcon,
 } from "@radix-ui/react-icons";
 import { useRouter } from "next/router";
-import { useSpace } from "../../utils/useSpace";
 
 const NavContainer = styled("div", {
   display: "flex",

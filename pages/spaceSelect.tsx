@@ -1,7 +1,5 @@
-import React, { ReactElement, useContext } from "react";
-import { useAuth0 } from "@auth0/auth0-react";
+import React from "react";
 import { NextPageWithLayout } from "./_app";
-import Layout from "../components/layouts/layout";
 import { styled } from "../stitches.config";
 import { useQuery } from "../convex/_generated/react";
 import { useSpace } from "../utils/useSpace";

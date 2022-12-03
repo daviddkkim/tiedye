@@ -1,5 +1,5 @@
 import { styled } from "../../stitches.config";
-import React, { ReactElement, useContext, useEffect, useState } from "react";
+import React, { ReactElement, useEffect, useState } from "react";
 import Head from "next/head";
 import { SideNav } from "../productComponents/SideNav";
 import { Id } from "../../convex/_generated/dataModel";
