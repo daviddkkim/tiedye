@@ -1,4 +1,3 @@
-import { GenericId } from "convex/dist/types/values/values";
 import React, { createContext, ReactNode, useContext, useEffect, useState } from "react";
 import { Document } from "../convex/_generated/dataModel";
 
