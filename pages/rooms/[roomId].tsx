@@ -1,19 +1,12 @@
 import { useRouter } from "next/router";
 import React, { ReactElement } from "react";
-import {
-  Button,
-
-  TextInput,
-  WidgetDialog,
-} from "../../components";
+import { Button, TextInput, WidgetDialog } from "../../components";
 import { DotsHorizontalIcon } from "@radix-ui/react-icons";
 import Layout from "../../components/layouts/layout";
 import { useMutation, useQuery } from "../../convex/_generated/react";
 import { styled } from "../../stitches.config";
 import type { NextPageWithLayout } from "../_app";
-import {
-  Cross2Icon,
-} from "@radix-ui/react-icons";
+import { Cross2Icon } from "@radix-ui/react-icons";
 import { nanoid } from "nanoid";
 
 export interface Objects {

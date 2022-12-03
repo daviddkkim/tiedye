@@ -1,7 +1,7 @@
 import React from "react";
 import { styled } from "../../stitches.config";
 import { Button, Link, RoomDialog, Toggle } from "..";
-import { SpaceDropdown } from '.';
+import { SpaceDropdown } from ".";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useTheme } from "next-themes";
 import { Document } from "../../convex/_generated/dataModel";

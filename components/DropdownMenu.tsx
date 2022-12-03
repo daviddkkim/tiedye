@@ -53,7 +53,7 @@ const DropdownMenuRadioItem = styled(DropdownMenuPrimitives.RadioItem, {
   defaultVariants: {
     muted: "false",
   },
-})
+});
 const DropdownMenuItem = styled(DropdownMenuPrimitives.Item, {
   display: "flex",
   gap: "$2",
@@ -132,5 +132,5 @@ export {
   Group,
   Label,
   RadioGroup,
-  RadioItem
+  RadioItem,
 };

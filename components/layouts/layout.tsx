@@ -51,7 +51,7 @@ export default function Layout({ children }: { children: ReactElement }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <StyledMain>
-        <SideNav/>
+        <SideNav />
         <PageSection>{children}</PageSection>
       </StyledMain>
     </>
