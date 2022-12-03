@@ -1,6 +1,7 @@
 import React from "react";
 import { styled } from "../../stitches.config";
 import { Button, Link, RoomDialog, Toggle } from "..";
+import { SpaceDropdown } from '.';
 import { useAuth0 } from "@auth0/auth0-react";
 import { useTheme } from "next-themes";
 import { Document } from "../../convex/_generated/dataModel";
@@ -66,8 +67,7 @@ const SideNav = ({ space }: { space?: Document<"spaces"> | null }) => {
         >
           <NavTitle>{"-"}</NavTitle>
         </Box>
-        <Box></Box>
-        <Box>{space && space.name}</Box>
+        <SpaceDropdown />
         <RoomDialog />
         <Box
           css={{
