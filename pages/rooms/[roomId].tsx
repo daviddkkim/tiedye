@@ -8,6 +8,8 @@ import { styled } from "../../stitches.config";
 import type { NextPageWithLayout } from "../_app";
 import { Cross2Icon } from "@radix-ui/react-icons";
 import { nanoid } from "nanoid";
+import ReactFlow, { Background, Controls } from 'reactflow';
+import 'reactflow/dist/style.css';
 
 export interface Objects {
   widgets: Widget[];
@@ -206,132 +208,141 @@ const Page: NextPageWithLayout = () => {
   };
 
   return (
-    <Box
-      css={{
-        flexDirection: "column",
-        gap: "$4",
-      }}
-    >
+    <ReactFlow>
+      <Background />
       <Box
         css={{
           flexDirection: "column",
-          gap: "$1",
+          gap: "$4",
         }}
       >
         <Box
           css={{
-            width: "100%",
-            justifyContent: "space-between",
-            alignItems: "center",
+            flexDirection: "column",
+            gap: "$1",
           }}
         >
-          <PageTitle> {roomDetails && roomDetails.name}</PageTitle>
-          <Box css={{ gap: "$2", alignItems: "center" }}>
-            <SubText>
-              {" "}
-              {roomDetails && getUpdatedTime(roomDetails.lastUpdatedAt)}{" "}
-            </SubText>
-            <Button>
-              <DotsHorizontalIcon />
-            </Button>
+          <Box
+            css={{
+              width: "100%",
+              justifyContent: "space-between",
+              alignItems: "center",
+              backgroundColor: '$bgSecondary',
+              borderBottom: '1px solid $separator',
+              padding: '$2 $4',
+              zIndex: 10
+            }}
+          >
+            <Box css={{ gap: "$2", alignItems: "center" }}>
+              <PageTitle> {roomDetails && roomDetails.name}</PageTitle>
+              <Text>{roomDetails && roomDetails.description}</Text>
+            </Box>
+            <Box css={{ gap: "$2", alignItems: "center" }}>
+              <SubText>
+                {" "}
+                {roomDetails && getUpdatedTime(roomDetails.lastUpdatedAt)}{" "}
+              </SubText>
+              <Button>
+                <DotsHorizontalIcon />
+              </Button>
+              <WidgetDialog
+                onTodoWidgetAdd={handleAddTodoWidget}
+                onPostWidgetAdd={handleAddPostWidget}
+              />
+            </Box>
           </Box>
         </Box>
-        <Text>{roomDetails && roomDetails.description}</Text>
-      </Box>
-      <Box>
-        <WidgetDialog
-          onTodoWidgetAdd={handleAddTodoWidget}
-          onPostWidgetAdd={handleAddPostWidget}
-        />
-      </Box>
 
-      {roomDetails &&
-        roomDetails.object.widgets.map((widget) => {
-          if (widget.type === "post") {
-            return (
-              <Box
-                css={{
-                  flexDirection: "column",
-                  gap: "$3",
-                  backgroundColor: "$bgSecondary",
-                  padding: "$4",
-                  borderRadius: "$1",
-                  boxShadow: "0px 1px 2px 2px $colors$shadow",
-                }}
-                key={widget.id}
-              >
-                {widget.body[0].content}
-              </Box>
-            );
-          }
-          if (widget.type === "todo") {
-            return (
-              <Box
-                css={{
-                  flexDirection: "column",
-                  gap: "$3",
-                  backgroundColor: "$bgSecondary",
-                  padding: "$2 $4 $4 $4",
-                  borderRadius: "$1",
-                  boxShadow: "0px 1px 2px 2px $colors$shadow",
-                }}
-                key={widget.id}
-              >
-                <Box
-                  css={{
-                    alignItems: "center",
-                    justifyContent: "space-between",
-                  }}
-                >
-                  <Text>{widget.title}</Text>
-                  <Button
-                    variant={"tertiary"}
-                    css={{ color: "$textSecondary" }}
-                    onClick={() => {
-                      handleDeleteWidget(widget);
-                    }}
-                  >
-                    <Cross2Icon />
-                  </Button>
-                </Box>
-                <TextInput
-                  placeholder="Type to create a to-do item"
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter") {
-                      if (e.currentTarget.value.length > 0) {
-                        handleAddTodoItem(e.currentTarget.value, widget);
-                        e.currentTarget.value = "";
-                      }
-                    }
-                  }}
-                />
+        {roomDetails &&
+          roomDetails.object.widgets.map((widget) => {
+            if (widget.type === "post") {
+              return (
                 <Box
                   css={{
                     flexDirection: "column",
-                    gap: "$1",
+                    gap: "$3",
+                    backgroundColor: "$bgSecondary",
+                    padding: "$4",
+                    borderRadius: "$1",
+                    boxShadow: "0px 1px 2px 2px $colors$shadow",
                   }}
+                  key={widget.id}
                 >
-                  {widget.body.map((item) => {
-                    return (
-                      <Box
-                        css={{ gap: "$2", flexDirection: "row" }}
-                        key={item.id}
-                      >
-                        <input
-                          type={"checkbox"}
-                          checked={item.completed}
-                          onChange={() => handleTodoToggle(item.id, widget)}
-                        />
-                        <span>{item.content}</span>
-                      </Box>
-                    );
-                  })}
+                  {widget.body[0].content}
                 </Box>
-              </Box>
-            );
-          }
-        })}
-    </Box>
+              );
+            }
+            if (widget.type === "todo") {
+              return (
+                <Box
+                  css={{
+                    flexDirection: "column",
+                    gap: "$3",
+                    backgroundColor: "$bgSecondary",
+                    padding: "$2 $4 $4 $4",
+                    borderRadius: "$1",
+                    boxShadow: "0px 1px 2px 2px $colors$shadow",
+                  }}
+                  key={widget.id}
+                >
+                  <Box
+                    css={{
+                      alignItems: "center",
+                      justifyContent: "space-between",
+                    }}
+                  >
+                    <Text>{widget.title}</Text>
+                    <Button
+                      variant={"tertiary"}
+                      css={{ color: "$textSecondary" }}
+                      onClick={() => {
+                        handleDeleteWidget(widget);
+                      }}
+                    >
+                      <Cross2Icon />
+                    </Button>
+                  </Box>
+                  <TextInput
+                    placeholder="Type to create a to-do item"
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter") {
+                        if (e.currentTarget.value.length > 0) {
+                          handleAddTodoItem(e.currentTarget.value, widget);
+                          e.currentTarget.value = "";
+                        }
+                      }
+                    }}
+                  />
+                  <Box
+                    css={{
+                      flexDirection: "column",
+                      gap: "$1",
+                    }}
+                  >
+                    {widget.body.map((item) => {
+                      return (
+                        <Box
+                          css={{ gap: "$2", flexDirection: "row" }}
+                          key={item.id}
+                        >
+                          <input
+                            type={"checkbox"}
+                            checked={item.completed}
+                            onChange={() => handleTodoToggle(item.id, widget)}
+                          />
+                          <span>{item.content}</span>
+                        </Box>
+                      );
+                    })}
+                  </Box>
+                </Box>
+              );
+            }
+          })}
+      </Box>
+      <Controls />
+    </ReactFlow>
+
   );
 };
 

@@ -15,6 +15,8 @@ const PageTitle = styled("h1", {
 
 const Box = styled("div", {
   display: "flex",
+    padding: "$6 $7",
+
 });
 
 const Page: NextPageWithLayout = () => {

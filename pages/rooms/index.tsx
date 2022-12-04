@@ -23,6 +23,7 @@ const PageTitle = styled("h1", {
 
 const Box = styled("div", {
   display: "flex",
+  
 });
 
 const Page: NextPageWithLayout = () => {
@@ -33,6 +34,7 @@ const Page: NextPageWithLayout = () => {
       css={{
         gap: "$4",
         flexDirection: "column",
+        padding: "$6 $7",
       }}
     >
       <Box

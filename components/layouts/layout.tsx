@@ -12,7 +12,6 @@ const StyledMain = styled("main", {
 });
 
 const PageSection = styled("section", {
-  padding: "$6 $7",
   width: "100%",
 });
 
