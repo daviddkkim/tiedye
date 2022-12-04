@@ -1,14 +1,6 @@
 import React, { ReactElement } from "react";
 import { useQuery } from "../../convex/_generated/react";
-import {
-  RoomDialog,
-  TH,
-  TRlink,
-  THeadRow,
-  TBody,
-  TD,
-  Table,
-} from "../../components";
+import { RoomDialog, TH, TRlink, THeadRow, TD, Table } from "../../components";
 import type { NextPageWithLayout } from "../_app";
 import Layout from "../../components/layouts/layout";
 import { styled } from "../../stitches.config";
@@ -23,7 +15,6 @@ const PageTitle = styled("h1", {
 
 const Box = styled("div", {
   display: "flex",
-  
 });
 
 const Page: NextPageWithLayout = () => {

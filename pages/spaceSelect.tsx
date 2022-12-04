@@ -4,7 +4,6 @@ import { styled } from "../stitches.config";
 import { useQuery } from "../convex/_generated/react";
 import { useSpace } from "../utils/useSpace";
 import { useRouter } from "next/router";
-import { Document } from "../convex/_generated/dataModel";
 
 const PageTitle = styled("h1", {
   fontSize: "$6",
@@ -15,7 +14,6 @@ const PageTitle = styled("h1", {
 const Box = styled("div", {
   display: "flex",
   padding: "$6 $7",
-
 });
 
 const Page: NextPageWithLayout = () => {

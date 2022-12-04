@@ -31,7 +31,7 @@ const SpaceDropdown = () => {
     const clickedSpaceId = clickedSpace._id.toString();
     if (clickedSpaceId === spaceId) return;
     setSpaceId && setSpaceId(clickedSpaceId);
-    router.push('/')
+    router.push("/");
   };
 
   const handleCreateSpace = () => {

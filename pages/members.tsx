@@ -1,7 +1,5 @@
-import { ReactElement, useEffect, useState } from "react";
-import { useMutation, useQuery } from "../convex/_generated/react";
+import React, { ReactElement } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
-import { Button } from "../components";
 import type { NextPageWithLayout } from "./_app";
 import Layout from "../components/layouts/layout";
 

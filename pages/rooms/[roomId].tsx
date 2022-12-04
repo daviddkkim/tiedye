@@ -8,8 +8,8 @@ import { styled } from "../../stitches.config";
 import type { NextPageWithLayout } from "../_app";
 import { Cross2Icon } from "@radix-ui/react-icons";
 import { nanoid } from "nanoid";
-import ReactFlow, { Background, Controls } from 'reactflow';
-import 'reactflow/dist/style.css';
+import ReactFlow, { Background, Controls } from "reactflow";
+import "reactflow/dist/style.css";
 
 export interface Objects {
   widgets: Widget[];
@@ -227,10 +227,10 @@ const Page: NextPageWithLayout = () => {
               width: "100%",
               justifyContent: "space-between",
               alignItems: "center",
-              backgroundColor: '$bgSecondary',
-              borderBottom: '1px solid $separator',
-              padding: '$2 $4',
-              zIndex: 10
+              backgroundColor: "$bgSecondary",
+              borderBottom: "1px solid $separator",
+              padding: "$2 $4",
+              zIndex: 10,
             }}
           >
             <Box css={{ gap: "$2", alignItems: "center" }}>
@@ -342,7 +342,6 @@ const Page: NextPageWithLayout = () => {
       </Box>
       <Controls />
     </ReactFlow>
-
   );
 };
 

@@ -7,13 +7,7 @@ import { darkTheme, globalCss } from "../stitches.config";
 import convexConfig from "../convex.json";
 import type { AppProps } from "next/app";
 import Login from "./login";
-import {
-  createContext,
-  ReactElement,
-  ReactNode,
-  useEffect,
-  useState,
-} from "react";
+import { ReactElement, ReactNode, useEffect, useState } from "react";
 import { NextPage } from "next";
 import React from "react";
 import { SpaceContextProvider } from "../utils/useSpace";
