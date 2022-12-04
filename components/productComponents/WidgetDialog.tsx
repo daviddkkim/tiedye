@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { styled } from "../../stitches.config";
 import { Button, Dialog, Label, TextArea } from "..";
 import {
-  LightningBoltIcon,
+  PlusIcon,
   ListBulletIcon,
   ChatBubbleIcon,
   Pencil2Icon,
@@ -100,7 +100,7 @@ const WidgetDialog: React.FC<WidgetDialogProps> = ({
       showClose={false}
       trigger={
         <Button>
-          <LightningBoltIcon /> Add widget
+           <PlusIcon />
         </Button>
       }
     >

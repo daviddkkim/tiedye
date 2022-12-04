@@ -43,6 +43,7 @@ const StyledLink = styled(Link, {
         "&:hover": {
           backgroundColor: "$fgHover",
         },
+        
       },
     },
     stretch: {

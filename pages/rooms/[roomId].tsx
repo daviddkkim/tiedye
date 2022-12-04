@@ -1,7 +1,6 @@
 import { useRouter } from "next/router";
 import React, { ReactElement } from "react";
 import { Button, TextInput, WidgetDialog } from "../../components";
-import { DotsHorizontalIcon } from "@radix-ui/react-icons";
 import Layout from "../../components/layouts/layout";
 import { useMutation, useQuery } from "../../convex/_generated/react";
 import { styled } from "../../stitches.config";
@@ -59,6 +58,7 @@ const Page: NextPageWithLayout = () => {
 
   if (!roomDetails) return <div> loading... </div>;
 
+
   const getUpdatedTime = (lastUpdatedAt: number) => {
     const now = Date.now();
     const delta = Math.floor(now / 1000) - Math.floor(lastUpdatedAt / 1000);
@@ -78,28 +78,6 @@ const Page: NextPageWithLayout = () => {
     if (delta > 60) {
       return Math.floor(delta / 60) + " minutes ago";
     }
-  };
-
-  const object = {
-    widgets: [
-      {
-        id: "1",
-        type: "todo",
-        title: "For Christmas",
-        body: [
-          {
-            id: "123",
-            content: "To do 1",
-            completed: false,
-          },
-          {
-            id: "1234",
-            content: "To do 2",
-            completed: true,
-          },
-        ],
-      },
-    ],
   };
 
   const handleTodoToggle = (id: string, widget: Widget) => {
@@ -242,9 +220,6 @@ const Page: NextPageWithLayout = () => {
                 {" "}
                 {roomDetails && getUpdatedTime(roomDetails.lastUpdatedAt)}{" "}
               </SubText>
-              <Button>
-                <DotsHorizontalIcon />
-              </Button>
               <WidgetDialog
                 onTodoWidgetAdd={handleAddTodoWidget}
                 onPostWidgetAdd={handleAddPostWidget}

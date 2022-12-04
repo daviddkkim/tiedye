@@ -88,15 +88,6 @@ const SideNav = () => {
           </Link>
           <Link
             variant={"tertiary"}
-            href={"/feed"}
-            active={handleActiveLink("feed")}
-            stretch
-          >
-            {" "}
-            <LayersIcon /> Feed{" "}
-          </Link>
-          <Link
-            variant={"tertiary"}
             href={"/settings"}
             active={handleActiveLink("settings")}
             stretch
