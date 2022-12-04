@@ -8,12 +8,16 @@ import React from "react";
 
 const Page: NextPageWithLayout = () => {
   const { logout, user } = useAuth0();
+  const handleLogout = () => {
 
+    localStorage.removeItem("space");
+    logout();
+  }
   return (
     <div>
       <Button
         onClick={() => {
-          logout();
+          handleLogout();
         }}
       >
         logout

@@ -48,6 +48,12 @@ const SideNav = () => {
     return false;
   };
 
+  const handleLogout = () => {
+
+    localStorage.removeItem("space");
+    logout();
+  }
+
   return (
     <NavContainer>
       <Box
@@ -132,7 +138,7 @@ const SideNav = () => {
       >
         <Button
           onClick={() => {
-            logout();
+            handleLogout()
           }}
         >
           {" "}
