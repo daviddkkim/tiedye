@@ -9,6 +9,7 @@ import * as DropdownMenu from "./DropdownMenu";
 import { WidgetDialog } from "./productComponents";
 import { TextArea } from "./Textarea";
 import { Toggle } from "./ToggleButton";
+import { PostNode, TodoNode } from "./Node";
 export {
   Button,
   SideNav,
@@ -28,4 +29,6 @@ export {
   SpaceDropdown,
   WidgetDialog,
   Toggle,
+  PostNode,
+  TodoNode
 };
