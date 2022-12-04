@@ -36,5 +36,7 @@ export default defineSchema({
     }),
     description: s.string(),
     lastUpdatedAt: s.number(),
-  }).index("by_owner", ["owner"]).index("by_space", ["space"]),
+  })
+    .index("by_owner", ["owner"])
+    .index("by_space", ["space"]),
 });

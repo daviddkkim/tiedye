@@ -20,7 +20,7 @@ const RoomDialog: React.FC = () => {
   const [roomName, setRoomName] = useState("");
   const [description, setDescription] = useState("");
   const createRoom = useMutation("createRoom");
-  const { spaceId } = useSpace()
+  const { spaceId } = useSpace();
 
   const handleCreateRoom = () => {
     if (!roomName) return;

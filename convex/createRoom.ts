@@ -16,7 +16,6 @@ export default mutation(async ({ db, auth }, room) => {
 
   const spaceId = new Id("spaces", room.space);
 
-
   const newRoom = {
     ...room,
     owner: user._id,

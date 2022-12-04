@@ -15,7 +15,7 @@ export default query(async ({ db, auth }, spaceId) => {
       )
       .unique();
 
-    const space = new Id("spaces", spaceId)
+    const space = new Id("spaces", spaceId);
     const rooms = await db
       .query("rooms")
       .withIndex("by_space", (q) => q.eq("space", space))
