@@ -68,7 +68,7 @@ const Page: NextPageWithLayout = () => {
               id: widget.id,
               type: 'postNode',
               position: { x: i * 100 + 100, y: i * 100 + 100 },
-              data: widget,
+              data: {...widget, roomDetails: roomDetails},
               draggable: true,
             }
           );
@@ -78,7 +78,7 @@ const Page: NextPageWithLayout = () => {
               id: widget.id,
               type: 'todoNode',
               position: { x: i * 100 + 100, y: i * 100 + 100 },
-              data: widget,
+              data: {...widget, roomDetails: roomDetails},
               draggable: true
             }
           );
@@ -90,6 +90,7 @@ const Page: NextPageWithLayout = () => {
           position: { x: 0, y: 0 },
           draggable: true,
           data: {
+            roomDetails: null,
             id: '1',
             type: 'post',
             title: 'hello',

@@ -1,4 +1,5 @@
 import { Cross2Icon } from '@radix-ui/react-icons';
+import { nanoid } from 'nanoid';
 import React from 'react';
 import { useCallback } from 'react';
 import { Handle, Position } from 'reactflow';
@@ -44,7 +45,6 @@ const PostNode = ({ data }) => {
     if (data.type !== "post") {
         return null;
     }
-    
 
     return (
         <NodeContainer>
@@ -58,7 +58,7 @@ const PostNode = ({ data }) => {
     );
 }
 
-const TodoNode = ({ data }: { data: Widget }) => {
+const TodoNode = ({ data }) => {
 
     const updateRoom = useMutation("updateRoom");
 
@@ -66,11 +66,71 @@ const TodoNode = ({ data }: { data: Widget }) => {
         return null;
     }
 
+    const handleAddTodoItem = (content: string, widget: Widget) => {
+        if (!data.roomDetails) return;
+
+        const newItem = {
+            id: nanoid(),
+            content: content,
+            completed: false,
+        };
+        const newWidget = {
+            ...widget,
+            body: [newItem, ...widget.body],
+        };
+
+        const newWidgets = data.roomDetails.object.widgets.map((mappedWidget) => {
+            if (mappedWidget.id === newWidget.id) {
+                return newWidget;
+            }
+            return mappedWidget;
+        });
+
+        const newRoom = {
+            ...data.roomDetails,
+            object: {
+                widgets: newWidgets,
+            },
+        };
+
+        updateRoom(newRoom);
+    };
+
+
+    const handleTodoToggle = (id: string, widget: Widget) => {
+        const newBody = widget.body.map((item) => {
+            if (item.id !== id) return item;
+
+            return { ...item, completed: !item.completed };
+        });
+        const newWidget = {
+            ...widget,
+            body: newBody,
+        };
+
+        const newWidgets = data.roomDetails.object.widgets.map((mappedWidget) => {
+            if (mappedWidget.id !== widget.id) return mappedWidget;
+
+            return newWidget;
+        });
+
+        const newRoom = {
+            ...data.roomDetails,
+            object: {
+                widgets: newWidgets,
+            },
+        };
+        updateRoom(newRoom);
+    };
 
     return (
-        <NodeContainer key={data.id}>
+        <NodeContainer key={data.id} css={{
+            padding: '$2 $2 $3 $2',
+        }}>
             <Box css={{
-                    flexDirection:'column',
+                flexDirection: 'column',
+                gap: '$2'
+
             }}>
                 <Box
                     css={{
@@ -93,6 +153,12 @@ const TodoNode = ({ data }: { data: Widget }) => {
                     onKeyDown={(e) => {
                         if (e.key === "Enter") {
                             if (e.currentTarget.value.length > 0) {
+                                handleAddTodoItem(e.currentTarget.value, {
+                                    id: data.id,
+                                    type: data.type,
+                                    title: data.title,
+                                    body: data.body
+                                })
                                 e.currentTarget.value = "";
                             }
                         }
@@ -113,6 +179,12 @@ const TodoNode = ({ data }: { data: Widget }) => {
                                 <input
                                     type={"checkbox"}
                                     checked={item.completed}
+                                    onChange={() => handleTodoToggle(item.id, {
+                                        id: data.id,
+                                        type: data.type,
+                                        title: data.title,
+                                        body: data.body
+                                    })}
                                 />
                                 <span>{item.content}</span>
                             </Box>
