@@ -6,6 +6,7 @@ import { Button } from "../Button";
 import { Document } from "../../convex/_generated/dataModel";
 import { CaretDownIcon, Cross2Icon, PlusIcon } from "@radix-ui/react-icons";
 import { styled } from "../../stitches.config";
+import { useRouter } from "next/router";
 
 const Box = styled("div", {
   display: "flex",
@@ -24,11 +25,13 @@ const SpaceDropdown = () => {
   const createSpace = useMutation("createSpace");
   const [modalOpen, setModalOpen] = useState(false);
   const [spaceName, setSpaceName] = useState("");
+  const router = useRouter();
 
   const handleItemClick = (clickedSpace: Document<"spaces">) => {
     const clickedSpaceId = clickedSpace._id.toString();
     if (clickedSpaceId === spaceId) return;
     setSpaceId && setSpaceId(clickedSpaceId);
+    router.push('/')
   };
 
   const handleCreateSpace = () => {
