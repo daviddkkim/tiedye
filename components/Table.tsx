@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { styled } from "../stitches.config";
 
 const Table = styled("div", {
@@ -13,7 +14,7 @@ const THeadRow = styled("div", {
   display: "table-row",
 });
 
-const TRlink = styled("a", {
+const TRlink = styled(Link, {
   height: "$6",
   display: "table-row",
   outline: "none",
