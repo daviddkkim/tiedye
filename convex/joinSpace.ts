@@ -1,5 +1,5 @@
 import { mutation } from "./_generated/server";
-import { Document } from "../convex/_generated/dataModel";
+import { Document, Id } from "./_generated/dataModel";
 
 export default mutation(async ({ db, auth }, spaceId) => {
     if (!spaceId) {
@@ -17,9 +17,14 @@ export default mutation(async ({ db, auth }, spaceId) => {
         )
         .unique();
 
-    const space = await db.query("spaces").filter((q) => {
-        return q.eq("_id", spaceId)
-    }).unique();
+    const id = new Id<"spaces">("spaces", spaceId);
+
+    if(user.spaces.filter( space => space.id === id.id).length > 0) {
+        throw new Error("You are already part of this space");
+    }
+
+    const space = await db.get(id) as Document<"spaces">;
+
 
     const memberList = space.members;
     memberList.push(user._id);
@@ -33,7 +38,7 @@ export default mutation(async ({ db, auth }, spaceId) => {
 
     const userObject = {
         ...user,
-        spaces: [...user.spaces, spaceId],
+        spaces: [...user.spaces, space._id],
     };
 
     await db.patch(user._id, userObject);

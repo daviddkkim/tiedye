@@ -23,6 +23,7 @@ const SpaceDropdown = () => {
   const { spaceId, setSpaceId } = useSpace();
   const spaces = useQuery("getSpaces");
   const createSpace = useMutation("createSpace");
+  const joinSpace = useMutation("joinSpace");
   const [modalOpen, setModalOpen] = useState(false);
   const [joinSpaceModalOpen, setJoinSpaceModalOpen] = useState(false);
   const [spaceName, setSpaceName] = useState("");
@@ -187,7 +188,12 @@ const SpaceDropdown = () => {
               </Button>
               <Button
                 onClick={() => {
-                  //handleCreateSpace();
+                  joinSpace(joinSpaceId).then(() => {
+                    setJoinSpaceModalOpen(false);
+                    setJoinSpaceId("");
+                  }).catch(() => {
+                    alert("You're already part of this space")
+                  });
                 }}
               >
                 Save
