@@ -4,7 +4,7 @@ import { useMutation, useQuery } from "../../convex/_generated/react";
 import { useSpace } from "../../utils/useSpace";
 import { Button } from "../Button";
 import { Document } from "../../convex/_generated/dataModel";
-import { CaretDownIcon, Cross2Icon, PlusIcon } from "@radix-ui/react-icons";
+import { CaretDownIcon, Cross2Icon, PlusIcon, EnterIcon } from "@radix-ui/react-icons";
 import { styled } from "../../stitches.config";
 import { useRouter } from "next/router";
 
@@ -24,7 +24,9 @@ const SpaceDropdown = () => {
   const spaces = useQuery("getSpaces");
   const createSpace = useMutation("createSpace");
   const [modalOpen, setModalOpen] = useState(false);
+  const [joinSpaceModalOpen, setJoinSpaceModalOpen] = useState(false);
   const [spaceName, setSpaceName] = useState("");
+  const [joinSpaceId, setJoinSpaceId] = useState("");
   const router = useRouter();
 
   const handleItemClick = (clickedSpace: Document<"spaces">) => {
@@ -124,6 +126,76 @@ const SpaceDropdown = () => {
           </Dialog.DialogContent>
         </Dialog.DialogPortal>
       </Dialog.DialogRoot>
+      <Dialog.DialogRoot open={joinSpaceModalOpen}>
+        <Dialog.DialogPortal>
+          <Dialog.DialogOverlay />
+          <Dialog.DialogContent
+            onEscapeKeyDown={() => {
+              setJoinSpaceModalOpen(false);
+            }}
+            onInteractOutside={() => {
+              setJoinSpaceModalOpen(false);
+            }}
+          >
+            <Box
+              css={{
+                alignItems: "center",
+                justifyContent: "space-between",
+              }}
+            >
+              <Title>Join a space</Title>
+              <Button
+                variant="tertiary"
+                onClick={() => {
+                  setJoinSpaceModalOpen(false);
+                }}
+              >
+                <Cross2Icon />
+              </Button>
+            </Box>
+            <Box
+              css={{
+                gap: "$3",
+                flexDirection: "column",
+              }}
+            >
+              <Label htmlFor="spaceId">
+                Space ID
+                <TextInput
+                  value={joinSpaceId}
+                  placeholder="Ask your friends for the Space ID from their settings page"
+                  id={"spaceId"}
+                  onChange={(e) => {
+                    setJoinSpaceId(e.currentTarget.value);
+                  }}
+                />
+              </Label>
+            </Box>
+            <Box
+              css={{
+                justifyContent: "flex-end",
+                gap: "$2",
+              }}
+            >
+              <Button
+                variant={"tertiary"}
+                onClick={() => {
+                  setJoinSpaceModalOpen(false);
+                }}
+              >
+                Cancel
+              </Button>
+              <Button
+                onClick={() => {
+                  //handleCreateSpace();
+                }}
+              >
+                Save
+              </Button>
+            </Box>
+          </Dialog.DialogContent>
+        </Dialog.DialogPortal>
+      </Dialog.DialogRoot>
       <DropdownMenu.Root
         trigger={
           <Button
@@ -157,6 +229,13 @@ const SpaceDropdown = () => {
             })}
         </DropdownMenu.RadioGroup>
         <DropdownMenu.Separator />
+        <DropdownMenu.Item
+          onClick={() => {
+            setJoinSpaceModalOpen(true);
+          }}
+        >
+          <EnterIcon /> Join a space
+        </DropdownMenu.Item>
         <DropdownMenu.Item
           onClick={() => {
             setModalOpen(true);
