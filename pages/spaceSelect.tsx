@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { NextPageWithLayout } from "./_app";
 import { styled } from "../stitches.config";
-import { useQuery } from "../convex/_generated/react";
+import { useMutation, useQuery } from "../convex/_generated/react";
 import { useSpace } from "../utils/useSpace";
 import { useRouter } from "next/router";
+import { Button, Label, TextInput } from "../components";
 
 const PageTitle = styled("h1", {
   fontSize: "$6",
@@ -13,21 +14,28 @@ const PageTitle = styled("h1", {
 
 const Box = styled("div", {
   display: "flex",
-  padding: "$6 $7",
 });
 
 const Page: NextPageWithLayout = () => {
   const spaces = useQuery("getSpaces");
   const { setSpaceId } = useSpace();
   const router = useRouter();
+  const initializeSpace = useMutation("initializeSpace");
+  const joinSpace = useMutation("joinSpace");
+  const [joinSpaceId, setJoinSpaceId] = useState('');
   const handleClick = async (spaceId: string | null) => {
     setSpaceId && (await setSpaceId(spaceId));
     router.push("/");
   };
   return (
-    <Box>
-      <PageTitle> Choose a space</PageTitle>
-      {spaces &&
+    <Box css={{
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center',
+      minHeight: '100vh',
+      margin: '$4',
+    }}>
+      {/* {spaces &&
         spaces.map((space) => {
           const spaceId = space ? space._id.toString() : null;
 
@@ -42,7 +50,61 @@ const Page: NextPageWithLayout = () => {
               {space && space.members?.length}
             </button>
           );
-        })}
+        })} */}
+      <Box css={{
+        height: '300px',
+        maxWidth: '400px',
+        width: '100%',
+        justifyContent: 'space-between',
+        flexDirection: 'column',
+        border: "1px solid $separator",
+        padding: "$5",
+        borderRadius: '$1',
+      }}>
+        <PageTitle> Find your space</PageTitle>
+        <Label>
+          Space ID
+          <TextInput
+            value={joinSpaceId}
+            onChange={(e) => {
+              setJoinSpaceId(e.currentTarget.value)
+            }}
+          />
+        </Label>
+        <Box css={{
+          flexDirection: 'column',
+          width: '100%',
+          gap: '$4',
+          textAlign: 'center'
+        }}>
+          <Button onClick={() => {
+            joinSpace(joinSpaceId)
+              .then(() => {
+                setJoinSpaceId("");
+              })
+              .catch((error: Error) => {
+                alert(error.toString())
+              });
+          }} variant="primary" stretch
+            css={{
+              justifyContent: 'center'
+            }}> Join existing space</Button>
+          or
+          <Button onClick={() => {
+            initializeSpace().then((response) => {
+              if (response) handleClick(response.id);
+              return;
+            }).catch(() => {
+              alert('failed to initialize space')
+            });
+          }}
+            stretch
+            css={{
+              justifyContent: 'center'
+            }}> Start my own space</Button>
+        </Box>
+
+      </Box>
     </Box>
   );
 };

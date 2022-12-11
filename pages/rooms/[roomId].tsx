@@ -11,7 +11,6 @@ import Layout from "../../components/layouts/layout";
 import { useMutation, useQuery } from "../../convex/_generated/react";
 import { styled } from "../../stitches.config";
 import type { NextPageWithLayout } from "../_app";
-import { Cross2Icon } from "@radix-ui/react-icons";
 import { nanoid } from "nanoid";
 import ReactFlow, {
   Background,

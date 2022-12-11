@@ -30,4 +30,6 @@ export default mutation(async ({ db, auth }, space?) => {
     spaces: [spaceId],
   };
   await db.patch(user._id, userObject);
+
+  return spaceId;
 });
