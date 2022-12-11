@@ -4,7 +4,12 @@ import { useMutation, useQuery } from "../../convex/_generated/react";
 import { useSpace } from "../../utils/useSpace";
 import { Button } from "../Button";
 import { Document } from "../../convex/_generated/dataModel";
-import { CaretDownIcon, Cross2Icon, PlusIcon, EnterIcon } from "@radix-ui/react-icons";
+import {
+  CaretDownIcon,
+  Cross2Icon,
+  PlusIcon,
+  EnterIcon,
+} from "@radix-ui/react-icons";
 import { styled } from "../../stitches.config";
 import { useRouter } from "next/router";
 
@@ -188,12 +193,14 @@ const SpaceDropdown = () => {
               </Button>
               <Button
                 onClick={() => {
-                  joinSpace(joinSpaceId).then(() => {
-                    setJoinSpaceModalOpen(false);
-                    setJoinSpaceId("");
-                  }).catch(() => {
-                    alert("You're already part of this space")
-                  });
+                  joinSpace(joinSpaceId)
+                    .then(() => {
+                      setJoinSpaceModalOpen(false);
+                      setJoinSpaceId("");
+                    })
+                    .catch(() => {
+                      alert("You're already part of this space");
+                    });
                 }}
               >
                 Save

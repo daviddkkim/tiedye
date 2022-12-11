@@ -30,5 +30,5 @@ export {
   WidgetDialog,
   Toggle,
   PostNode,
-  TodoNode
+  TodoNode,
 };

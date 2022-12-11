@@ -100,7 +100,7 @@ const WidgetDialog: React.FC<WidgetDialogProps> = ({
       showClose={false}
       trigger={
         <Button>
-           <PlusIcon />
+          <PlusIcon />
         </Button>
       }
     >

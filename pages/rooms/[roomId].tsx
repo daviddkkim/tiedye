@@ -1,13 +1,24 @@
 import { useRouter } from "next/router";
 import React, { ReactElement, useEffect, useMemo, useState } from "react";
-import { Button, PostNode, TextInput, TodoNode, WidgetDialog } from "../../components";
+import {
+  Button,
+  PostNode,
+  TextInput,
+  TodoNode,
+  WidgetDialog,
+} from "../../components";
 import Layout from "../../components/layouts/layout";
 import { useMutation, useQuery } from "../../convex/_generated/react";
 import { styled } from "../../stitches.config";
 import type { NextPageWithLayout } from "../_app";
 import { Cross2Icon } from "@radix-ui/react-icons";
 import { nanoid } from "nanoid";
-import ReactFlow, { Background, Controls, Node, useNodesState } from "reactflow";
+import ReactFlow, {
+  Background,
+  Controls,
+  Node,
+  useNodesState,
+} from "reactflow";
 import "reactflow/dist/style.css";
 
 export interface Objects {
@@ -57,60 +68,57 @@ const Page: NextPageWithLayout = () => {
   const updateRoom = useMutation("updateRoom");
   const [nodes, setNodes, onNodesChange] = useNodesState([]);
 
-
   useEffect(() => {
-
-    const initialNodes: Node[] = roomDetails ?
-      roomDetails.object.widgets.map((widget, i) => {
-        if (widget.type === "post") {
-          return (
-            {
+    const initialNodes: Node[] = roomDetails
+      ? roomDetails.object.widgets.map((widget, i) => {
+          if (widget.type === "post") {
+            return {
               id: widget.id,
-              type: 'postNode',
+              type: "postNode",
               position: { x: i * 100 + 100, y: i * 100 + 100 },
-              data: {...widget, roomDetails: roomDetails},
+              data: { ...widget, roomDetails: roomDetails },
               draggable: true,
-            }
-          );
-        } else {
-          return (
-            {
+            };
+          } else {
+            return {
               id: widget.id,
-              type: 'todoNode',
+              type: "todoNode",
               position: { x: i * 100 + 100, y: i * 100 + 100 },
-              data: {...widget, roomDetails: roomDetails},
-              draggable: true
-            }
-          );
-        }
-      }) : [
-        {
-          id: '1',
-          type: 'postNode',
-          position: { x: 0, y: 0 },
-          draggable: true,
-          data: {
-            roomDetails: null,
-            id: '1',
-            type: 'post',
-            title: 'hello',
-            body: [
-              {
-                id: '1',
-                content: 'empty',
-                completed: false
-              }
-            ]
+              data: { ...widget, roomDetails: roomDetails },
+              draggable: true,
+            };
           }
-        }
-      ];
-    setNodes(initialNodes)
-  }, [roomDetails])
+        })
+      : [
+          {
+            id: "1",
+            type: "postNode",
+            position: { x: 0, y: 0 },
+            draggable: true,
+            data: {
+              roomDetails: null,
+              id: "1",
+              type: "post",
+              title: "hello",
+              body: [
+                {
+                  id: "1",
+                  content: "empty",
+                  completed: false,
+                },
+              ],
+            },
+          },
+        ];
+    setNodes(initialNodes);
+  }, [roomDetails, setNodes]);
 
-  const nodeTypes = useMemo(() => ({ postNode: PostNode, todoNode: TodoNode }), []);
+  const nodeTypes = useMemo(
+    () => ({ postNode: PostNode, todoNode: TodoNode }),
+    []
+  );
 
   if (!roomDetails) return <div> loading... </div>;
-
 
   const getUpdatedTime = (lastUpdatedAt: number) => {
     const now = Date.now();
@@ -238,15 +246,12 @@ const Page: NextPageWithLayout = () => {
     updateRoom(newRoom);
   };
 
-
   return (
     <ReactFlow
       nodeTypes={nodeTypes}
       nodes={nodes}
       onNodesChange={onNodesChange}
-      proOptions={
-        { hideAttribution: true }
-      }
+      proOptions={{ hideAttribution: true }}
     >
       <Background />
       <Box
