@@ -18,6 +18,7 @@ import type * as getSpace from "../getSpace";
 import type * as getSpaces from "../getSpaces";
 import type * as getUser from "../getUser";
 import type * as initializeSpace from "../initializeSpace";
+import type * as joinSpace from "../joinSpace";
 import type * as storeUser from "../storeUser";
 import type * as updateRoom from "../updateRoom";
 import type * as updateUser from "../updateUser";
@@ -40,6 +41,7 @@ export type API = ApiFromModules<{
   getSpaces: typeof getSpaces;
   getUser: typeof getUser;
   initializeSpace: typeof initializeSpace;
+  joinSpace: typeof joinSpace;
   storeUser: typeof storeUser;
   updateRoom: typeof updateRoom;
   updateUser: typeof updateUser;
