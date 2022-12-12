@@ -122,6 +122,7 @@ const SpaceDropdown = () => {
                 Cancel
               </Button>
               <Button
+                variant={"primary"}
                 onClick={() => {
                   handleCreateSpace();
                 }}
@@ -192,6 +193,8 @@ const SpaceDropdown = () => {
                 Cancel
               </Button>
               <Button
+                variant={"primary"}
+
                 onClick={() => {
                   joinSpace(joinSpaceId)
                     .then(() => {

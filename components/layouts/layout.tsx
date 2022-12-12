@@ -18,7 +18,6 @@ const PageSection = styled("section", {
 export default function Layout({ children }: { children: ReactElement }) {
   const [userId, setUserId] = useState<Id<"users"> | null>(null);
   const storeUser = useMutation("storeUser");
-  const initializeSpace = useMutation("initializeSpace");
   const router = useRouter();
   const { spaceId } = useSpace();
 
@@ -37,10 +36,9 @@ export default function Layout({ children }: { children: ReactElement }) {
       setUserId(id);
     }
     createUser().catch(console.error);
-    initializeSpace().catch(console.error);
 
     return () => setUserId(null);
-  }, [storeUser, initializeSpace]);
+  }, [storeUser]);
 
   return (
     <>

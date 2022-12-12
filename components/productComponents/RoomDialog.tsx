@@ -86,6 +86,7 @@ const RoomDialog: React.FC = () => {
         </Dialog.DialogCloseButton>
         <Dialog.DialogCloseButton asChild>
           <Button
+          variant={"primary"}
             onClick={() => {
               handleCreateRoom();
             }}

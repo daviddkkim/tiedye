@@ -20,7 +20,7 @@ export const Button = styled("button", {
   variants: {
     variant: {
       primary: {
-        backgroundColor: "$fgAccent",
+        background: "linear-gradient($orangeA8, $orange4)",
         borderColor: "$fgAccentBorder",
         color: "$fgAccentText",
         "&:hover": {
