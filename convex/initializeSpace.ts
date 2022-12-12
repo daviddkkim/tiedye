@@ -13,8 +13,7 @@ export default mutation(async ({ db, auth }, space?) => {
     )
     .unique();
 
-    console.log('here')
-  if (user.spaces.length > 0) return;
+  if (user.spaces.length > 0) return user.spaces[0];
 
   const newSpace = !space
     ? {
@@ -31,8 +30,6 @@ export default mutation(async ({ db, auth }, space?) => {
     spaces: [spaceId],
   };
   await db.patch(user._id, userObject);
-
-  console.log(spaceId)
 
   return spaceId;
 });

@@ -92,8 +92,6 @@ const Page: NextPageWithLayout = () => {
           or
           <Button onClick={() => {
             initializeSpace().then((response) => {
-              console.log('here')
-              console.log(response)
               if (response) handleClick(response.id);
               return;
             }).catch(() => {
