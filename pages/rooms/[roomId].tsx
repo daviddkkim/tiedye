@@ -1,12 +1,6 @@
 import { useRouter } from "next/router";
-import React, { ReactElement, useEffect, useMemo, useState } from "react";
-import {
-  Button,
-  PostNode,
-  TextInput,
-  TodoNode,
-  WidgetDialog,
-} from "../../components";
+import React, { ReactElement, useEffect, useMemo } from "react";
+import { PostNode, TodoNode, WidgetDialog } from "../../components";
 import Layout from "../../components/layouts/layout";
 import { useMutation, useQuery } from "../../convex/_generated/react";
 import { styled } from "../../stitches.config";

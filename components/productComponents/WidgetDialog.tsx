@@ -54,13 +54,17 @@ const WidgetDialog: React.FC<WidgetDialogProps> = ({
     if (phase === "post")
       return (
         <Box css={{ gap: "$3", flexDirection: "column" }}>
-          <Box css={{ gap: "$2" }}>
+          <Box
+            css={{
+              gap: "$2",
+              fontSize: "$1",
+              alignItems: "center",
+            }}
+          >
             <Button
-              variant={"primary"}
+              variant={"tertiary"}
               css={{
                 padding: "$1",
-                border: "1px solid $fgAccentBorder",
-                backgroundColor: "$fgAccent",
                 fontSize: "$2",
                 lineHeight: "$2",
                 borderRadius: "$1",
@@ -77,8 +81,7 @@ const WidgetDialog: React.FC<WidgetDialogProps> = ({
             <Box
               css={{
                 padding: "$1",
-                border: "1px solid $fgAccentBorder",
-                backgroundColor: "$fgAccent",
+                backgroundColor: "$transparent",
                 fontSize: "$2",
                 borderRadius: "$1",
                 width: "fit-content",
@@ -99,7 +102,7 @@ const WidgetDialog: React.FC<WidgetDialogProps> = ({
       title={getTitle()}
       showClose={false}
       trigger={
-        <Button>
+        <Button variant={"primary"}>
           <PlusIcon />
         </Button>
       }
@@ -112,6 +115,7 @@ const WidgetDialog: React.FC<WidgetDialogProps> = ({
           }}
         >
           <Button
+            variant={"primary"}
             onClick={() => {
               setPhase("post");
             }}
@@ -185,6 +189,7 @@ const WidgetDialog: React.FC<WidgetDialogProps> = ({
             </Dialog.DialogCloseButton>
             <Dialog.DialogCloseButton asChild>
               <Button
+                variant={"primary"}
                 onClick={() => {
                   onPostWidgetAdd(post);
                 }}

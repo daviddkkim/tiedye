@@ -18,7 +18,6 @@ const Box = styled("div", {
 
 const RoomDialog: React.FC = () => {
   const [roomName, setRoomName] = useState("");
-  const [description, setDescription] = useState("");
   const createRoom = useMutation("createRoom");
   const { spaceId } = useSpace();
 
@@ -27,7 +26,7 @@ const RoomDialog: React.FC = () => {
 
     const room = {
       name: roomName,
-      description: description,
+      description: "",
       space: spaceId,
       object: {
         widgets: [],
@@ -35,7 +34,6 @@ const RoomDialog: React.FC = () => {
     };
     createRoom(room);
     setRoomName("");
-    setDescription("");
   };
   return (
     <Dialog.Dialog
@@ -56,21 +54,10 @@ const RoomDialog: React.FC = () => {
           Room name
           <TextInput
             value={roomName}
-            placeholder="David & Emily Todo"
+            placeholder="Friends chat"
             id={"roomName"}
             onChange={(e) => {
               setRoomName(e.currentTarget.value);
-            }}
-          />
-        </Label>
-        <Label htmlFor="description">
-          Description
-          <TextInput
-            value={description}
-            placeholder="Room for us to work on holiday plans"
-            id={"description"}
-            onChange={(e) => {
-              setDescription(e.currentTarget.value);
             }}
           />
         </Label>
@@ -86,7 +73,7 @@ const RoomDialog: React.FC = () => {
         </Dialog.DialogCloseButton>
         <Dialog.DialogCloseButton asChild>
           <Button
-          variant={"primary"}
+            variant={"primary"}
             onClick={() => {
               handleCreateRoom();
             }}

@@ -194,7 +194,6 @@ const SpaceDropdown = () => {
               </Button>
               <Button
                 variant={"primary"}
-
                 onClick={() => {
                   joinSpace(joinSpaceId)
                     .then(() => {
