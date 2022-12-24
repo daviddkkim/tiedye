@@ -13,6 +13,9 @@ const StyledLink = styled(Link, {
   display: "flex",
   alignItems: "center",
   outline: "none",
+  whiteSpace: 'nowrap',
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
   "&:focus-visible": {
     borderColor: "$focusBorder",
     boxShadow: "0px 0px 0px 2px $colors$focusShadow",
