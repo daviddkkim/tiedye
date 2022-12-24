@@ -48,11 +48,11 @@ const Page: NextPageWithLayout = () => {
       {spaces ?
         spaces.map((space) => {
           const spaceId = space ? space._id.toString() : null;
-
           return (
             <Box css={{
               flexDirection: 'column',
-              gap: '$6'
+              gap: '$6',
+              key={spaceId}
             }}>
               <PageTitle>
                 Enter a space
@@ -70,7 +70,6 @@ const Page: NextPageWithLayout = () => {
                   gap: '$4',
                   fontSize: '$4'
                 }}
-                key={spaceId}
               >
                 <CardTitle>
                   {space && space.name}
