@@ -14,6 +14,7 @@ const StyledOverlay = styled(DialogPrimitive.Overlay, {
   backdropFilter: "blur(0.5px)",
   position: "fixed",
   inset: 0,
+  zIndex: 10,
   "@media (prefers-reduced-motion: no-preference)": {
     animation: `${overlayShow} 150ms cubic-bezier(0.16, 1, 0.3, 1) forwards`,
   },
@@ -26,6 +27,7 @@ const StyledContent = styled(DialogPrimitive.Content, {
   boxShadow: "rgb(0 0 0 / 20%) 0px 4px 6px",
   padding: "$3",
   display: "flex",
+  lineHeight: "150%",
   flexDirection: "column",
   gap: "$4",
   position: "fixed",
@@ -33,6 +35,7 @@ const StyledContent = styled(DialogPrimitive.Content, {
   left: "50%",
   maxWidth: "650px",
   width: "100%",
+  zIndex: 11,
   transform: "translateX(-50%)",
   "&:focus": { outline: "none" },
 });
@@ -48,6 +51,7 @@ interface DialogProps {
   closeOnClickOutside?: boolean;
   showClose?: boolean;
   onOpenChange?: (open: boolean) => void;
+  fitContent?: boolean;
 }
 
 //why is the open commented out? it's just being used uncontrolled for now;
@@ -60,6 +64,7 @@ const Dialog: React.FC<DialogProps> = ({
   closeOnClickOutside = true,
   showClose = true,
   onOpenChange,
+  fitContent = false,
 }) => {
   return (
     <DialogPrimitive.Root onOpenChange={onOpenChange}>
@@ -70,11 +75,15 @@ const Dialog: React.FC<DialogProps> = ({
           onInteractOutside={(event) => {
             closeOnClickOutside ? null : event.preventDefault();
           }}
+          css={{
+            width: fitContent ? "fit-content" : "100%",
+          }}
         >
           <Box
             css={{
               alignItems: "center",
               justifyContent: "space-between",
+              gap: "$4",
             }}
           >
             {title}

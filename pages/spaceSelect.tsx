@@ -150,7 +150,7 @@ const Page: NextPageWithLayout = () => {
           </Box>
         </Box>
       )}
-    </Box >
+    </Box>
   );
 };
 

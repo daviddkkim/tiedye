@@ -1,11 +1,21 @@
 import React, { ReactElement } from "react";
 import { useQuery } from "../../convex/_generated/react";
-import { RoomDialog, TH, TRlink, THeadRow, TD, Table } from "../../components";
+import {
+  RoomDialog,
+  TH,
+  TRlink,
+  THeadRow,
+  TD,
+  Table,
+  Button,
+  Link,
+} from "../../components";
 import type { NextPageWithLayout } from "../_app";
 import Layout from "../../components/layouts/layout";
 import { styled } from "../../stitches.config";
 import { ArrowRightIcon } from "@radix-ui/react-icons";
 import { useSpace } from "../../utils/useSpace";
+import { getUpdatedTime } from "../../utils/time";
 
 const PageTitle = styled("h1", {
   fontSize: "$6",
@@ -17,6 +27,18 @@ const Box = styled("div", {
   display: "flex",
 });
 
+const CardTitle = styled("h2", {
+  fontSize: "$3",
+  lineHeight: "$3",
+  margin: 0,
+});
+
+const CardMetaData = styled("span", {
+  color: "$textSecondary",
+  fontSize: "$2",
+  lineHeight: "$2",
+});
+
 const Page: NextPageWithLayout = () => {
   const { spaceId } = useSpace();
   const rooms = useQuery("getRooms", spaceId);
@@ -25,7 +47,7 @@ const Page: NextPageWithLayout = () => {
       css={{
         gap: "$4",
         flexDirection: "column",
-        padding: "$9 $7",
+        padding: "$6",
       }}
     >
       <Box
@@ -36,8 +58,9 @@ const Page: NextPageWithLayout = () => {
         }}
       >
         <PageTitle> Rooms</PageTitle>
-        <RoomDialog />
       </Box>
+      <RoomDialog />
+
       {rooms && rooms.length > 0 ? (
         /*   <Table>
             <THeadRow>
@@ -70,37 +93,54 @@ const Page: NextPageWithLayout = () => {
               );
             })}
           </Table> */
-        <Box>
-          {rooms.map((room) => {
-            return (
-              <Box>
-                {room.name}
-                {room.description}
-                {room.lastUpdatedAt}
-                
-              </Box>
-            )
-          })}
-        </Box>
-      ) : (
         <Box
           css={{
-            minHeight: "200px",
-            justifyContent: "center",
-            alignItems: "center",
-            flexDirection: "column",
-            color: "$textSecondary",
-            fontSize: "$5",
-            gap: "$2",
-            border: "1px solid $separator",
-            backgroundColor: "$bgSecondary",
-            borderRadius: "$1",
+            flexWrap: "wrap",
+            gap: "$3",
           }}
         >
-          {"You don't have any room"}
-          <RoomDialog />
+          {rooms.map((room) => {
+            return (
+              <Link
+                css={{
+                  height: "auto",
+                  alignItems: "flex-start",
+                  padding: "$3",
+                  flexDirection: "column",
+                  gap: "$3",
+                  borderRadius: "$1",
+                }}
+                href={"/rooms/" + room._id.toString()}
+                key={room._id.id}
+              >
+                <Box
+                  css={{
+                    width: "100%",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <CardTitle>{room.name}</CardTitle>
+                  <ArrowRightIcon />
+                </Box>
+                <span>{room.description}</span>
+                <Box
+                  css={{
+                    flexDirection: "column",
+                    gap: "$1",
+                    alignItems: "flex-start",
+                  }}
+                >
+                  <CardMetaData>created by {room.creator}</CardMetaData>
+                  <CardMetaData>
+                    updated {getUpdatedTime(room.lastUpdatedAt)}
+                  </CardMetaData>
+                </Box>
+              </Link>
+            );
+          })}
         </Box>
-      )}
+      ) : null}
     </Box>
   );
 };

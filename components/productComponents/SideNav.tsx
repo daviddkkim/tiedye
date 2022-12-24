@@ -12,19 +12,19 @@ import {
 import { useRouter } from "next/router";
 
 const NavContainer = styled("div", {
-  position: 'sticky',
-  height: 'fit-content',
+  position: "sticky",
+  height: "fit-content",
   display: "flex",
   width: "fit-content",
   padding: "$2",
   backgroundColor: "$bgSecondary",
   border: "1px solid $separator",
-  borderRadius: '$1',
+  borderRadius: "$1",
   gap: "$4",
   flexDirection: "row",
   justifyContent: "space-between",
-  alignItems: ' center',
-  zIndex: '9999'
+  alignItems: " center",
+  zIndex: "1",
 });
 
 const NavTitle = styled("h1", {
@@ -55,11 +55,14 @@ const SideNav = () => {
   };
 
   return (
-    <Box css={{
-      position: 'absolute',
-      top: '$4',
-      left: '$7',
-    }}>
+    <Box
+      css={{
+        position: "absolute",
+        bottom: "$4",
+        left: "50%",
+        transform: "translateX(-50%)",
+      }}
+    >
       <NavContainer>
         <Box
           css={{
@@ -99,35 +102,40 @@ const SideNav = () => {
             </Link>
           </Box>
         </Box>
-        <DropdownMenu.DropdownMenu trigger={
-          <Button
-            variant={'tertiary'}>
-            <Box css={{
-              size: '$4',
-              borderRadius: '$round',
-              background: 'linear-gradient(0deg,$colors$sand9, $colors$yellow11 )',
-            }}>
-            </Box>
-            <CaretDownIcon />
-          </Button>
-        }>
+        <DropdownMenu.DropdownMenu
+          trigger={
+            <Button variant={"tertiary"}>
+              <Box
+                css={{
+                  size: "$4",
+                  borderRadius: "$round",
+                  background:
+                    "linear-gradient(0deg,$colors$sand9, $colors$yellow11 )",
+                }}
+              ></Box>
+              <CaretDownIcon />
+            </Button>
+          }
+        >
           <Toggle
             onPressedChange={(pressed) => {
               pressed ? setTheme("light") : setTheme("dark");
             }}
             css={{
-              width: '100%',
-              fontSize: '$3',
+              width: "100%",
+              fontSize: "$3",
               "&:hover": {
-                backgroundColor: '$fgHoverStrong'
-              }
+                backgroundColor: "$fgHoverStrong",
+              },
             }}
           >
             Change theme
           </Toggle>
-          <DropdownMenu.Item onClick={() => {
-            handleLogout();
-          }}>
+          <DropdownMenu.Item
+            onClick={() => {
+              handleLogout();
+            }}
+          >
             Log out
           </DropdownMenu.Item>
         </DropdownMenu.DropdownMenu>
