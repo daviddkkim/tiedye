@@ -1,29 +1,31 @@
 import React from "react";
 import { styled } from "../../stitches.config";
-import { Button, Link, Toggle, SpaceDropdown } from "..";
+import { Button, Link, Toggle, SpaceDropdown, DropdownMenu } from "..";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useTheme } from "next-themes";
 import {
   PersonIcon,
   BoxIcon,
   GearIcon,
-  ChatBubbleIcon,
-  PaperPlaneIcon,
-  LayersIcon,
   BlendingModeIcon,
+  CaretDownIcon,
 } from "@radix-ui/react-icons";
 import { useRouter } from "next/router";
 
 const NavContainer = styled("div", {
+  position: 'sticky',
+  height: 'fit-content',
   display: "flex",
-  minHeight: "100vh",
-  width: "232px",
-  padding: "$4 $3",
+  width: "fit-content",
+  padding: "$2",
   backgroundColor: "$bgSecondary",
-  borderRight: "1px solid $separator",
+  border: "1px solid $separator",
+  borderRadius: '$1',
   gap: "$4",
-  flexDirection: "column",
+  flexDirection: "row",
   justifyContent: "space-between",
+  alignItems: ' center',
+  zIndex: '9999'
 });
 
 const NavTitle = styled("h1", {
@@ -54,95 +56,84 @@ const SideNav = () => {
   };
 
   return (
-    <NavContainer>
-      <Box
-        css={{
-          flexDirection: "column",
-          height: "100%",
-          gap: "$4",
-        }}
-      >
+    <Box css={{
+      position:'absolute',
+      top: '$4',
+      left: '$7',
+    }}>
+      <NavContainer>
         <Box
           css={{
-            width: "100%",
-            justifyContent: "space-between",
+            flexDirection: "row",
+            gap: "$4",
           }}
         >
-          <NavTitle>{"-"}</NavTitle>
+          <Box
+            css={{
+              gap: "$1",
+              flexDirection: "row",
+            }}
+          >
+            <Link
+              variant={"tertiary"}
+              href={"/rooms"}
+              active={handleActiveLink("rooms")}
+              stretch
+            >
+              {" "}
+              <BoxIcon /> Rooms{" "}
+            </Link>
+            <Link
+              variant={"tertiary"}
+              href={"/settings"}
+              active={handleActiveLink("settings")}
+              stretch
+            >
+              {" "}
+              <GearIcon /> Settings{" "}
+            </Link>
+            <Link
+              variant={"tertiary"}
+              href={"/members"}
+              active={handleActiveLink("members")}
+              stretch
+            >
+              {" "}
+              <PersonIcon /> Members{" "}
+            </Link>
+          </Box>
         </Box>
-        <SpaceDropdown />
-        <Box
-          css={{
-            gap: "$1",
-            flexDirection: "column",
-          }}
-        >
-          <Link
-            variant={"tertiary"}
-            href={"/rooms"}
-            active={handleActiveLink("rooms")}
-            stretch
+        <DropdownMenu.DropdownMenu trigger={
+          <Button
+            variant={'tertiary'}>
+            <Box css={{
+              size: '$4',
+              borderRadius: '$round',
+              background: 'linear-gradient(0deg,$colors$sand9, $colors$yellow11 )',
+            }}>
+            </Box>
+            <CaretDownIcon />
+          </Button>
+        }>
+          <Toggle
+            onPressedChange={(pressed) => {
+              pressed ? setTheme("light") : setTheme("dark");
+            }}
+            css={{
+              width: '100%',
+              fontSize: '$3'
+            }}
           >
-            {" "}
-            <BoxIcon /> Rooms{" "}
-          </Link>
-          <Link
-            variant={"tertiary"}
-            href={"/settings"}
-            active={handleActiveLink("settings")}
-            stretch
-          >
-            {" "}
-            <GearIcon /> Settings{" "}
-          </Link>
-          <Link
-            variant={"tertiary"}
-            href={"/members"}
-            active={handleActiveLink("members")}
-            stretch
-          >
-            {" "}
-            <PersonIcon /> Members{" "}
-          </Link>
-        </Box>
-      </Box>
-      <Box
-        css={{
-          gap: "$1",
-          flexDirection: "column",
-        }}
-      >
-        <Button variant={"tertiary"} stretch>
-          {" "}
-          <PaperPlaneIcon /> Feedback{" "}
-        </Button>
-        <Button variant={"tertiary"} stretch>
-          {" "}
-          <ChatBubbleIcon /> Help{" "}
-        </Button>
-      </Box>
-      <Box
-        css={{
-          justifyContent: "space-between",
-        }}
-      >
-        <Button
-          onClick={() => {
+            Change theme
+          </Toggle>
+          <DropdownMenu.Item onClick={() => {
             handleLogout();
-          }}
-        >
-          {" "}
-          Log out{" "}
-        </Button>
-        <Toggle
-          onPressedChange={(pressed) => {
-            pressed ? setTheme("light") : setTheme("dark");
-          }}
-        >
-          <BlendingModeIcon />
-        </Toggle>
-      </Box>
-    </NavContainer>
+          }}>
+            Log out
+          </DropdownMenu.Item>
+        </DropdownMenu.DropdownMenu>
+      </NavContainer>
+    </Box>
   );
 };
 

@@ -9,10 +9,13 @@ import { useSpace } from "../../utils/useSpace";
 
 const StyledMain = styled("main", {
   display: "flex",
+  flexDirection:'column',
 });
 
 const PageSection = styled("section", {
   width: "100%",
+  height: '100vh'
+
 });
 
 export default function Layout({ children }: { children: ReactElement }) {

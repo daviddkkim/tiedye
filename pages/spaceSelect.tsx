@@ -53,8 +53,8 @@ const Page: NextPageWithLayout = () => {
               css={{
                 flexDirection: "column",
                 gap: "$6",
-                key = { spaceId },
               }}
+              key={spaceId}
             >
               <PageTitle>Enter a space</PageTitle>
               <Button
@@ -150,7 +150,7 @@ const Page: NextPageWithLayout = () => {
           </Box>
         </Box>
       )}
-    </Box>
+    </Box >
   );
 };
 
