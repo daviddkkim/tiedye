@@ -20,8 +20,8 @@ const CardTitle = styled("h2", {
   margin: 0,
   fontSize: "$4",
   lineHeight: "$4",
-  color: '$textSecondary'
-})
+  color: "$textSecondary",
+});
 
 const Page: NextPageWithLayout = () => {
   const spaces = useQuery("getSpaces");
@@ -45,40 +45,39 @@ const Page: NextPageWithLayout = () => {
         margin: "$4",
       }}
     >
-      {spaces ?
+      {spaces ? (
         spaces.map((space) => {
           const spaceId = space ? space._id.toString() : null;
           return (
-            <Box css={{
-              flexDirection: 'column',
-              gap: '$6',
-              key={spaceId}
-            }}>
-              <PageTitle>
-                Enter a space
-              </PageTitle>
+            <Box
+              css={{
+                flexDirection: "column",
+                gap: "$6",
+                key = { spaceId },
+              }}
+            >
+              <PageTitle>Enter a space</PageTitle>
               <Button
                 onClick={() => {
                   handleClick(space && space._id.toString());
                 }}
                 css={{
-                  height: 'auto',
-                  width: 'auto',
-                  flexDirection:'column',
-                  alignItems:'flex-start',
-                  padding: '$3',
-                  gap: '$4',
-                  fontSize: '$4'
+                  height: "auto",
+                  width: "auto",
+                  flexDirection: "column",
+                  alignItems: "flex-start",
+                  padding: "$3",
+                  gap: "$4",
+                  fontSize: "$4",
                 }}
               >
-                <CardTitle>
-                  {space && space.name}
-                </CardTitle>
+                <CardTitle>{space && space.name}</CardTitle>
                 {space && "Member count: " + space.members.length}
               </Button>
             </Box>
           );
-        }) :
+        })
+      ) : (
         <Box
           css={{
             height: "300px",
@@ -150,8 +149,7 @@ const Page: NextPageWithLayout = () => {
             </Button>
           </Box>
         </Box>
-      }
-
+      )}
     </Box>
   );
 };
