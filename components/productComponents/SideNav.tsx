@@ -4,11 +4,10 @@ import { Button, Link, Toggle, SpaceDropdown, DropdownMenu } from "..";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useTheme } from "next-themes";
 import {
-  PersonIcon,
   BoxIcon,
   GearIcon,
-  BlendingModeIcon,
   CaretDownIcon,
+  TokensIcon,
 } from "@radix-ui/react-icons";
 import { useRouter } from "next/router";
 
@@ -57,7 +56,7 @@ const SideNav = () => {
 
   return (
     <Box css={{
-      position:'absolute',
+      position: 'absolute',
       top: '$4',
       left: '$7',
     }}>
@@ -78,28 +77,25 @@ const SideNav = () => {
               variant={"tertiary"}
               href={"/rooms"}
               active={handleActiveLink("rooms")}
-              stretch
             >
               {" "}
               <BoxIcon /> Rooms{" "}
             </Link>
             <Link
               variant={"tertiary"}
-              href={"/settings"}
-              active={handleActiveLink("settings")}
-              stretch
+              href={"/feed"}
+              active={handleActiveLink("feed")}
             >
               {" "}
-              <GearIcon /> Settings{" "}
+              <TokensIcon /> Feed{" "}
             </Link>
             <Link
               variant={"tertiary"}
-              href={"/members"}
-              active={handleActiveLink("members")}
-              stretch
+              href={"/settings"}
+              active={handleActiveLink("settings")}
             >
               {" "}
-              <PersonIcon /> Members{" "}
+              <GearIcon /> Settings{" "}
             </Link>
           </Box>
         </Box>
@@ -121,7 +117,10 @@ const SideNav = () => {
             }}
             css={{
               width: '100%',
-              fontSize: '$3'
+              fontSize: '$3',
+              "&:hover": {
+                backgroundColor: '$fgHoverStrong'
+              }
             }}
           >
             Change theme

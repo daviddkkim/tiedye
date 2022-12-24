@@ -11,6 +11,7 @@ const StyledDropdownMenuContent = styled(DropdownMenuPrimitives.Content, {
   border: "1px solid $separator",
   width: "100%",
   minWidth: "120px",
+  zIndex: "10000"
 });
 
 const DropdownMenuLabel = styled(DropdownMenuPrimitives.Label, {

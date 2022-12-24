@@ -25,7 +25,7 @@ const Page: NextPageWithLayout = () => {
       css={{
         gap: "$4",
         flexDirection: "column",
-        padding: "$6 $7",
+        padding: "$9 $7",
       }}
     >
       <Box
@@ -39,37 +39,49 @@ const Page: NextPageWithLayout = () => {
         <RoomDialog />
       </Box>
       {rooms && rooms.length > 0 ? (
-        <Table>
-          <THeadRow>
-            <TH>Room name</TH>
-            <TH>Description</TH>
-            <TH>Creator</TH>
-            <TH>Created</TH>
-            <TH> </TH>
-          </THeadRow>
+        /*   <Table>
+            <THeadRow>
+              <TH>Room name</TH>
+              <TH>Description</TH>
+              <TH>Creator</TH>
+              <TH>Created</TH>
+              <TH> </TH>
+            </THeadRow>
+            {rooms.map((room) => {
+              return (
+                <TRlink
+                  href={"/rooms/" + room._id.toString()}
+                  style={{ width: "100%", display: "table-row" }}
+                  key={room._id.toString()}
+                >
+                  <TD>{room.name}</TD>
+                  <TD>{room.description}</TD>
+                  <TD>{room.creator}</TD>
+                  <TD>{new Date(room._creationTime).toDateString()}</TD>
+                  <TD
+                    css={{
+                      width: "40px",
+                    }}
+                  >
+                    {" "}
+                    <ArrowRightIcon />{" "}
+                  </TD>
+                </TRlink>
+              );
+            })}
+          </Table> */
+        <Box>
           {rooms.map((room) => {
             return (
-              <TRlink
-                href={"/rooms/" + room._id.toString()}
-                style={{ width: "100%", display: "table-row" }}
-                key={room._id.toString()}
-              >
-                <TD>{room.name}</TD>
-                <TD>{room.description}</TD>
-                <TD>{room.creator}</TD>
-                <TD>{new Date(room._creationTime).toDateString()}</TD>
-                <TD
-                  css={{
-                    width: "40px",
-                  }}
-                >
-                  {" "}
-                  <ArrowRightIcon />{" "}
-                </TD>
-              </TRlink>
-            );
+              <Box>
+                {room.name}
+                {room.description}
+                {room.lastUpdatedAt}
+                
+              </Box>
+            )
           })}
-        </Table>
+        </Box>
       ) : (
         <Box
           css={{
